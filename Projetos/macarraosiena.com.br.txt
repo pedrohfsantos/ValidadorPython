@@ -1,0 +1,78 @@
+Links levando para 404: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/institucional 
+
+W3C: 
+=> http://mpitemporario.com.br/projetos/saoluisetiquetas.com.br/divisoes-produtivas 
+
+O H1 não foi encontrado na description: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/ 
+
+Imagens acima de 200KB: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/slider/banner-01.jpg 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-integral-01.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-caseiro-01.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/equipe.jpg 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/informacoes/tercerizacao-macarrao-01.jpg 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/informacoes/terceirizacao-massas-macarrao-gluten-02.jpg 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/informacoes/terceirizacao-massas-macarrao-gluten-03.jpg 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/informacoes/macarrao-mac-and-cheese-04.jpg 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-integral-01.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-integral-02.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-integral-01.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-caseiro-01.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-caseiro-01.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossos-produtos/linha-caseiro-02.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/produtosproprios.png 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/nossojeito.jpg 
+
+Imagens com erro ALT/TITLE: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/ - src='http://mpitemporario.com.br/projetos/macarraosiena.com.br/imagens/slider/banner-01.jpg' - Imagem sem TITLE 
+
+PageSpeed: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/ - Desktop: 78 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-preparo-rapido - Mobile: 67 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-preparo-rapido - Desktop: 85 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-macarrao-valinhos - Mobile: 64 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-macarrao-valinhos - Desktop: 81 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-mac-and-cheese - Mobile: 62 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-mac-and-cheese - Desktop: 84 
+
+Description atual não foi encontrada no texto MPI: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabrica-macarrao-sao-paulo 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabricacao-massas-gluten 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-macarrao-sp 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-massas-alimenticias-sp 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-macarrao-valinhos 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-fabricante-macarrao-integral 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-integral 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-macarrao-integral-sp 
+
+Palavra chave sem strong: 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/mac-and-cheese - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabrica-macarrao-sao-paulo - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabrica-massas-macarrao-gluten - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresas-fabricantes-massas-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fornecedor-massas - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/tercerizacao-macarrao - 2° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/terceirizacao-massas-macarrao-gluten - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/melhores-fabricas-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabrica-macarrao-organico - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-gluten - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-mac-and-cheese - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-fabricante-massa-talharim - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-macarrao-sp - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/macarrao-caseiro - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-massas-alimenticias - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-massas-alimenticias-sp - 3° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-macarrao-valinhos - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-fabrica-massas-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabrica-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/fabrica-massa-fettuccine - 2° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industrializacao-massas-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresa-fabricante-macarrao-integral - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-macarrao-valinhos-sao-paulo - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-macarrao-integral-sao-paulo - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/empresas-fabricantes-macarrao - 1° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/macarraosiena.com.br/industria-macarrao-integral-sp - 1° parágrafo sem strong na palavra chave 
+

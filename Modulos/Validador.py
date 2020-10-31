@@ -33,10 +33,10 @@ def Validador():
         erroValidacao[ERRO_VALIDACAO_PAGESPEED]
         ) 
 
-    scrollHorizontal = ScrollHorizontal(
-        errosEncontrado[ERRO_SCROLL],
-        erroValidacao[ERRO_VALIDACAO_SCROLL]
-        ) 
+    # scrollHorizontal = ScrollHorizontal(
+    #     errosEncontrado[ERRO_SCROLL],
+    #     erroValidacao[ERRO_VALIDACAO_SCROLL]
+    #     ) 
 
     texto = Texto(
         errosEncontrado[ERRO_TEXTO],
@@ -152,7 +152,8 @@ def Validador():
                     item.h3(),
                     )).start()
             
-            scrollHorizontal.verifica(pagina)
+            # if scrollHorizontal:
+            #     scrollHorizontal.verifica(pagina)
 
             if pagina in links['MPI']:
                 threading.Thread(
@@ -199,5 +200,5 @@ def Validador():
         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         """)
 
-    scrollHorizontal.fechar()
-
+    # if scrollHorizontal:
+    #     scrollHorizontal.fechar()

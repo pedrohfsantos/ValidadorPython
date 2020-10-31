@@ -1,5 +1,5 @@
-localhost = r'-'
-binary = r'-'
+localhost = r'C:\\xampp\\htdocs\\'
+binary = r'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
 
 
 ERRO_LINK = 'Links levando para 404'
