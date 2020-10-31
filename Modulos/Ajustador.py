@@ -45,7 +45,7 @@ def Ajustador():
         print('\nAjustando Description')
         for url in tqdm(urls[ERRO_MPI_3]):
             r = session.get(url)
-            arquivo.create(description.ajusta(site, url, r), url)
+            description.ajusta(site, url, r)
 
             
     if len(urls[ERRO_IMAGENS_2]) > 0:
