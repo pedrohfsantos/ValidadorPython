@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from os import listdir
 from pathlib import Path
 import json

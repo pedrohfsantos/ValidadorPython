@@ -56,21 +56,42 @@ ERRO = {
 	504: '\nAjustes não realizados',
 }
 
-URL								= 'http://mpitemporario.com.br/projetos/' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['url']
-localhost 						= '' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['localhost']
-binary 							= '' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['binary']
-validation = { 
-	'w3c'						: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['w3c'],
-	'colunaLateral'				: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['colunaLateral'],
-	'mapaDoSite'				: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['mapaDoSite'],
-	'menu'						: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['menu'],
-	'pageSpeed'					: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['pageSpeed'],
-	'texto'						: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['texto'],
-	'description'				: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['description'],
-	'imagem'					: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['imagem'],
-	'title'						: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['title'],
-	'mpi'						: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['mpi'],
-	'scrollHorizontal'			: True if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['validation']['scrollHorizontal']
-}
+configJson = json.ler_json(False, './Config')
+URL = 'http://mpitemporario.com.br/projetos/' if not os.path.isfile('./Config.json') else configJson['url']
 
-Array = {'url': URL, 'localhost': localhost, 'binary': binary, 'validation': validation, }
+if os.path.isfile('./Config.json'):
+	localhost = configJson['localhost']
+	binary = configJson['binary']
+	validation = { 
+		'w3c' 				: configJson['validation']['w3c'],
+		'colunaLateral' 	: configJson['validation']['colunaLateral'],
+		'mapaDoSite' 		: configJson['validation']['mapaDoSite'],
+		'menu' 				: configJson['validation']['menu'],
+		'pageSpeed' 		: configJson['validation']['pageSpeed'],
+		'texto' 			: configJson['validation']['texto'],
+		'description' 		: configJson['validation']['description'],
+		'imagem' 			: configJson['validation']['imagem'],
+		'title' 			: configJson['validation']['title'],
+		'mpi' 				: configJson['validation']['mpi'],
+		'scrollHorizontal'	: configJson['validation']['scrollHorizontal']
+	}
+	
+else:
+	localhost = ''
+	binary = ''
+	validation = { 
+		'w3c' 				: True,
+		'colunaLateral' 	: True,
+		'mapaDoSite' 		: True,
+		'menu' 				: True,
+		'pageSpeed' 		: True,
+		'texto' 			: True,
+		'description' 		: True,
+		'imagem' 			: True,
+		'title' 			: True,
+		'mpi' 				: True,
+		'scrollHorizontal' 	: False
+	}
+
+
+Array = {'url': URL, 'localhost': localhost, 'binary': binary, 'validation': validation}
