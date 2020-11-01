@@ -1,84 +1,95 @@
 from .Class.Config import *
 from .Class.Validador import *
 from .Arquivo import Arquivo
+from colorama import Fore, Style, init
 from tqdm.auto import tqdm
 from random import sample
 import threading
+init(autoreset=True)
 
 def Validador():
-    print("\n\nIniciando e preparando o ambiente do validador, aguarde um momento.")
+    print(Fore.YELLOW + "\nAmbiente em preparação, aguarde um momento...")
 
-    w3c = W3c(
-        errosEncontrado[ERRO_W3C],
-        erroValidacao[ERRO_VALIDACAO_W3C]
+    if validation['w3c']:
+        w3c = W3c(
+            errosEncontrado[ERRO_W3C],
+            erroValidacao[ERRO_VALIDACAO_W3C]
         )
 
-    colunaLateral = ColunaLateral(
-        errosEncontrado[ERRO_COLUNA_LATERAL],
-        erroValidacao[ERRO_VALIDACAO_COLUNA_LATERAL]
+    if validation['colunaLateral']:
+        colunaLateral = ColunaLateral(
+            errosEncontrado[ERRO_COLUNA_LATERAL],
+            erroValidacao[ERRO_VALIDACAO_COLUNA_LATERAL]
         ) 
 
-    mapaDoSite = MapaDoSite(
-        errosEncontrado[ERRO_MAPA_SITE],
-        erroValidacao[ERRO_VALIDACAO_MAPA_SITE],
+    if validation['mapaDoSite']:
+        mapaDoSite = MapaDoSite(
+            errosEncontrado[ERRO_MAPA_SITE],
+            erroValidacao[ERRO_VALIDACAO_MAPA_SITE],
         ) 
     
-    menu = MenuHeaderFooter(
-        errosEncontrado[ERRO_MENU],
-        erroValidacao[ERRO_VALIDACAO_MENU]
+    if validation['menu']:
+        menu = MenuHeaderFooter(
+            errosEncontrado[ERRO_MENU],
+            erroValidacao[ERRO_VALIDACAO_MENU]
         )
 
-    pageSpeed = PageSpeed(
-        errosEncontrado[ERRO_PAGESPEED],
-        erroValidacao[ERRO_VALIDACAO_PAGESPEED]
+    if validation['pageSpeed']:
+        pageSpeed = PageSpeed(
+            errosEncontrado[ERRO_PAGESPEED],
+            erroValidacao[ERRO_VALIDACAO_PAGESPEED]
         ) 
 
-    # scrollHorizontal = ScrollHorizontal(
-    #     errosEncontrado[ERRO_SCROLL],
-    #     erroValidacao[ERRO_VALIDACAO_SCROLL]
-    #     ) 
-
-    texto = Texto(
-        errosEncontrado[ERRO_TEXTO],
-        erroValidacao[ERRO_VALIDACAO_TEXTO]
-        )
-    
-    description = Description(
-        errosEncontrado[ERRO_DESCRIPTION_1],
-        errosEncontrado[ERRO_DESCRIPTION_2],
-        erroValidacao[ERRO_VALIDACAO_DESCRIPTION]
+    if validation['pageSpeed']:
+        texto = Texto(
+            errosEncontrado[ERRO_TEXTO],
+            erroValidacao[ERRO_VALIDACAO_TEXTO]
         )
 
-    imagem = Imagens(
-        errosEncontrado[ERRO_IMAGENS_1],
-        errosEncontrado[ERRO_IMAGENS_2],
-        errosEncontrado[ERRO_IMAGENS_3],
-        erroValidacao[ERRO_VALIDACAO_IMAGENS]
+    if validation['description']:
+        description = Description(
+            errosEncontrado[ERRO_DESCRIPTION_1],
+            errosEncontrado[ERRO_DESCRIPTION_2],
+            erroValidacao[ERRO_VALIDACAO_DESCRIPTION]
+        )
+
+    if validation['imagem']:
+        imagem = Imagens(
+            errosEncontrado[ERRO_IMAGENS_1],
+            errosEncontrado[ERRO_IMAGENS_2],
+            errosEncontrado[ERRO_IMAGENS_3],
+            erroValidacao[ERRO_VALIDACAO_IMAGENS]
         ) 
 
-    title = Title(
-        errosEncontrado[ERRO_TITLE_1],
-        errosEncontrado[ERRO_TITLE_2],
-        errosEncontrado[ERRO_TITLE_3],
-        errosEncontrado[ERRO_TITLE_4],
-        errosEncontrado[ERRO_TITLE_5],
-        erroValidacao[ERRO_VALIDACAO_TITLE]
+    if validation['title']:
+        title = Title(
+            errosEncontrado[ERRO_TITLE_1],
+            errosEncontrado[ERRO_TITLE_2],
+            errosEncontrado[ERRO_TITLE_3],
+            errosEncontrado[ERRO_TITLE_4],
+            errosEncontrado[ERRO_TITLE_5],
+            erroValidacao[ERRO_VALIDACAO_TITLE]
         )
 
-    mpi = Mpi(
-        errosEncontrado[ERRO_MPI_1],
-        errosEncontrado[ERRO_MPI_2],
-        errosEncontrado[ERRO_MPI_3],
-        errosEncontrado[ERRO_MPI_4],
-        errosEncontrado[ERRO_MPI_5],
-        errosEncontrado[ERRO_MPI_6],
-        errosEncontrado[ERRO_MPI_7],
-        erroValidacao[ERRO_VALIDACAO_MPI]
+    if validation['mpi']:
+        mpi = Mpi(
+            errosEncontrado[ERRO_MPI_1],
+            errosEncontrado[ERRO_MPI_2],
+            errosEncontrado[ERRO_MPI_3],
+            errosEncontrado[ERRO_MPI_4],
+            errosEncontrado[ERRO_MPI_5],
+            errosEncontrado[ERRO_MPI_6],
+            errosEncontrado[ERRO_MPI_7],
+            erroValidacao[ERRO_VALIDACAO_MPI]
         )
 
+    if validation['scrollHorizontal']:
+        scrollHorizontal = ScrollHorizontal(
+            errosEncontrado[ERRO_SCROLL],
+            erroValidacao[ERRO_VALIDACAO_SCROLL]
+        ) 
 
     arquivo = Arquivo()    
-
 
     def Urls():  
         sites = open('sites.txt', "r")
@@ -90,19 +101,19 @@ def Validador():
         sites.close()
         return arrayUrl
 
-
     urls = Urls()
 
-    print(f"O ambiente foi configurado com sucesso ;) \n\nConsegui identificar {len(urls)} sites para validar \n")
+    print(Fore.GREEN + 'Ambiente configurado com sucesso.')
+    print(Fore.YELLOW + f'\nForam recuperados ({len(urls)}) projetos para validar')
 
     for key, url in enumerate(urls):
-        print(f'{key + 1}° - {url}')
+        print(f' [{key + 1}] {url}')
 
     print('\n')
 
     for url in urls:
-        print(f'Validação do projeto {url}')
-        print('Rastreando e categorizando os links... \n')
+        print(Fore.YELLOW + f'Projeto em validação\n=> {url}')
+        print(Fore.YELLOW + '\nRastreando e categorizando os links... \n')
 
         links =  Links(
             url,
@@ -110,8 +121,8 @@ def Validador():
             erroValidacao[ERRO_VALIDACAO_LINK],
             ).links_site()
 
-        print('Tudo pronto!!')
-        print('Vamos começar\n')
+        print(Fore.GREEN + 'Tudo pronto!')
+        print(Fore.YELLOW +'Validação em andamento...\n')
 
         for pagina in tqdm(links['Todos']):
             item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
@@ -151,9 +162,9 @@ def Validador():
                     item.titulo_strong(),
                     item.h3(),
                     )).start()
-            
-            # if scrollHorizontal:
-            #     scrollHorizontal.verifica(pagina)
+
+            if validation['scrollHorizontal']:
+                scrollHorizontal.verifica(pagina)
 
             if pagina in links['MPI']:
                 threading.Thread(
@@ -186,19 +197,10 @@ def Validador():
                     links['MPI'][random[2]]
                     ])
 
-
-
         arquivo.arquivo_validacao_json(errosEncontrado, url)
         arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
 
+        print(Fore.YELLOW + f'\nValidação do projeto finalizada\n=> {url}\n')
 
-        print(f"""
-        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        
-            Validação do projeto {url} finalizada :)
-
-        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        """)
-
-    # if scrollHorizontal:
-    #     scrollHorizontal.fechar()
+    if validation['scrollHorizontal']:
+        scrollHorizontal.fechar()

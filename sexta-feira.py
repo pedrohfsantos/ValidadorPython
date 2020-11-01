@@ -1,8 +1,11 @@
 from Modulos.Validador import Validador
 from Modulos.Ajustador import Ajustador
+from Modulos.Arquivo import Arquivo
 from colorama import Fore, Style, init
 from datetime import datetime
+from Modulos.Class.Config import *
 import os
+json = Arquivo()
 
 # Colorama, auto resetar para White color
 init(autoreset=True)
@@ -30,28 +33,46 @@ print(Message)
 
 while 'exit' not in argumento.lower():
 
-    print(Fore.YELLOW + 'Digite "info" para obter a lista de comandos nativos')
-    argumento = input('$ ').lower()
+    if os.path.isfile('./Config.json'):
 
-    if argumento  == 'info':
-        Info()
-        print('\n')
+        if json.ler_json(False, './Config')['localhost'] == '' and json.ler_json(False, './Config')['binary'] == '':
+            print(Fore.YELLOW + 'Especifique o caminho do seu htdocs')
+            htdocs = str(input('$ '))
+            Array['localhost'] = htdocs
+            json.escreve_json(Array)
+            print('\n')
 
-    elif argumento == '-v':
-        Validador()
-        print('\n')
+            print(Fore.YELLOW + 'Especifique o caminho do seu firefox.exe')
+            firefox = str(input('$ '))
+            Array['binary'] = firefox
+            json.escreve_json(Array)
+            print('\n')
 
-    elif argumento == '-a':
-        print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
-        Ajustador()
+        print(Fore.YELLOW + 'Digite "info" para obter a lista de comandos nativos')
+        argumento = input('$ ').lower()
 
-    elif argumento == 'sites':
-        os.system('nano sites.txt')
-        print('\n')
+        if argumento  == 'info':
+            Info()
+            print('\n')
 
-    elif argumento == 'clear':
-        clear()
-        print(Message)
+        elif argumento == '-v':
+            Validador()
+            print('\n')
+
+        elif argumento == '-a':
+            print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
+            Ajustador()
+
+        elif argumento == 'sites':
+            os.system('nano sites.txt')
+            print('\n')
+
+        elif argumento == 'clear':
+            clear()
+            print(Message)
+
+        else:
+            print(f'$ {argumento}: Comando inválido.\n' if len(argumento) > 0 and argumento != 'exit' else '')
 
     else:
-        print(f'$ {argumento}: Comando inválido.\n' if len(argumento) > 0 else '')
+        json.escreve_json(Array)

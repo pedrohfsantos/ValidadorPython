@@ -9,8 +9,6 @@ class Title:
         self.erroTtutiloStrong = erroTtutiloStrong
         self.erroValidador = erroValidador
 
-
-
     def verifica(self, pagina, h1, h2, titleStrong, h3=False):
         try:
             if len(h1) == 0:
@@ -37,7 +35,6 @@ class Title:
             if titulo.text.lower() == h1[0].text.lower():
                 self.erroTituloIgualH1.append(pagina)
                 return
-
 
     def titulo_duplicado(self, title, pagina):
         msm = []

@@ -54,12 +54,15 @@ class Arquivo:
         with open(f'Projetos/JSON/{self.url_projeto_mpitemporario(site)}.json', 'w', encoding='utf-8') as arquivo:
             json.dump(errosEncontrado, arquivo, indent=4)
 
+    def escreve_json(self, config):
+        with open('./Config.json', 'w', encoding='utf-8') as f:
+            json.dump(config, f, indent=2)
 
-    def ler_json(self, site):
-        with open(f'Projetos/JSON/{site}.json', 'r', encoding='utf-8') as arquivoJson:
+    def ler_json(self, site = False, caminho = 'Projetos/JSON/'):
+        path = caminho + site if site != False else caminho
+        with open(f'{path}.json', 'r', encoding='utf-8') as arquivoJson:
             dados = arquivoJson.read()
             return json.loads(dados)
-
 
     def lista_arquivos_json(self):
         listaArquivos = listdir('Projetos/JSON/')
@@ -68,11 +71,10 @@ class Arquivo:
                 del listaArquivos[keys]
         return listaArquivos
 
-    def ler_arquivo(f):
+    def ler_arquivo(self, caminho):
         content = []
-
         try:
-            with open(f + '.php', 'r', encoding='utf-8') as file:
+            with open(caminho + '.php', 'r', encoding='utf-8') as file:
                 lines = file.readlines()
                 for elem in lines:
                     content.append(elem)                    
@@ -80,36 +82,12 @@ class Arquivo:
         except IOError:
             return False    
     
-    elements = []
-
-    def mascara(body, status):
-
-        subsmask = '!!!PHP!!!'
-
-        def remove(d):
-            elements.append(d.group())
-            return subsmask
-        def adiciona(e):
-            return elements.pop(0)
-        
-        try:            
-            m = re.sub(r"<\?.*\?>", remove, body)
-            soup = BeautifulSoup(m, "html.parser")
-            mask = re.sub(subsmask, remove, str(soup.prettify(formatter=None))) if status else re.sub(subsmask, adiciona, str(soup.prettify(formatter=None)))
-        except:
-            mask = False
-
-        return mask
-    
-    def create(body, arquivo, funcao):
-        
-        arquivo = projeto + '/' + funcao + '/' + arquivo        
+    def criar_arquivo(self, body, projeto, funcao, arquivo):
+        caminho = projeto + '/' + funcao + '/' + arquivo
         try:
-
-            Path(f'./projetos/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
-            with open(f'./projetos/{arquivo}' + '.php', 'w', encoding='utf-8') as f:
+            Path(f'./Projetos/Ajustes/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
+            with open(f'./Projetos/Ajustes/{caminho}' + '.php', 'w', encoding='utf-8') as f:
                 f.write(body)
                 f.write('</html>')
-
         except: 
-            return 'Não possível gerar o arquivo.'
+            return False

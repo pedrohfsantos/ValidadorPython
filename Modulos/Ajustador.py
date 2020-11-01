@@ -4,7 +4,7 @@ from requests_html import HTMLSession
 from tqdm.auto import tqdm
 from .Arquivo import Arquivo
 from colorama import Fore, Style, init
-
+from .Class import Construct
 init(autoreset=True)
 
 def Ajustador():
@@ -12,11 +12,13 @@ def Ajustador():
 
     erroAjusta = {
         'Description' : [],
-        'Imagem' : []
+        'Imagem' : [],
+        'Strong': []
     }
 
     description = Description(erroAjusta['Description'])
     imagem      = Imagem(erroAjusta['Imagem'])
+    strong      = Strong(erroAjusta['Strong'])
     arquivo     = Arquivo()    
 
     arquivos = arquivo.lista_arquivos_json()
@@ -41,34 +43,59 @@ def Ajustador():
     site = site[:-5]
     urls = arquivo.ler_json(site)
 
+
     if len(urls[ERRO_MPI_3]) > 0:
-        print('\nAjustando Description')
-        for url in tqdm(urls[ERRO_MPI_3]):
-            r = session.get(url)
-            arquivo.create(description.ajusta(site, url, r), url)
+        print(Fore.YELLOW + '\nIniciando ajustes de Description...')
+        try:
+            for url in tqdm(urls[ERRO_MPI_3]):
+                r = session.get(url)
+                description.ajusta(site, url, r)
+        except:
+            print('\nErro: Não foi possível iniciar a função.')
 
-            
     if len(urls[ERRO_IMAGENS_2]) > 0:
-        print('\nAjustando Imagens')
-        for url in tqdm(urls[ERRO_IMAGENS_2]):
-            imagem.ajusta(site, url)
+        print(Fore.YELLOW + '\nIniciando ajustes de Imagens...')
+        try:
+            for url in tqdm(urls[ERRO_IMAGENS_2]):
+                imagem.ajusta(site, url)
+        except:
+            print('\nErro: Não foi possível iniciar a função.')
 
-# Log de ajustes
 
-    # log = False
-    # for erro in erroAjusta.keys():
-    #     if len(erroAjusta[erro]) > 0:
-    #         log = True
-    #         break
+    if len(urls[ERRO_MPI_6]) > 0:
+        print(Fore.YELLOW + '\nIniciando ajustes de Strong...')
+        try:
+            for url in tqdm(urls[ERRO_MPI_6]):
 
-    if len(erroAjusta[erro]) > 0:
-        print(f"\nNão foi possível realizar os ajustes")
+                caminho = site.strip() + '/' + strong.arquivo(url.strip())
+                html = arquivo.ler_arquivo(localhost + caminho)
+
+                r = session.get(URL + caminho)
+                body = strong.ajusta(html, url, r)
+
+                if body != None:
+                    arquivo.criar_arquivo(body, site.strip(), 'Strong', strong.arquivo(url.strip()))
+                else:
+                    erroAjusta['Strong'].append('=> {}'.format(strong.arquivo(url.strip())))
+                strong.reset()
+  
+        except:
+            print('\nErro: Não foi possível iniciar a função.')
+
+    log = False
+    for erro in erroAjusta.keys():
+        if len(erroAjusta[erro]) > 0:
+            log = True
+            break
+
+    if log:
+        print(f"\nAjustes não realizados\n")
         for errosItens in erroAjusta.keys():
             if len(erroAjusta[errosItens]) > 0:
-                print(f' {errosItens}: \n')
+                print(f'{errosItens}: \n')
 
                 for errosValores in erroAjusta[errosItens]:
-                    print(f'=> {errosValores} \n')
+                    print(f'{errosValores}')
                 print('\n')
 
             erroAjusta[errosItens].clear()

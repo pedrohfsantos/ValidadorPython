@@ -3,7 +3,6 @@ class Description:
         self.erroTamanho = erroTamanho
         self.erroH1 = erroH1
         self.erroValidador = erroValidador
-    
 
     def verifica(self, pagina, description, h1):
         try:

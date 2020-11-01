@@ -46,7 +46,5 @@ class Description:
             self.erro.append(f"=> {url}")
 
     def arquivo(self, url):
-        url = url.split('//')
-        url = url[1].split('/')
-        return url[-1]
-
+        url = url.split('//')[1].split('/')[-1]
+        return url
