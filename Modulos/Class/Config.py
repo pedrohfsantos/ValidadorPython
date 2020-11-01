@@ -77,7 +77,6 @@ if os.path.isfile('./Config.json'):
 	}
 	
 else:
-	configJson = NULL	
 	URL = 'http://mpitemporario.com.br/projetos/'
 	localhost = ''
 	binary = ''
