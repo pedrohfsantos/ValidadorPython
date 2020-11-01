@@ -98,4 +98,11 @@ def Ajustador():
                     print(f'{errosValores}')
                 print('\n')
 
+            erroAjusta[errosItens].clear()tens]) > 0:
+                print(f'{errosItens}: \n')
+
+                for errosValores in erroAjusta[errosItens]:
+                    print(f'{errosValores}')
+                print('\n')
+
             erroAjusta[errosItens].clear()
