@@ -34,7 +34,7 @@ print(Message)
 while 'exit' not in argumento.lower():
 
     if os.path.isfile('./Config.json'):    
-        if configJson['localhost'] == '' or configJson['binary'] == '':
+        if json.ler_json(False, './Config')['localhost'] == '' and json.ler_json(False, './Config')['binary'] == '':
             print(Fore.YELLOW + 'Especifique o caminho do seu htdocs')
 
             htdocs = str(input('$ '))
