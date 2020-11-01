@@ -44,7 +44,7 @@ def Validador():
             erroValidacao[ERRO_VALIDACAO_PAGESPEED]
         ) 
 
-    if validation['pageSpeed']:
+    if validation['texto']:
         texto = Texto(
             errosEncontrado[ERRO_TEXTO],
             erroValidacao[ERRO_VALIDACAO_TEXTO]
@@ -93,7 +93,7 @@ def Validador():
             erroValidacao[ERRO_VALIDACAO_SCROLL]
         ) 
 
-    arquivo = Arquivo()    
+    arquivo = Arquivo()
 
     def Urls():  
         sites = open('sites.txt', "r")
@@ -216,19 +216,6 @@ def Validador():
 
                 print(Fore.YELLOW + f'\nValidação do projeto finalizada\n=> {url}\n')
 
-                countErros = 0
-                arrayErros = []
-                for count in errosEncontrado.keys():
-                    for i in errosEncontrado[count]:
-                        if len(errosEncontrado[count][i]) > 0:
-                            arrayErros.append(count)
-                            countErros += 1
-                print(f'Foram encontrados ({countErros}) erros no projeto.')
-                for erros in arrayErros:
-                    print(f'- {erros}') 
-
-                countErros = 0
-                del arrayErros[:]
             else:
                 print(Fore.YELLOW + f'{ERRO[404]} Certifique-se de que o projeto esteja devidamente alocado no servidor temporário.')
         

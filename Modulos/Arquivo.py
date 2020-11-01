@@ -1,5 +1,5 @@
-from bs4 import BeautifulSoup
 from os import listdir
+from os import makedirs
 from pathlib import Path
 import json
 import re
@@ -7,7 +7,11 @@ import os.path
 
 class Arquivo:
     def __init__(self):
-        pass
+        if not os.path.isdir('./Projetos'):
+            makedirs('./Projetos/JSON')
+
+        if not os.path.isdir('./Projetos/JSON'):
+            makedirs('./Projetos/JSON')
 
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split('//')
@@ -22,6 +26,7 @@ class Arquivo:
             if len(erroValidacao[erro]) > 0:
                 log = True
                 break
+
 
         with open(f'Projetos/{self.url_projeto_mpitemporario(site)}.txt', 'w', encoding='utf-8') as arquivo:
 
@@ -54,9 +59,11 @@ class Arquivo:
         with open(f'Projetos/JSON/{self.url_projeto_mpitemporario(site)}.json', 'w', encoding='utf-8') as arquivo:
             json.dump(errosEncontrado, arquivo, indent=4)
 
+
     def escreve_json(self, config):
         with open('./Config.json', 'w', encoding='utf-8') as f:
             json.dump(config, f, indent=2)
+
 
     def ler_json(self, site = False, caminho = 'Projetos/JSON/'):
         path = caminho + site if site != False else caminho
@@ -64,12 +71,14 @@ class Arquivo:
             dados = arquivoJson.read()
             return json.loads(dados)
 
+
     def lista_arquivos_json(self):
         listaArquivos = listdir('Projetos/JSON/')
         for keys, arquivo in enumerate(listaArquivos):
             if 'json' not in arquivo:
                 del listaArquivos[keys]
         return listaArquivos
+
 
     def ler_arquivo(self, caminho):
         content = []
@@ -81,8 +90,8 @@ class Arquivo:
                 return ''.join(map(str, content))
         except IOError:
             return False    
-    
-    def criar_arquivo(self, body, projeto, funcao, arquivo, subs = False):
+
+    def criar_arquivo(self, body, projeto, funcao, arquivo):
         caminho = projeto + '/' + funcao + '/' + arquivo
         try:
             Path(f'./Projetos/Ajustes/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
