@@ -53,7 +53,7 @@ ERRO = {
 	404: 'Erro 404: Não foi possível localizar o Arquivo.' ,
 	500: 'Erro 500: O arquivo está corrompido.',
 	503: 'Erro 503: Não foi possível selecionar o projeto informado.',
-	504: 'Erro 504: Não foi possível realizar os ajustes.',
+	504: '\nAjustes não realizados',
 }
 
 URL								= 'http://mpitemporario.com.br/projetos/' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['url']

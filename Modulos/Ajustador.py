@@ -91,13 +91,13 @@ def Ajustador():
             break
 
     if len(erroAjusta[erro]) > 0:
-        print(ERRO[504])
+        print(Fore.RED + ERRO[504] + '\n')
         for errosItens in erroAjusta.keys():
             if len(erroAjusta[errosItens]) > 0:
-                print(f' {errosItens}: \n')
+                print(f'{errosItens}:\n')
 
                 for errosValores in erroAjusta[errosItens]:
-                    print(f'=> {errosValores} \n')
+                    print(f'{errosValores}')
                 print('\n')
 
             erroAjusta[errosItens].clear()
