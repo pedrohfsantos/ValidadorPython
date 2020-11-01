@@ -56,10 +56,10 @@ ERRO = {
 	504: '\nAjustes não realizados',
 }
 
-configJson = json.ler_json(False, './Config')
-URL = 'http://mpitemporario.com.br/projetos/' if not os.path.isfile('./Config.json') else configJson['url']
 
 if os.path.isfile('./Config.json'):
+	configJson = json.ler_json(False, './Config')
+	URL = configJson['url']
 	localhost = configJson['localhost']
 	binary = configJson['binary']
 	validation = { 
@@ -77,6 +77,8 @@ if os.path.isfile('./Config.json'):
 	}
 	
 else:
+	configJson = NULL	
+	URL = 'http://mpitemporario.com.br/projetos/'
 	localhost = ''
 	binary = ''
 	validation = { 
