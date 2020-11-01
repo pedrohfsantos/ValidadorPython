@@ -60,8 +60,7 @@ while 'exit' not in argumento.lower():
             Validador()
             print('\n')
 
-        elif argumento == '-a':
-            print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
+        elif argumento == '-a':    
             Ajustador()
 
         elif argumento == 'sites':
@@ -73,7 +72,7 @@ while 'exit' not in argumento.lower():
             print(Message)
 
         else:
-            print(f'$ {argumento}: ' + ERRO[302] + '\n' if len(argumento) > 0 and argumento != 'exit' else '')
+            print(f'$ {argumento}: ' + ERRO[302] if len(argumento) > 0 and argumento != 'exit' else '')
 
     else:
         json.escreve_json(Array)

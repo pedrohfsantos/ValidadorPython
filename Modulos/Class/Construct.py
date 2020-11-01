@@ -29,3 +29,6 @@ class Mascara:
 
 	def add(self, elem):
 		return elements.pop(0)
+
+	def reset(self):
+	    del elements[:]

@@ -1,10 +1,11 @@
 from .Class.Config import *
 from .Class.Ajustador import *
+from .Arquivo import Arquivo
+from .Class.Construct import *
 from requests_html import HTMLSession
 from tqdm.auto import tqdm
-from .Arquivo import Arquivo
 from colorama import Fore, Style, init
-from .Class import Construct
+
 init(autoreset=True)
 
 def Ajustador():
@@ -13,91 +14,140 @@ def Ajustador():
     erroAjusta = {
         'Description' : [],
         'Imagem' : [],
-        'Strong': []
+        'Palavra chave sem strong': [],
+        'Titulo (H2/H3) igual H1': [],
+        'Titulo duplicado': [],
     }
 
-    description = Description(erroAjusta['Description'])
-    imagem      = Imagem(erroAjusta['Imagem'])
-    strong      = Strong(erroAjusta['Strong'])
-    arquivo     = Arquivo()    
+    description       = Description(erroAjusta['Description'])
+    imagem            = Imagem(erroAjusta['Imagem'])
+    strong            = Strong(erroAjusta['Palavra chave sem strong'])
+    titulo_duplicado  = TituloDuplicado(erroAjusta['Titulo (H2/H3) igual H1'])
+    sequencia_h2      = SequenciaH2(erroAjusta['Titulo duplicado'])
+    arquivo           = Arquivo()  
+    mascara           = Mascara()    
 
     arquivos = arquivo.lista_arquivos_json()
 
-    for key, value in enumerate(arquivos):
-        print(f'[{key + 1}] {value}')
+    if len(arquivos) > 0:
 
-    while True:
-        try:
-            print(Fore.YELLOW + '\nSelecione um projeto para ajustar')
-            opcao = int(input('$ '))
-            if opcao in range(0, len(arquivos) + 1):
-                break
-            else:
-                print(ERRO[503])
-                for key, value in enumerate(arquivos):
-                    print(f'[{key + 1}]{value}')
-        except:
-           return       
-    
-    site = arquivos[opcao - 1]
-    site = site[:-5]
-    urls = arquivo.ler_json(site)
+        print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
 
+        for key, value in enumerate(arquivos):
+            if len(arquivos) > 0:
+                print(f'[{key + 1}] {value}')
 
-    if len(urls[ERRO_MPI_3]) > 0:
-        print(Fore.YELLOW + '\nIniciando ajustes de Description...')
-        try:
-            for url in tqdm(urls[ERRO_MPI_3]):
-                r = session.get(url)
-                description.ajusta(site, url, r)
-        except:
-            print(ERRO[303])
-
-    if len(urls[ERRO_IMAGENS_2]) > 0:
-        print(Fore.YELLOW + '\nIniciando ajustes de Imagens...')
-        try:
-            for url in tqdm(urls[ERRO_IMAGENS_2]):
-                imagem.ajusta(site, url)
-        except:
-            print(ERRO[303])
-
-
-    if len(urls[ERRO_MPI_6]) > 0:
-        print(Fore.YELLOW + '\nIniciando ajustes de Strong...')
-        try:
-            for url in tqdm(urls[ERRO_MPI_6]):
-
-                caminho = site.strip() + '/' + strong.arquivo(url.strip())
-                html = arquivo.ler_arquivo(localhost + caminho)
-                if html:
-                    r = session.get(URL + caminho)
-                    body = strong.ajusta(html, url, r)
-
-                    if body != None:
-                        arquivo.criar_arquivo(body, site.strip(), 'Strong', strong.arquivo(url.strip()))
-                    else:
-                        erroAjusta['Strong'].append('=> {}'.format(strong.arquivo(url.strip())))
-                    strong.reset()
+        while True:
+            try:
+                print(Fore.YELLOW + '\nSelecione um projeto para ajustar')
+                opcao = int(input('$ '))
+                if opcao in range(0, len(arquivos) + 1):
+                    break
                 else:
-                    print(ERRO[404])
-  
-        except:
-            print(ERRO[303])
+                    print(ERRO[503])
+                    for key, value in enumerate(arquivos):
+                        print(f'[{key + 1}]{value}')
+            except:
+               return       
+        
+        site = arquivos[opcao - 1]
+        site = site[:-5]
+        urls = arquivo.ler_json(site)
 
-    log = False
-    for erro in erroAjusta.keys():
+
+        def Inicializa(site, url, erro, modulo):
+
+            def Clear(url):
+                url = url.split('//')[1].split('/')[-1].split(' ')[0]
+                return url
+
+            def Modulo(modulo):
+                return {
+                    'strong'            :strong.ajusta(html, url, r),
+                    'sequencia_h2'      :sequencia_h2.ajusta(html, url),
+                    'titulo_duplicado'  :titulo_duplicado.ajusta(html, url, r),
+                }[modulo]
+
+            try:
+                caminho = site + '/' + Clear(url)
+                r       = session.get(URL + caminho)
+                html    = arquivo.ler_arquivo(localhost + caminho)
+                if html:
+                    body = Modulo(modulo)
+                    if body != None:
+                        arquivo.criar_arquivo(body, site, erro, Clear(url))
+                    else:
+                        erroAjusta[erro].append('=> {}'.format(Clear(url)))
+                    mascara.reset()
+                else:
+                    print(Fore.YELLOW + '\nAviso: O arquivo/ página não consta como palavra-chave. Não foi possível ajustar o arquivo.')
+            except:
+                print(ERRO[300])
+
+
+        if len(urls[ERRO_MPI_3]) > 0:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_3}...')
+            try:
+                for url in tqdm(urls[ERRO_MPI_3]):
+                    r = session.get(url)
+                    description.ajusta(site, url, r)
+            except:
+                print(ERRO[303])
+
+
+        if len(urls[ERRO_IMAGENS_2]) > 0:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_IMAGENS_2}...')
+            try:
+                for url in tqdm(urls[ERRO_IMAGENS_2]):
+                    imagem.ajusta(site, url)
+            except:
+                print(ERRO[303])
+
+
+        if len(urls[ERRO_MPI_6]) > 0:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_6}...')
+            try:
+                for url in tqdm(urls[ERRO_MPI_6]):
+                    Inicializa(site.strip(), url.strip(), ERRO_MPI_6, 'strong')
+            except:
+                print(ERRO[303])
+
+
+        if len(urls[ERRO_TITLE_3]) > 0:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
+            try:
+                for url in tqdm(urls[ERRO_TITLE_3]):
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, sequencia_h2)
+            except:
+                print(ERRO[303])
+
+
+        if len(urls[ERRO_TITLE_4]) > 0:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_4}...')
+            try:
+                for url in tqdm(urls[ERRO_TITLE_4]):
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, titulo_duplicado)
+            except:
+                print(ERRO[303])
+
+
+        log = False
+        for erro in erroAjusta.keys():
+            if len(erroAjusta[erro]) > 0:
+                log = True
+                break
+
         if len(erroAjusta[erro]) > 0:
-            log = True
-            break
+            print(Fore.RED + ERRO[504] + '\n')
+            for errosItens in erroAjusta.keys():
+                if len(erroAjusta[errosItens]) > 0:
+                    print(f'{errosItens}:\n')
 
-    if len(erroAjusta[erro]) > 0:
-        print(Fore.RED + ERRO[504] + '\n')
-        for errosItens in erroAjusta.keys():
-            if len(erroAjusta[errosItens]) > 0:
-                print(f'{errosItens}:\n')
+                    for errosValores in erroAjusta[errosItens]:
+                        print(f'{errosValores}')
+                    print('\n')
 
-                for errosValores in erroAjusta[errosItens]:
-                    print(f'{errosValores}')
-                print('\n')
+                erroAjusta[errosItens].clear()
 
-            erroAjusta[errosItens].clear()
+    else:
+        print(Fore.YELLOW + 'Aviso: Você não possui projetos para ajustar.\n')

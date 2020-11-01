@@ -1,152 +1,215 @@
 W3C: 
-=> https://mpitemporario.com.br/projetos/iguatemicoberturas.com.br/orcamentos 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/corredores-elevados 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/separadores-congelamento 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/projetos-pdf 
 
 Description com números de caracteres incorretos: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/tainer-car 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/gaiola-aramada 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/roltainer 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/porta-bag 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/box-pallet 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/drive-in 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/racks-especiais 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/mapa-site 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/produtos-aramados 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/flow-racks 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/racks-modulares 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/display-box 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/chapa-corrugada 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/racks-pneus 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/guard-rail 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-desmontavel 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/produtos 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-coluna 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/acessorios 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/cantilever 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentores 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallets-metalicos 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estruturas-fixas 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/bica-basculante 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/silo-graneis 
 
 O H1 não foi encontrado na description: 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/ 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mapa-site 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/projetos-pdf 
 
-Links não encontrados do Mapa no site: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/seja-nosso-representante 
-
-Imagens quebradas: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-armazenagem-estante: http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/informacoes//estrutura-armazenagem-estante-03.jpg 
-
 Imagens acima de 200KB: 
-=> https://mpitemporario.com.br/projetos/iguatemicoberturas.com.br/imagens/logo.png 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/protetor-montante.jpg 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/guard-rail-002.jpg 
+=> https://www.mpitemporario.com.br/projetos/maxartefatos.com.br/imagens/logo.png 
+
+Imagens com erro ALT/TITLE: 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/ - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-metalico - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-camara-frigorifica - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-pallet - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estruturas-fixas - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-metalico-preco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-metalico - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/corredores-elevados - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-coluna - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/cantilever-armazenagem - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-flow-rack - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/push-back - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/protetor-montante - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/bica-basculante - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/projetos-pdf - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/informacoes - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/acessorios - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mapa-site - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estruturas-armazenagem-porta-pallets - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-flow-rack - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/display-box - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/porta-paletes-convencional - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-empilhavel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/lixeira-basculante - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-palete - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/armazenagem-cantilever - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-armazenagem-drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/racks-modulares - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/porta-bag - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-camara-fria - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentores - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/cesto-aramado-industrial - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-armazenagem-estante - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/racks-especiais - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-desmontavel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-auto-encaixe - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-paletes-preco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/bandejas-congelamento - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/empresa - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/cacamba-basculante - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/longarinas-porta-pallets - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/palete-aco-galvanizado - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-tipo-drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/gaiola-aramada - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/box-pallet - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-picking - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/cantilever - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem-flow-rack - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/tainer-car - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-armazenagem - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-picking - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-porta-palete-drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/flow-rack - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-cantilever - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-pallets - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/bandeja-vazada-congelamento - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-armazenamento - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/fabricantes-estruturas-porta-paletes - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-drive-in - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-pneus - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/separadores-congelamento - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-aco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/produtos - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/push-back-estanteria - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-tela - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-desmontavel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contato - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem-porta-paletes - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-pallet - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/chapa-corrugada - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentores-tela - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/fabricantes-porta-paletes - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/seja-nosso-representante - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-empilhavel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-metalico - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco-preco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-armazenagem-cantilever - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/gaiola-aramada-industrial - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/protetor-coluna - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/cesto-aramado-industrial-preco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-congelamento - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/guardrail-valor - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallets-camara-frigorifica - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-empilhavel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallets-metalicos - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/acessorios-porta-paletes - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/produtos-aramados - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/guard-rail - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/flow-racks - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/roltainer - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-dobravel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-metalica-mezanino - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/equipamentos-armazenagem - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/bandeja-congelamento - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-armazenagem - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/prateleira-porta-pallet - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-atacarejo - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-auto-empilhavel - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-cantilever - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-aramado - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/racks-pneus - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-metalico - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/suporte-big-bag - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-porta-palete - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-cantilever - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-push-back - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/guard-rail-preco - src='http://mpitemporario.com.br/projetos/engesystems.com.br/imagens/whatsapp.png' - Imagem sem TITLE 
 
 Menu: 
 => Menu footer diferente do menu header 
-
-PageSpeed: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/ - Mobile: 76 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/suporte-big-bag - Mobile: 80 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-armazenamento - Mobile: 87 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/cesto-aramado-industrial-preco - Mobile: 87 
+=> Links do menu footer diferente do menu header 
 
 Titulo duplicado: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco-preco 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/corredores-elevados 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/fabricantes-porta-paletes 
-
-Titulo (H2/H3) igual H1: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/: "Flow Rack" 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco-preco 
 
 H2 sem palavra chave: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/equipamentos-armazenagem 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-empilhavel 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-dobravel 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-metalico 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-metalico 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/block-palete 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-metalica-mezanino 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/cantilever-armazenagem 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-push-back 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/guard-rail 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-desmontavel 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/armazenagem-cantilever 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-chapa-corrugada 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-paletes-preco 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-pneus 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-tela 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-aramado 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-atacarejo 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-pallet 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/prateleira-porta-pallet 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-empilhavel 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/cesto-aramado-industrial-preco 
-
-Elementos vazios na pagina: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-desmontavel 
 
 Description atual não foi encontrada no texto MPI: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-congelamento 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-pallet 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/rack-camara-frigorifica 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-metalico 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/corredores-elevados 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-picking 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-metalica-mezanino 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-cantilever 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/guard-rail 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-paletes-preco 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-aco 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-porta-palete-drive-in 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-metalico 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/cantilever-armazenagem 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-flow-rack 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/push-back 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-drive-in 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estruturas-armazenagem-porta-pallets 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-flow-rack 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/porta-paletes-convencional 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/armazenagem-cantilever 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-camara-fria 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-armazenagem-estante 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-paletes-preco 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/longarinas-porta-pallets 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/palete-aco-galvanizado 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-tipo-drive-in 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-picking 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/rack-armazenagem 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem-flow-rack 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-picking 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-porta-palete-drive-in 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/flow-rack 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-cantilever 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/bandeja-vazada-congelamento 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-armazenamento 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/fabricantes-estruturas-porta-paletes 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-pneus 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-drive-in 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-aco 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/push-back-estanteria 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-tela 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem-porta-paletes 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-pallet 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/fabricantes-porta-paletes 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/gaiola-aramada-industrial 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-armazenagem-cantilever 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-congelamento 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/guardrail-valor 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/guard-rail 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-metalica-mezanino 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/equipamentos-armazenagem 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/bandeja-congelamento 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-armazenagem 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-atacarejo 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-auto-empilhavel 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-cantilever 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-aramado 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/prateleira-porta-pallet 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/suporte-big-bag 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-cantilever 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-push-back 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/block-palete 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-chapa-corrugada 
 
 Alterar P para UL>LI: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco-preco 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estruturas-armazenagem-porta-pallets 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem-porta-paletes 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-palete 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-paletes-preco 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-porta-palete 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/palete-aco-galvanizado 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-metalico 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/porta-paletes-convencional 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-pallet 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/prateleira-porta-pallet 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/fabricantes-estruturas-porta-paletes 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem-porta-paletes 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-metalico 
 
 Palavra chave sem strong: 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/sistema-armazenagem - 4° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-dobravel - 2°, 4°, 5°, 8° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-congelamento - 4° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-camara-frigorifica - 4° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco-preco - 4°, 12° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-drive-in - 1°, 3°, 4°, 5° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/corredores-elevados - 3°, 4°, 5°, 6°, 8° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-desmontavel - 2°, 5°, 8°, 9° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/contentor-chapa-corrugada - 2°, 3° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-drive-in - 1° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-palete - 18° parágrafo sem strong na palavra chave 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/rack-pallet - 13° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallet-aco - 2°, 5°, 6° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/palete-aco-galvanizado - 2° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/porta-paletes-convencional - 2°, 7° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-auto-empilhavel - 9°, 11° parágrafo sem strong na palavra chave 
 => http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco - 3°, 10° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/prateleira-porta-pallet - 1°, 8°, 17° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/cesto-aramado-industrial - 1°, 4°, 5° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/pallets-camara-frigorifica - 2° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-empilhavel - 1°, 7°, 8°, 9°, 10°, 13° parágrafo sem strong na palavra chave 
-=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado - 2°, 4°, 5°, 6°, 7°, 9° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estante-porta-paletes-preco - 6° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/estrutura-tipo-drive-in - 1°, 2°, 3°, 4°, 5°, 6° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-desmontavel - 2°, 5°, 8°, 9° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/mezanino-aco-preco - 4°, 9° parágrafo sem strong na palavra chave 
+=> http://mpitemporario.com.br/projetos/engesystems.com.br/rack-aramado-dobravel - 2°, 4°, 5°, 8° parágrafo sem strong na palavra chave 
 

@@ -16,12 +16,14 @@ class Strong:
             soup = BeautifulSoup(mascara.Aplicar(html), "html.parser")
             title = r.html.find('h1')[0].text
 
-            method = '.mpi-content > p, .tabs-content > p' if len(soup.find_all('div', class_="mpi-content")) > 0 else 'article > p'
+            tipoMPI = '.mpi-content > p, .tabs-content > p' if len(soup.find_all('div', class_="mpi-content")) > 0 else 'article > p'
 
-            for p in soup.select(method):
-                child = p.find_all('strong')
-                if child:
-                    for strong in child:
+            for p in soup.select(tipoMPI):
+
+                element = p.find_all('strong')
+
+                if element:
+                    for strong in element:
                         if unidecode(title).lower() != unidecode(strong.string).lower().strip():
                             strong.string = title.lower()
                 else:
@@ -37,14 +39,11 @@ class Strong:
             value = ''.join(map(str, content))
 
             return mascara.Retirar(value)
-            self.reset()
+            mascara.reset()
 
         except:
-            self.reset()
+            mascara.reset()
 
     def arquivo(self, url):
         url = url.split('//')[1].split('/')[-1].split(' ')[0]
         return url
-
-    def reset(self):
-        del elements[:]

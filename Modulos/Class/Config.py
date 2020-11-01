@@ -48,11 +48,13 @@ erroValidacao = { ERRO_VALIDACAO_LINK: [], ERRO_VALIDACAO_ITEM: [], ERRO_VALIDAC
 errosEncontrado = { ERRO_LINK: [], ERRO_W3C: [], ERRO_DESCRIPTION_1: [], ERRO_DESCRIPTION_2: [], ERRO_COLUNA_LATERAL: [], ERRO_MAPA_SITE: [], ERRO_IMAGENS_1: [], ERRO_IMAGENS_2: [], ERRO_IMAGENS_3: [], ERRO_MENU: [],  ERRO_PAGESPEED: [], ERRO_SCROLL: [], ERRO_TITLE_1: [], ERRO_TITLE_2: [], ERRO_TITLE_3: [], ERRO_TITLE_4: [], ERRO_TITLE_5: [], ERRO_MPI_1: [], ERRO_MPI_2: [], ERRO_MPI_3: [], ERRO_MPI_4: [], ERRO_MPI_5: [], ERRO_MPI_6: [], ERRO_MPI_7: [], ERRO_TEXTO: [] }
 
 ERRO = {
-	302: 'Comando inválido.',
-	303: 'Erro 303: Não foi possível iniciar a função',
-	404: 'Erro 404: Não foi possível localizar o Arquivo.' ,
-	500: 'Erro 500: O arquivo está corrompido.',
-	503: 'Erro 503: Não foi possível selecionar o projeto informado.',
+	300: '\nNão foi possível iniciar o módulo selecionado',
+	302: 'Comando inválido.\n',
+	303: '\nNão foi possível iniciar a função',
+	404: '\nNão foi possível localizar o destino especificado.' ,
+	500: '\nO arquivo está corrompido.',
+	501: '\nO sistema não pôde excutar as funções.',
+	503: '\nNão foi possível selecionar o projeto informado.',
 	504: '\nAjustes não realizados',
 }
 

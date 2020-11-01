@@ -82,11 +82,12 @@ class Arquivo:
         except IOError:
             return False    
     
-    def criar_arquivo(self, body, projeto, funcao, arquivo):
+    def criar_arquivo(self, body, projeto, funcao, arquivo, subs = False):
         caminho = projeto + '/' + funcao + '/' + arquivo
         try:
             Path(f'./Projetos/Ajustes/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
             with open(f'./Projetos/Ajustes/{caminho}' + '.php', 'w', encoding='utf-8') as f:
+                body = body.replace(f'<!-- {subs} -->', f'<?={subs}?>').re.sub(r'<\?=\s*\$caminho2\s*\?>', '', body) if subs else body
                 f.write(body)
                 f.write('</html>')
         except: 
