@@ -33,7 +33,7 @@ def Ajustador():
             if opcao in range(0, len(arquivos) + 1):
                 break
             else:
-                print('\nNão foi possível selecionar o projeto informado \n')
+                print(ERRO[503])
                 for key, value in enumerate(arquivos):
                     print(f'[{key + 1}]{value}')
         except:
@@ -51,7 +51,7 @@ def Ajustador():
                 r = session.get(url)
                 description.ajusta(site, url, r)
         except:
-            print('\nErro: Não foi possível iniciar a função.')
+            print(ERRO[303])
 
     if len(urls[ERRO_IMAGENS_2]) > 0:
         print(Fore.YELLOW + '\nIniciando ajustes de Imagens...')
@@ -59,7 +59,7 @@ def Ajustador():
             for url in tqdm(urls[ERRO_IMAGENS_2]):
                 imagem.ajusta(site, url)
         except:
-            print('\nErro: Não foi possível iniciar a função.')
+            print(ERRO[303])
 
 
     if len(urls[ERRO_MPI_6]) > 0:
@@ -69,18 +69,20 @@ def Ajustador():
 
                 caminho = site.strip() + '/' + strong.arquivo(url.strip())
                 html = arquivo.ler_arquivo(localhost + caminho)
+                if html:
+                    r = session.get(URL + caminho)
+                    body = strong.ajusta(html, url, r)
 
-                r = session.get(URL + caminho)
-                body = strong.ajusta(html, url, r)
-
-                if body != None:
-                    arquivo.criar_arquivo(body, site.strip(), 'Strong', strong.arquivo(url.strip()))
+                    if body != None:
+                        arquivo.criar_arquivo(body, site.strip(), 'Strong', strong.arquivo(url.strip()))
+                    else:
+                        erroAjusta['Strong'].append('=> {}'.format(strong.arquivo(url.strip())))
+                    strong.reset()
                 else:
-                    erroAjusta['Strong'].append('=> {}'.format(strong.arquivo(url.strip())))
-                strong.reset()
+                    print(ERRO[404])
   
         except:
-            print('\nErro: Não foi possível iniciar a função.')
+            print(ERRO[303])
 
     log = False
     for erro in erroAjusta.keys():
@@ -88,21 +90,14 @@ def Ajustador():
             log = True
             break
 
-    if log:
-        print(f"\nAjustes não realizados\n")
+    if len(erroAjusta[erro]) > 0:
+        print(ERRO[504])
         for errosItens in erroAjusta.keys():
             if len(erroAjusta[errosItens]) > 0:
-                print(f'{errosItens}: \n')
+                print(f' {errosItens}: \n')
 
                 for errosValores in erroAjusta[errosItens]:
-                    print(f'{errosValores}')
-                print('\n')
-
-            erroAjusta[errosItens].clear()tens]) > 0:
-                print(f'{errosItens}: \n')
-
-                for errosValores in erroAjusta[errosItens]:
-                    print(f'{errosValores}')
+                    print(f'=> {errosValores} \n')
                 print('\n')
 
             erroAjusta[errosItens].clear()

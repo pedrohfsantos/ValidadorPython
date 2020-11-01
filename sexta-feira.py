@@ -72,7 +72,7 @@ while 'exit' not in argumento.lower():
             print(Message)
 
         else:
-            print(f'$ {argumento}: Comando inválido.\n' if len(argumento) > 0 and argumento != 'exit' else '')
+            print(f'$ {argumento}: ' + ERRO[302] + '\n' if len(argumento) > 0 and argumento != 'exit' else '')
 
     else:
         json.escreve_json(Array)

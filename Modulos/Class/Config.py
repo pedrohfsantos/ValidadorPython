@@ -47,6 +47,15 @@ ERRO_VALIDACAO_MPI              = 'Não foi possível validar MPI'
 erroValidacao = { ERRO_VALIDACAO_LINK: [], ERRO_VALIDACAO_ITEM: [], ERRO_VALIDACAO_W3C: [], ERRO_VALIDACAO_COLUNA_LATERAL: [], ERRO_VALIDACAO_MAPA_SITE: [], ERRO_VALIDACAO_MENU: [], ERRO_VALIDACAO_PAGESPEED: [], ERRO_VALIDACAO_SCROLL: [], ERRO_VALIDACAO_TEXTO: [], ERRO_VALIDACAO_DESCRIPTION: [], ERRO_VALIDACAO_IMAGENS: [], ERRO_VALIDACAO_TITLE: [], ERRO_VALIDACAO_MPI: [], }
 errosEncontrado = { ERRO_LINK: [], ERRO_W3C: [], ERRO_DESCRIPTION_1: [], ERRO_DESCRIPTION_2: [], ERRO_COLUNA_LATERAL: [], ERRO_MAPA_SITE: [], ERRO_IMAGENS_1: [], ERRO_IMAGENS_2: [], ERRO_IMAGENS_3: [], ERRO_MENU: [],  ERRO_PAGESPEED: [], ERRO_SCROLL: [], ERRO_TITLE_1: [], ERRO_TITLE_2: [], ERRO_TITLE_3: [], ERRO_TITLE_4: [], ERRO_TITLE_5: [], ERRO_MPI_1: [], ERRO_MPI_2: [], ERRO_MPI_3: [], ERRO_MPI_4: [], ERRO_MPI_5: [], ERRO_MPI_6: [], ERRO_MPI_7: [], ERRO_TEXTO: [] }
 
+ERRO = {
+	302: 'Comando inválido.',
+	303: 'Erro 303: Não foi possível iniciar a função',
+	404: 'Erro 404: Não foi possível localizar o Arquivo.' ,
+	500: 'Erro 500: O arquivo está corrompido.',
+	503: 'Erro 503: Não foi possível selecionar o projeto informado.',
+	504: 'Erro 504: Não foi possível realizar os ajustes.',
+}
+
 URL								= 'http://mpitemporario.com.br/projetos/' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['url']
 localhost 						= '' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['localhost']
 binary 							= '' if not os.path.isfile('./Config.json') else json.ler_json(False, './Config')['binary']
