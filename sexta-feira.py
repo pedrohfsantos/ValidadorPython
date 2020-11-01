@@ -5,6 +5,7 @@ from colorama import Fore, Style, init
 from datetime import datetime
 from Modulos.Class.Config import *
 import os
+
 json = Arquivo()
 
 # Colorama, auto resetar para White color
