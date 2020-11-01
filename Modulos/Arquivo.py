@@ -1,4 +1,5 @@
 from os import listdir
+from os import makedirs
 from pathlib import Path
 import json
 import re
@@ -6,7 +7,12 @@ import os.path
 
 class Arquivo:
     def __init__(self):
-        pass
+        if not os.path.isdir('./Projetos'):
+            makedirs('./Projetos/JSON')
+
+        if not os.path.isdir('./Projetos/JSON'):
+            makedirs('./Projetos/JSON')
+
 
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split('//')
