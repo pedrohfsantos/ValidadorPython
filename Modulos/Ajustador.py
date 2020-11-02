@@ -117,7 +117,7 @@ def Ajustador():
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_3]):
-                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, sequencia_h2)
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, titulo_duplicado)
             except:
                 print(ERRO[303])
 
@@ -126,7 +126,7 @@ def Ajustador():
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_4}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_4]):
-                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, titulo_duplicado)
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, sequencia_h2)
             except:
                 print(ERRO[303])
 

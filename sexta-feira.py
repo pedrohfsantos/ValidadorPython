@@ -69,7 +69,6 @@ while 'exit' not in argumento.lower():
             print('\n')
 
         elif argumento == 'clear':
-            os.system('clear')
             clear()
             print(Message)
 
@@ -78,3 +77,5 @@ while 'exit' not in argumento.lower():
 
     else:
         json.escreve_json(Array)
+
+Arquivo().remove_pycache()

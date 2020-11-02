@@ -13,6 +13,9 @@ class Arquivo:
         if not os.path.isdir('./Projetos/JSON'):
             makedirs('./Projetos/JSON')
 
+        if not os.path.isdir('./Projetos/Validação'):
+            makedirs('./Projetos/Validação')
+
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split('//')
         limpaUrl = limpaUrl[1].split('/')
@@ -28,7 +31,7 @@ class Arquivo:
                 break
 
 
-        with open(f'Projetos/{self.url_projeto_mpitemporario(site)}.txt', 'w', encoding='utf-8') as arquivo:
+        with open(f'Projetos/Validação/{self.url_projeto_mpitemporario(site)}.txt', 'w', encoding='utf-8') as arquivo:
 
             for errosItens in errosEncontrado.keys():
                 if len(errosEncontrado[errosItens]) > 0:
@@ -91,13 +94,26 @@ class Arquivo:
         except IOError:
             return False    
 
-    def criar_arquivo(self, body, projeto, funcao, arquivo):
+    def criar_arquivo(self, body, projeto, funcao, arquivo, subs = False):
         caminho = projeto + '/' + funcao + '/' + arquivo
         try:
+
             Path(f'./Projetos/Ajustes/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
+            body = body.replace(f'<!-- {subs} -->', f'<?={subs}?>').re.sub(r'<\?=\s*\$caminho2\s*\?>', '', body) if subs else body
+            
             with open(f'./Projetos/Ajustes/{caminho}' + '.php', 'w', encoding='utf-8') as f:
-                body = body.replace(f'<!-- {subs} -->', f'<?={subs}?>').re.sub(r'<\?=\s*\$caminho2\s*\?>', '', body) if subs else body
                 f.write(body)
                 f.write('</html>')
         except: 
             return False
+
+    def remove_pycache(self):
+        import shutil
+        Dir = [
+        'Modulos/__pycache__/', 
+        'Modulos/Class/__pycache__/',
+        'Modulos/Class/Ajustador/__pycache__/',
+        'Modulos/Class/Validador/__pycache__/',
+        ] 
+        for removeDir in Dir:
+            shutil.rmtree(removeDir)
