@@ -1,6 +1,6 @@
 # Bem vindo ao Sexta-feira!
 
-## Antes de iniciar, siga o passo-passo abaixo para a configuração e preparação do ambiente.
+## Configuração e preparação do ambiente
 
 * Instale o Python na sua máquina. [importante]
 * Siga o passo-passo abaixo, e instale todas as bibliotecas utilizando o comando "pip install" no cmd.
@@ -18,4 +18,7 @@ pip install unidecode
 pip install collections
 ```
 
-"Desenvolvedores Pedro H. Firmino, Lucas P. Romero"
+## Desenvolvedores
+
+* Pedro H. Firmino
+* Lucas P. Romero
