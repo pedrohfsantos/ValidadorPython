@@ -16,6 +16,9 @@ class Arquivo:
         if not os.path.isdir('./Projetos/Validação'):
             makedirs('./Projetos/Validação')
 
+        if not os.path.isdir('./Projetos/Backup'):
+            makedirs('./Projetos/Backup')
+
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split('//')
         limpaUrl = limpaUrl[1].split('/')
@@ -94,16 +97,17 @@ class Arquivo:
         except IOError:
             return False    
 
-    def criar_arquivo(self, body, projeto, funcao, arquivo, subs = False):
-        caminho = projeto + '/' + funcao + '/' + arquivo
-        try:
+    def criar_arquivo(self, body, projeto, funcao, arquivo, htdocs, backup = False, subs = False):
 
-            Path(f'./Projetos/Ajustes/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
-            body = body.replace(f'<!-- {subs} -->', f'<?={subs}?>').re.sub(r'<\?=\s*\$caminho2\s*\?>', '', body) if subs else body
-            
-            with open(f'./Projetos/Ajustes/{caminho}' + '.php', 'w', encoding='utf-8') as f:
+        DIR = { 'backup' : projeto + '/' + funcao + '/' + arquivo + '.php', 'caminho'  : htdocs + projeto + '/' + arquivo + '.php' }
+        Path(f'./Projetos/Backup/{projeto}/{funcao}/').mkdir(parents=True, exist_ok=True)
+        body = body.replace(f'<!-- {subs} -->', f'<?={subs}?>').re.sub(r'<\?=\s*\$caminho2\s*\?>', '', body) if subs else body
+        try:
+            with open(DIR['caminho'], 'w', encoding='utf-8') as f:
                 f.write(body)
                 f.write('</html>')
+            with open('./Projetos/Backup/' + DIR['backup'], 'w', encoding='utf-8') as f:
+                f.write(backup)
         except: 
             return False
 

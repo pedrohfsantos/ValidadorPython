@@ -75,12 +75,12 @@ def Ajustador():
                 if html:
                     body = Modulo(modulo)
                     if body != None:
-                        arquivo.criar_arquivo(body, site, erro, Clear(url))
+                        arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
                     else:
                         erroAjusta[erro].append('=> {}'.format(Clear(url)))
                     mascara.reset()
                 else:
-                    print(Fore.YELLOW + '\nAviso: O arquivo/ página não consta como palavra-chave. Não foi possível ajustar o arquivo.')
+                    print(Fore.YELLOW + '\nNão foi possível ajustar o arquivo.')
             except:
                 print(ERRO[300])
 
@@ -117,7 +117,7 @@ def Ajustador():
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_3]):
-                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, titulo_duplicado)
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, 'titulo_duplicado')
             except:
                 print(ERRO[303])
 
@@ -126,7 +126,7 @@ def Ajustador():
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_4}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_4]):
-                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, sequencia_h2)
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, 'sequencia_h2')
             except:
                 print(ERRO[303])
 

@@ -62,6 +62,7 @@ while 'exit' != argumento.lower():
 
         elif argumento == '-a':    
             Ajustador()
+            print('\n')
 
         elif argumento == 'sites':
             os.system('notepad sites.txt')
@@ -78,4 +79,4 @@ while 'exit' != argumento.lower():
     else:
         json.escreve_json(Array)
 
-Arquivo().remove_pycache()
+# Arquivo().remove_pycache()
