@@ -31,7 +31,7 @@ def Info():
 
 print(Message)
 
-while 'exit' not in argumento.lower():
+while 'exit' != argumento.lower():
 
     if os.path.isfile('./Config.json'):    
         if json.ler_json(False, './Config')['localhost'] == '' and json.ler_json(False, './Config')['binary'] == '':

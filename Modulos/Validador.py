@@ -108,120 +108,126 @@ def Validador():
     urls = Urls()
 
     print(Fore.GREEN + 'Ambiente configurado com sucesso.')
-    print(Fore.YELLOW + f'\nForam recuperados ({len(urls)}) projetos para validar')
 
-    for key, url in enumerate(urls):
-        print(f'[{key + 1}] {url}')
+    if len(urls) > 0:
 
-    print('\n')
+        print(Fore.YELLOW + f'\nForam recuperados ({len(urls)}) projetos para validar')
 
-    try:
-        for url in urls:
+        for key, url in enumerate(urls):
+            print(f'[{key + 1}] {url}')
 
-            if session.get(url).html.find('h1')[0].text != '404':
+        print('\n')
 
-                Page_Not_Found = False
+        try:
+            for url in urls:
 
-                print(Fore.YELLOW + f'Projeto em validação\n=> {url}')
-                print(Fore.YELLOW + '\nRastreando e categorizando os links... \n')
+                if session.get(url).html.find('h1')[0].text != '404':
 
-                links = Links(
-                    url,
-                    errosEncontrado[ERRO_LINK],
-                    erroValidacao[ERRO_VALIDACAO_LINK],
-                    ).links_site()
+                    Page_Not_Found = False
 
-                print(Fore.GREEN + 'Tudo pronto!')
-                print(Fore.YELLOW +'Validação em andamento...\n')
+                    print(Fore.YELLOW + f'Projeto em validação\n=> {url}')
+                    print(Fore.YELLOW + '\nRastreando e categorizando os links... \n')
 
-                for pagina in tqdm(links['Todos']):
-                    item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
-                    
-                    threading.Thread(
-                        target=texto.verifica,
-                        args=(pagina, item.texto_pagina(),)).start()
+                    links = Links(
+                        url,
+                        errosEncontrado[ERRO_LINK],
+                        erroValidacao[ERRO_VALIDACAO_LINK],
+                        ).links_site()
 
-                    threading.Thread(
-                        target=w3c.verifica,
-                        args=(pagina,)).start()
+                    print(Fore.GREEN + 'Tudo pronto!')
+                    print(Fore.YELLOW +'Validação em andamento...\n')
 
-                    threading.Thread(
-                        target=imagem.verifica,
-                        args=(pagina, item.imagens(),)).start()
-
-                    threading.Thread(
-                        target=colunaLateral.verifica,
-                        args=(pagina, item.aside_links(),)).start()
-
-                    threading.Thread(
-                        target=description.verifica,
-                        args=(pagina,
-                        item.description(),
-                        item.h1(),
-                        )).start()
-                    
-                    threading.Thread(
-                        target=mapaDoSite.verifica,
-                        args=(pagina, links['Mapa Site'],)).start()
-                    
-                    threading.Thread(
-                        target=title.verifica,
-                        args=(
-                            pagina, item.h1(),
-                            item.h2(),
-                            item.titulo_strong(),
-                            item.h3(),
-                            )).start()
-
-                    if validation['scrollHorizontal']:
-                        scrollHorizontal.verifica(pagina)
-
-                    if pagina in links['MPI']:
-                        threading.Thread(
-                            target=mpi.verifica,
-                            args=(
-                                pagina,
-                                item.description(),
-                                item.imagens_mpi(),
-                                item.h1(),
-                                item.h2_mpi(),
-                                item.paragrafos_mpi(),
-                                item.imagens_mpi(),
-                                )).start()
-
-                    if pagina == url:
-                        threading.Thread(
-                            target=menu.verifica,
-                            args=(
-                                item.menu_top_texts(),
-                                item.menu_footer_texts(),
-                                item.menu_top_links(),
-                                item.menu_footer_links(),
-                                )).start()
+                    for pagina in tqdm(links['Todos']):
+                        item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
                         
-                        random = sample(range(0, len(links['MPI'])), 3)
-                        pageSpeed.verifica([ 
-                            pagina,
-                            links['MPI'][random[0]],
-                            links['MPI'][random[1]],
-                            links['MPI'][random[2]]
-                            ])
+                        threading.Thread(
+                            target=texto.verifica,
+                            args=(pagina, item.texto_pagina(),)).start()
 
-            else:
-                Page_Not_Found = True
+                        threading.Thread(
+                            target=w3c.verifica,
+                            args=(pagina,)).start()
 
-            if not Page_Not_Found:
-                arquivo.arquivo_validacao_json(errosEncontrado, url)
-                arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
+                        threading.Thread(
+                            target=imagem.verifica,
+                            args=(pagina, item.imagens(),)).start()
 
-                print(Fore.YELLOW + f'\nValidação do projeto finalizada\n=> {url}\n')
+                        threading.Thread(
+                            target=colunaLateral.verifica,
+                            args=(pagina, item.aside_links(),)).start()
 
-            else:
-                print(Fore.YELLOW + f'{ERRO[404]} Certifique-se de que o projeto esteja devidamente alocado no servidor temporário.')
-        
-    except:
-        print(ERRO[501])
+                        threading.Thread(
+                            target=description.verifica,
+                            args=(pagina,
+                            item.description(),
+                            item.h1(),
+                            )).start()
+                        
+                        threading.Thread(
+                            target=mapaDoSite.verifica,
+                            args=(pagina, links['Mapa Site'],)).start()
+                        
+                        threading.Thread(
+                            target=title.verifica,
+                            args=(
+                                pagina, item.h1(),
+                                item.h2(),
+                                item.titulo_strong(),
+                                item.h3(),
+                                )).start()
 
-    finally:
-        if validation['scrollHorizontal']:
-            scrollHorizontal.fechar()
+                        if validation['scrollHorizontal']:
+                            scrollHorizontal.verifica(pagina)
+
+                        if pagina in links['MPI']:
+                            threading.Thread(
+                                target=mpi.verifica,
+                                args=(
+                                    pagina,
+                                    item.description(),
+                                    item.imagens_mpi(),
+                                    item.h1(),
+                                    item.h2_mpi(),
+                                    item.paragrafos_mpi(),
+                                    item.imagens_mpi(),
+                                    )).start()
+
+                        if pagina == url:
+                            threading.Thread(
+                                target=menu.verifica,
+                                args=(
+                                    item.menu_top_texts(),
+                                    item.menu_footer_texts(),
+                                    item.menu_top_links(),
+                                    item.menu_footer_links(),
+                                    )).start()
+                            
+                            random = sample(range(0, len(links['MPI'])), 3)
+                            pageSpeed.verifica([ 
+                                pagina,
+                                links['MPI'][random[0]],
+                                links['MPI'][random[1]],
+                                links['MPI'][random[2]]
+                                ])
+
+                else:
+                    Page_Not_Found = True
+
+                if not Page_Not_Found:
+                    arquivo.arquivo_validacao_json(errosEncontrado, url)
+                    arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
+
+                    print(Fore.YELLOW + f'\nValidação do projeto finalizada\n=> {url}\n')
+
+                else:
+                    print(Fore.YELLOW + f'{ERRO[404]} Certifique-se de que o projeto esteja devidamente alocado no servidor temporário.')
+            
+        except:
+            print(ERRO[501])
+
+        finally:
+            if validation['scrollHorizontal']:
+                scrollHorizontal.fechar()
+
+    else:
+        print(Fore.YELLOW + '\nAviso: Você não possui projetos para validar.')

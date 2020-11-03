@@ -52,7 +52,7 @@ ERRO = {
 	303: '\nNão foi possível iniciar a função',
 	404: '\nNão foi possível localizar o destino especificado.' ,
 	500: '\nO arquivo está corrompido.',
-	501: '\nO sistema não pôde excutar as funções.',
+	501: '\nO sistema não pôde executar as funções.',
 	503: '\nNão foi possível selecionar o projeto informado.',
 	504: '\nAjustes não realizados',
 }
