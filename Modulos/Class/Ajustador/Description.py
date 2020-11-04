@@ -18,6 +18,8 @@ class Description:
                     descriptionOK = True
                     break
 
+                    
+
             else:
                 descriptionOK = False
         

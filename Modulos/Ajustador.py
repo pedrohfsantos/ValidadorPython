@@ -66,23 +66,21 @@ def Ajustador():
                     'strong'            :strong.ajusta(html, url, r),
                     'sequencia_h2'      :sequencia_h2.ajusta(html, url),
                     'titulo_duplicado'  :titulo_duplicado.ajusta(html, url, r),
+                    'description'       :description.ajusta(html, url, r)
                 }[modulo]
 
-            try:
-                caminho = site + '/' + Clear(url)
-                r       = session.get(URL + caminho)
-                html    = arquivo.ler_arquivo(localhost + caminho)
-                if html:
-                    body = Modulo(modulo)
-                    if body != None:
-                        arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
-                    else:
-                        erroAjusta[erro].append('=> {}'.format(Clear(url)))
-                    mascara.reset()
+            caminho = site + '/' + Clear(url)
+            r       = session.get(URL + caminho)
+            html    = arquivo.ler_arquivo(localhost + caminho)
+            if html:
+                body = Modulo(modulo)
+                if body != None:
+                    arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
                 else:
-                    print(Fore.YELLOW + '\nNão foi possível ajustar o arquivo.')
-            except:
-                print(ERRO[300])
+                    erroAjusta[erro].append('=> {}'.format(Clear(url)))
+                mascara.reset()
+            else:
+                print(ERRO[404])
 
 
         if len(urls[ERRO_MPI_3]) > 0:
@@ -93,6 +91,14 @@ def Ajustador():
                     description.ajusta(site, url, r)
             except:
                 print(ERRO[303])
+
+        # if len(urls[ERRO_MPI_3]) > 0:
+        #     print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_3}...')
+        #     try:
+        #         for url in tqdm(urls[ERRO_MPI_3]):
+        #             Inicializa(site.strip(), url.strip(), ERRO_MPI_3, 'description')
+        #     except:
+        #         print(ERRO[303])
 
 
         if len(urls[ERRO_IMAGENS_2]) > 0:
