@@ -51,10 +51,10 @@ def Ajustador():
         site = site[:-5]
         urls = arquivo.ler_json(site)
 
-        print('Realizando BACKUP dos arquivos...')
+        print('Realizando backup dos arquivos...')
         arquivo.backup(site=site, erros=[
             ERRO_MPI_3,
-            ERRO_IMAGENS_2,
+            # ERRO_IMAGENS_2,
             ERRO_MPI_6,
             ERRO_TITLE_3,
             ERRO_TITLE_4
@@ -71,8 +71,7 @@ def Ajustador():
                 return {
                     'strong'            :strong.ajusta(html, url, r),
                     'sequencia_h2'      :sequencia_h2.ajusta(html, url),
-                    'titulo_duplicado'  :titulo_duplicado.ajusta(html, url, r),
-                    'description'       :description.ajusta(html, url, r)
+                    'titulo_duplicado'  :titulo_duplicado.ajusta(html, url, r)
                 }[modulo]
 
             caminho = site + '/' + Clear(url)
@@ -112,7 +111,7 @@ def Ajustador():
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_6}...')
             try:
                 for url in tqdm(urls[ERRO_MPI_6]):
-                    Inicializa(site.strip(), url.strip(), ERRO_MPI_6, 'strong')
+                    Inicializa(site.strip(), url.strip(), ERRO_MPI_6, modulo='strong')
             except:
                 print(ERRO[303])
 

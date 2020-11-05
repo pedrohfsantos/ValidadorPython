@@ -109,8 +109,8 @@ class Arquivo:
             with open(DIR['caminho'], 'w', encoding='utf-8') as f:
                 f.write(body)
                 f.write('</html>')
-            with open('./Projetos/Backup/' + DIR['backup'], 'w', encoding='utf-8') as f:
-                f.write(backup)
+            # with open('./Projetos/Backup/' + DIR['backup'], 'w', encoding='utf-8') as f:
+            #     f.write(backup)
         except: 
             return False
 
@@ -121,8 +121,9 @@ class Arquivo:
         try:
             #Cria a pasta do projeto dentro da pasta Backup (ex: site.com.br-dia-mes-ano-hora-minuto-segundo)
             now = datetime.now()
-            pasta = f'./Projetos/Backup/{site}-{now.strftime("%d-%m-%Y-%H-%M-%S")}'
-            makedirs(pasta)
+            pasta = [f'./Projetos/Backup/{site}', f'./Projetos/Backup/{site}/{now.strftime("%d-%m-%Y-%H-%M-%S")}']
+            for criar in pasta:
+                makedirs(criar)
 
             #Separa os links que serão reajustados pelo validador        
             listaUrlJson = self.ler_json(False, f'./Projetos/JSON/{site}')
