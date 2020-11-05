@@ -30,9 +30,6 @@ def Ajustador():
     arquivos = arquivo.lista_arquivos_json()
 
     if len(arquivos) > 0:
-
-        print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
-
         for key, value in enumerate(arquivos):
             if len(arquivos) > 0:
                 print(f'[{key + 1}] {value}')
@@ -53,6 +50,15 @@ def Ajustador():
         site = arquivos[opcao - 1]
         site = site[:-5]
         urls = arquivo.ler_json(site)
+
+        print('Realizando BACKUP dos arquivos...')
+        arquivo.backup(site=site, erros=[
+            ERRO_MPI_3,
+            ERRO_IMAGENS_2,
+            ERRO_MPI_6,
+            ERRO_TITLE_3,
+            ERRO_TITLE_4
+        ])
 
 
         def Inicializa(site, url, erro, modulo):
@@ -91,14 +97,6 @@ def Ajustador():
                     description.ajusta(site, url, r)
             except:
                 print(ERRO[303])
-
-        # if len(urls[ERRO_MPI_3]) > 0:
-        #     print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_3}...')
-        #     try:
-        #         for url in tqdm(urls[ERRO_MPI_3]):
-        #             Inicializa(site.strip(), url.strip(), ERRO_MPI_3, 'description')
-        #     except:
-        #         print(ERRO[303])
 
 
         if len(urls[ERRO_IMAGENS_2]) > 0:

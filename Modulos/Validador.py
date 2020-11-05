@@ -23,6 +23,7 @@ def Validador():
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: W3C")
 
+
     if validation['colunaLateral']:
         colunaLateral = ColunaLateral(
             errosEncontrado[ERRO_COLUNA_LATERAL],
@@ -31,6 +32,7 @@ def Validador():
         print(Fore.WHITE + " Status: " + Fore.GREEN + 'ON' + Fore.WHITE + " Módulo: colunaLateral")
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: colunaLateral")
+
 
     if validation['mapaDoSite']:
         mapaDoSite = MapaDoSite(
@@ -41,6 +43,7 @@ def Validador():
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: mapaDoSite")
     
+    
     if validation['menu']:
         menu = MenuHeaderFooter(
             errosEncontrado[ERRO_MENU],
@@ -49,6 +52,7 @@ def Validador():
         print(Fore.WHITE + " Status: " + Fore.GREEN + 'ON' + Fore.WHITE + " Módulo: menu")
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: menu")
+
 
     if validation['pageSpeed']:
         pageSpeed = PageSpeed(
@@ -59,6 +63,7 @@ def Validador():
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: pageSpeed")
 
+
     if validation['texto']:
         texto = Texto(
             errosEncontrado[ERRO_TEXTO],
@@ -67,6 +72,7 @@ def Validador():
         print(Fore.WHITE + " Status: " + Fore.GREEN + 'ON' + Fore.WHITE + " Módulo: texto")
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: texto")
+
 
     if validation['description']:
         description = Description(
@@ -78,6 +84,7 @@ def Validador():
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: description")
 
+
     if validation['imagem']:
         imagem = Imagens(
             errosEncontrado[ERRO_IMAGENS_1],
@@ -88,6 +95,7 @@ def Validador():
         print(Fore.WHITE + " Status: " + Fore.GREEN + 'ON' + Fore.WHITE + " Módulo: imagem")
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: imagem") 
+
 
     if validation['title']:
         title = Title(
@@ -101,6 +109,7 @@ def Validador():
         print(Fore.WHITE + " Status: " + Fore.GREEN + 'ON' + Fore.WHITE + " Módulo: title")
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: title") 
+
 
     if validation['mpi']:
         mpi = Mpi(
@@ -117,6 +126,7 @@ def Validador():
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: mpi") 
 
+
     if validation['scrollHorizontal']:
         scrollHorizontal = ScrollHorizontal(
             errosEncontrado[ERRO_SCROLL],
@@ -126,7 +136,9 @@ def Validador():
     else:
         print(Fore.WHITE + " Status: " + Fore.RED + 'OFF' + Fore.WHITE + " Módulo: scrollHorizontal") 
 
+
     arquivo = Arquivo()
+
 
     def Urls():  
         sites = open('sites.txt', "r")
@@ -144,7 +156,7 @@ def Validador():
 
     if len(urls) > 0:
 
-        print(Fore.WHITE + f'Foram recuperados ({len(urls)}) projetos para validação')
+        print(Fore.WHITE + f'\nForam recuperados ({len(urls)}) projetos para validação')
 
         for key, url in enumerate(urls):
             print(f' [{key + 1}] {url}')

@@ -1,9 +1,11 @@
-from os import listdir
-from os import makedirs
+from os import listdir, makedirs
+import os.path
+from datetime import datetime
 from pathlib import Path
 import json
 import re
-import os.path
+import shutil
+
 
 class Arquivo:
     def __init__(self):
@@ -97,6 +99,7 @@ class Arquivo:
         except IOError:
             return False    
 
+
     def criar_arquivo(self, body, projeto, funcao, arquivo, htdocs, backup = False, subs = False):
 
         DIR = { 'backup' : projeto + '/' + funcao + '/' + arquivo + '.php', 'caminho'  : htdocs + projeto + '/' + arquivo + '.php' }
@@ -111,13 +114,33 @@ class Arquivo:
         except: 
             return False
 
-    def remove_pycache(self):
-        import shutil
-        Dir = [
-        'Modulos/__pycache__/', 
-        'Modulos/Class/__pycache__/',
-        'Modulos/Class/Ajustador/__pycache__/',
-        'Modulos/Class/Validador/__pycache__/',
-        ] 
-        for removeDir in Dir:
-            shutil.rmtree(removeDir)
+
+    def backup(self, site, erros):
+        urlsBackup = []
+
+        try:
+            #Cria a pasta do projeto dentro da pasta Backup (ex: site.com.br-dia-mes-ano-hora-minuto-segundo)
+            now = datetime.now()
+            pasta = f'./Projetos/Backup/{site}-{now.strftime("%d-%m-%Y-%H-%M-%S")}'
+            makedirs(pasta)
+
+            #Separa os links que serão reajustados pelo validador        
+            listaUrlJson = self.ler_json(False, f'./Projetos/JSON/{site}')
+            for item in listaUrlJson:
+                if item in erros:
+                    for url in listaUrlJson[item]:
+                        urlsBackup.append(url)
+
+            #Copia todos arquivos
+            for arquivo in set(urlsBackup):
+                arquivo = re.search('http.*?\S*[^: ]', arquivo).group(0)
+                arquivo = 'index' if arquivo.split('/')[-1] == '' else arquivo.split('/')[-1]
+
+                configJson = self.ler_json(False, './Config')
+                arquivoOriginal = f"{configJson['localhost']}{site}/{arquivo}.php"
+                shutil.copy(arquivoOriginal, pasta)
+
+            print('Backup realizado com sucesso.')
+
+        except:
+            print('Erro: Não foi possível realizar o Backup.')

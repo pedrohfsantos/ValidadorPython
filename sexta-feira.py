@@ -31,7 +31,7 @@ def Info():
 
 print(Message)
 
-while 'exit' != argumento.lower():
+while 'exit' not in argumento.lower():
 
     if os.path.isfile('./Config.json'):    
         if json.ler_json(False, './Config')['localhost'] == '' and json.ler_json(False, './Config')['binary'] == '':
@@ -60,9 +60,9 @@ while 'exit' != argumento.lower():
             Validador()
             print('\n')
 
-        elif argumento == '-a':    
+        elif argumento == '-a':
+            print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
             Ajustador()
-            print('\n')
 
         elif argumento == 'sites':
             os.system('notepad sites.txt')
@@ -70,13 +70,12 @@ while 'exit' != argumento.lower():
             print('\n')
 
         elif argumento == 'clear':
+            os.system('clear')
             clear()
             print(Message)
 
         else:
-            print(f'$ {argumento}: ' + ERRO[302] if len(argumento) > 0 and argumento != 'exit' else '')
+            print(f'$ {argumento}: ' + ERRO[302] + '\n' if len(argumento) > 0 and argumento != 'exit' else '')
 
     else:
         json.escreve_json(Array)
-
-# Arquivo().remove_pycache()

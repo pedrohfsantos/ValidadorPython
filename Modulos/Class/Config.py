@@ -1,5 +1,5 @@
 import os
-from .. Arquivo import *
+from ..Arquivo import *
 
 json = Arquivo()
 
@@ -92,7 +92,7 @@ else:
 		'imagem' 			: True,
 		'title' 			: True,
 		'mpi' 				: True,
-		'scrollHorizontal' 	: False
+		'scrollHorizontal' 	: True
 	}
 
 
