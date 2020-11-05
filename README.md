@@ -13,7 +13,7 @@ pip install tqdm
 pip install requests_html
 pip install colorama 
 pip install pathlib
-pip install Image
+pip install pillow
 pip install unidecode
 pip install collections
 ```
