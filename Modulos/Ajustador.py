@@ -9,7 +9,16 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 def Ajustador():
+
     session = HTMLSession()
+
+    Switch = {
+        ERRO_MPI_3      : True,     # Description
+        ERRO_IMAGENS_2  : True,     # Imagens
+        ERRO_MPI_6      : True,     # Strong
+        ERRO_TITLE_4    : False,    # Título duplicado
+        ERRO_TITLE_3    : True,     # Sequência de H2
+    }
 
     erroAjusta = {
         'Description' : [],
@@ -89,7 +98,7 @@ def Ajustador():
                 print(ERRO[404])
 
 
-        if len(urls[ERRO_MPI_3]) > 0:
+        if len(urls[ERRO_MPI_3]) > 0 and Switch[ERRO_MPI_3]:
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_3}...')
             try:
                 for url in tqdm(urls[ERRO_MPI_3]):
@@ -99,7 +108,7 @@ def Ajustador():
                 print(ERRO[303])
 
 
-        if len(urls[ERRO_IMAGENS_2]) > 0:
+        if len(urls[ERRO_IMAGENS_2]) > 0 and Switch[ERRO_IMAGENS_2]:
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_IMAGENS_2}...')
             try:
                 for url in tqdm(urls[ERRO_IMAGENS_2]):
@@ -108,7 +117,7 @@ def Ajustador():
                 print(ERRO[303])
 
 
-        if len(urls[ERRO_MPI_6]) > 0:
+        if len(urls[ERRO_MPI_6]) > 0 and Switch[ERRO_MPI_6]:
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_6}...')
             try:
                 for url in tqdm(urls[ERRO_MPI_6]):
@@ -117,7 +126,7 @@ def Ajustador():
                 print(ERRO[303])
 
 
-        if len(urls[ERRO_TITLE_4]) > 0:
+        if len(urls[ERRO_TITLE_4]) > 0 and Switch[ERRO_TITLE_4]:
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_4}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_4]):
@@ -126,7 +135,7 @@ def Ajustador():
                 print(ERRO[303])
 
 
-        if len(urls[ERRO_TITLE_3]) > 0:
+        if len(urls[ERRO_TITLE_3]) > 0 and Switch[ERRO_TITLE_3]:
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_3]):
@@ -142,13 +151,13 @@ def Ajustador():
                 break
 
         if len(erroAjusta[erro]) > 0:
-            print(Fore.RED + ERRO[504] + '\n')
+            print(ERRO[504] + '\n')
             for errosItens in erroAjusta.keys():
                 if len(erroAjusta[errosItens]) > 0:
-                    print(f'{errosItens}:\n')
+                    print(f' {errosItens}:\n')
 
                     for errosValores in erroAjusta[errosItens]:
-                        print(f'{errosValores}')
+                        print(f'   {arquivo.limpa_url(site, errosValores)}')
                     print('\n')
 
                 erroAjusta[errosItens].clear()

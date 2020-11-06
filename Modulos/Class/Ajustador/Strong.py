@@ -15,7 +15,7 @@ class Strong:
         try:
             soup = BeautifulSoup(mascara.Aplicar(html), "html.parser")
             title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
-            tipoMPI = '.mpi-content, .tabs-content' if (soup.find_all('div', class_="mpi-content")) else 'article'
+            tipoMPI = '.mpi-content > p, .tabs-content > p' if (soup.find_all('div', class_="mpi-content")) else 'article > p'
 
             for p in soup.select(tipoMPI):
 

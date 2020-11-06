@@ -145,3 +145,8 @@ class Arquivo:
 
         except:
             print('Erro: Não foi possível realizar o Backup.')
+
+    def limpa_url(self, projeto, url):
+        url = re.search(r'http.*?\S*[^: ]', url).group(0)
+        url = 'index' if url.split('/')[-1] == '' else url.split('/')[-1]
+        return '../ {}/{}'.format(projeto, url)

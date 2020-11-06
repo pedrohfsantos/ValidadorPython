@@ -7,7 +7,7 @@ elements = []
 class Mascara:
 
 	def __init__(self):
-		pass
+		del elements[:]
 
 	def Retirar(self, body):
 		m = re.sub(r"<\?.*\?>", self.remove, body)
