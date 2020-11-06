@@ -15,8 +15,6 @@ class Mascara:
 		mask = re.sub(msk, self.add, str(soup.prettify(formatter=None)))
 		return mask
 
-		del elements[:]
-
 	def Aplicar(self, body):
 		m = re.sub(r"<\?.*\?>", self.remove, body)
 		soup = BeautifulSoup(m, "html.parser")

@@ -134,7 +134,7 @@ class Arquivo:
 
             #Copia todos arquivos
             for arquivo in set(urlsBackup):
-                arquivo = re.search('http.*?\S*[^: ]', arquivo).group(0)
+                arquivo = re.search(r'http.*?\S*[^: ]', arquivo).group(0)
                 arquivo = 'index' if arquivo.split('/')[-1] == '' else arquivo.split('/')[-1]
 
                 configJson = self.ler_json(False, './Config')

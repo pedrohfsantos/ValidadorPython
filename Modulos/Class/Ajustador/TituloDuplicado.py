@@ -16,30 +16,28 @@ class TituloDuplicado:
 		try:
 
 			soup = BeautifulSoup(mascara.Aplicar(html), "html.parser")
-			title = r.html.find('h1')[0].text
+			title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
+			tipoMPI = 'div' if soup.find_all('div', class_="mpi-content") else 'article'
 
-			tipoMPI = '.mpi-content, .tabs-content' if len(soup.find_all('div', class_="mpi-content")) > 0 else 'article'
+			Element = [self.percorre(soup, tipoMPI, 'h2'), self.percorre(soup, tipoMPI, 'h3')]
 
-			for item in soup.select(tipoMPI):
-				
-				if item.find_all('h2'):
-					element_H2 = item.find_all('h2')
-					for e in element_H2:
-						if unidecode(e.string.lower().strip()) == unidecode(title):
-							e.string = 'CONHEÇA MAIS SOBRE ' + e.string.strip()
-				elif item.find_all('h3'):
-					element_H3 = item.find_all('h3')
-					for e in element_H3:
-						if unidecode(e.string.lower().strip()) == unidecode(title):
-							e.string = 'CONHEÇA MAIS SOBRE ' + e.string.strip()
-				else:
-					self.erro.append(f"=> {url}")
-			
+			if Element[0]:
+
+				for elem in soup.find_all('h2'):
+
+					for i in elem:
+						if unidecode(str(Element[0]).strip().lower()) == unidecode(i.string.lower().strip()):
+							i.string = 'SAIBA MAIS SOBRE ' + i.string.upper().strip()
+
+						# print(i.string)
+
 			for elem in soup.prettify(formatter=None):
 				content.append(elem)
 			value = ''.join(map(str, content))
 
-			return mascara.Retirar(html)
+			# print(value)
+
+			return mascara.Retirar(value)
 			mascara.reset()
 
 		except:
@@ -48,3 +46,35 @@ class TituloDuplicado:
 	def arquivo(self, url):
 	    url = url.split('//')[1].split('/')[-1].split(' ')[0]
 	    return url
+
+	def percorre(self, soup, mpi, elementString):
+		elem = {'h2': [], 'h3': []} 
+		content = []
+		for item in soup.select(mpi):
+
+			element = item.find_all(elementString)
+
+			for Element in element:
+				elem[elementString].append(Element.string)
+			break
+
+		return self.duplicado(elem[elementString])
+
+			
+	def duplicado(self, array):
+
+		texto = array
+		contagem = dict()
+
+		for linha in texto:
+
+		    palavra = linha.strip()
+
+		    if palavra not in contagem.keys():
+		        contagem[palavra] = 1
+		    else:
+		        contagem[palavra] += 1
+
+		for Max in contagem.keys():
+			if contagem[Max] > 1:
+				return Max

@@ -64,7 +64,7 @@ def Ajustador():
         def Inicializa(site, url, erro, modulo):
 
             def Clear(url):
-                url = url.split('//')[1].split('/')[-1].split(' ')[0]
+                url = re.search(r'http.*?\S*[^: ]', url).group(0).split('//')[1].split('/')[-1].split(' ')[0]
                 return url
 
             def Modulo(modulo):
@@ -77,6 +77,7 @@ def Ajustador():
             caminho = site + '/' + Clear(url)
             r       = session.get(URL + caminho)
             html    = arquivo.ler_arquivo(localhost + caminho)
+
             if html:
                 body = Modulo(modulo)
                 if body != None:
@@ -116,20 +117,20 @@ def Ajustador():
                 print(ERRO[303])
 
 
-        if len(urls[ERRO_TITLE_3]) > 0:
-            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
-            try:
-                for url in tqdm(urls[ERRO_TITLE_3]):
-                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, 'titulo_duplicado')
-            except:
-                print(ERRO[303])
-
-
         if len(urls[ERRO_TITLE_4]) > 0:
             print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_4}...')
             try:
                 for url in tqdm(urls[ERRO_TITLE_4]):
-                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, 'sequencia_h2')
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, modulo='titulo_duplicado')
+            except:
+                print(ERRO[303])
+
+
+        if len(urls[ERRO_TITLE_3]) > 0:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
+            try:
+                for url in tqdm(urls[ERRO_TITLE_3]):
+                    Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, modulo='sequencia_h2')
             except:
                 print(ERRO[303])
 
