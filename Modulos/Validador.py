@@ -193,75 +193,95 @@ def Validador():
                         for pagina in tqdm(links['Todos']):
                             item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
                             
-                            threading.Thread(
-                                target=texto.verifica,
-                                args=(pagina, item.texto_pagina(),)).start()
+                            if validation['w3c']:
+                                threading.Thread(
+                                    target=w3c.verifica,
+                                    args=(pagina,)).start()
 
-                            threading.Thread(
-                                target=w3c.verifica,
-                                args=(pagina,)).start()
 
-                            threading.Thread(
-                                target=imagem.verifica,
-                                args=(pagina, item.imagens(),)).start()
+                            if validation['texto']:
+                                threading.Thread(
+                                    target=texto.verifica,
+                                    args=(pagina, item.texto_pagina(),)).start()
 
-                            threading.Thread(
-                                target=colunaLateral.verifica,
-                                args=(pagina, item.aside_links(),)).start()
 
-                            threading.Thread(
-                                target=description.verifica,
-                                args=(pagina,
-                                item.description(),
-                                item.h1(),
-                                )).start()
-                            
-                            threading.Thread(
-                                target=mapaDoSite.verifica,
-                                args=(pagina, links['Mapa Site'],)).start()
-                            
-                            threading.Thread(
-                                target=title.verifica,
-                                args=(
-                                    pagina, item.h1(),
-                                    item.h2(),
-                                    item.titulo_strong(),
-                                    item.h3(),
+                            if validation['imagem']:
+                                threading.Thread(
+                                    target=imagem.verifica,
+                                    args=(pagina, item.imagens(),)).start()
+
+
+                            if validation['colunaLateral']:
+                                threading.Thread(
+                                    target=colunaLateral.verifica,
+                                    args=(pagina, item.aside_links(),)).start()
+
+
+                            if validation['description']:
+                                threading.Thread(
+                                    target=description.verifica,
+                                    args=(pagina,
+                                    item.description(),
+                                    item.h1(),
                                     )).start()
+                            
+
+                            if validation['mapaDoSite']:
+                                threading.Thread(
+                                    target=mapaDoSite.verifica,
+                                    args=(pagina, links['Mapa Site'],)).start()
+                            
+
+                            if validation['title']:
+                                threading.Thread(
+                                    target=title.verifica,
+                                    args=(
+                                        pagina, 
+                                        item.h1(),
+                                        item.h2(),
+                                        item.titulo_strong(),
+                                        item.h3(),
+                                        )).start()
+
 
                             if validation['scrollHorizontal']:
                                 scrollHorizontal.verifica(pagina)
 
+
                             if pagina in links['MPI']:
-                                threading.Thread(
-                                    target=mpi.verifica,
-                                    args=(
-                                        pagina,
-                                        item.description(),
-                                        item.imagens_mpi(),
-                                        item.h1(),
-                                        item.h2_mpi(),
-                                        item.paragrafos_mpi(),
-                                        item.imagens_mpi(),
-                                        )).start()
+                                if validation['mpi']:
+                                    threading.Thread(
+                                        target=mpi.verifica,
+                                        args=(
+                                            pagina,
+                                            item.description(),
+                                            item.imagens_mpi(),
+                                            item.h1(),
+                                            item.h2_mpi(),
+                                            item.paragrafos_mpi(),
+                                            item.imagens_mpi(),
+                                            )).start()
+
 
                             if pagina == url:
-                                threading.Thread(
-                                    target=menu.verifica,
-                                    args=(
-                                        item.menu_top_texts(),
-                                        item.menu_footer_texts(),
-                                        item.menu_top_links(),
-                                        item.menu_footer_links(),
-                                        )).start()
+                                if validation['menu']:
+                                    threading.Thread(
+                                        target=menu.verifica,
+                                        args=(
+                                            item.menu_top_texts(),
+                                            item.menu_footer_texts(),
+                                            item.menu_top_links(),
+                                            item.menu_footer_links(),
+                                            )).start()
                                 
-                                random = sample(range(0, len(links['MPI'])), 3)
-                                pageSpeed.verifica([ 
-                                    pagina,
-                                    links['MPI'][random[0]],
-                                    links['MPI'][random[1]],
-                                    links['MPI'][random[2]]
-                                    ])
+                                if validation['pageSpeed']:
+                                    random = sample(range(0, len(links['MPI'])), 3)
+                                    pageSpeed.verifica([ 
+                                        pagina,
+                                        links['MPI'][random[0]],
+                                        links['MPI'][random[1]],
+                                        links['MPI'][random[2]]
+                                        ])
 
                         arquivo.arquivo_validacao_json(errosEncontrado, url)
                         arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)

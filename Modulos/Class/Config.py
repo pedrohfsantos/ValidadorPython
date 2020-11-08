@@ -62,7 +62,7 @@ ERRO = {
 
 if os.path.isfile('./Config.json'):
 	configJson = json.ler_json(False, './Config')
-	URL = configJson['url']
+	urlmpitemporario = configJson['url']
 	localhost = configJson['localhost']
 	binary = configJson['binary']
 	validation = { 
@@ -80,7 +80,7 @@ if os.path.isfile('./Config.json'):
 	}
 	
 else:
-	URL = 'http://mpitemporario.com.br/projetos/'
+	urlmpitemporario = 'http://mpitemporario.com.br/projetos/'
 	localhost = ''
 	binary = ''
 	validation = { 
@@ -98,4 +98,4 @@ else:
 	}
 
 
-Array = {'url': URL, 'localhost': localhost, 'binary': binary, 'validation': validation}
+Array = {'url': urlmpitemporario, 'localhost': localhost, 'binary': binary, 'validation': validation}

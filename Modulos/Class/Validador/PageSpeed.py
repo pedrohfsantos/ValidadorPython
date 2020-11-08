@@ -1,6 +1,8 @@
 import random
 import json
+import re
 from requests_html import HTMLSession
+from Modulos.Class.Config import localhost, urlmpitemporario 
 
 
 class PageSpeed:
@@ -36,6 +38,18 @@ class PageSpeed:
 
 
     def ajuste_link_pageSpeed(self, link):
+        link = self.url_urlmpitemporario(link)
         link = link.replace(':', '%3A')
         link = link.replace('/', '%2F')
         return link
+
+
+    def url_urlmpitemporario(self, url):
+        if 'localhost/' in url:
+            htdocs = re.search(r'^.*?htdocs\/(.*)', localhost)
+            htdocs = '' if not htdocs.group(1) else htdocs.group(1)
+            url = re.sub(r'https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
+            return url
+
+        else:
+            return url
