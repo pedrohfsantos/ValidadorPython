@@ -93,10 +93,10 @@ def Ajustador():
 
                 # print(body)
 
-                # if body != None:
-                #     arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
-                # else:
-                #     erroAjusta[erro].append('=> {}'.format(Clear(url)))
+                if body != None:
+                    arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
+                else:
+                    erroAjusta[erro].append('=> {}'.format(Clear(url)))
             else:
                 print(ERRO[404])
 

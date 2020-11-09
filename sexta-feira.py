@@ -77,6 +77,18 @@ while 'exit' not in argumento.lower():
             clear()
             print(Message)
 
+        elif argumento == 'var':
+            print('Variáveis do sistema')
+            for item in Array.keys():
+                if 'validation' != item:
+                    print(Fore.WHITE + f' {item}:' + Fore.YELLOW + ' {}'.format(Array[item]))
+                else:
+                    print(Fore.WHITE + f' {item}' + ' {')
+                    for elem in Array['validation'].keys():
+                        print(Fore.WHITE + f'  {elem}:', Fore.YELLOW + '{}'.format(Array['validation'][elem]))
+                    print(Fore.WHITE + ' }')
+            print('\n')
+
         else:
             print(f'$ {argumento}: ' + ERRO[302] + '\n' if len(argumento) > 0 and argumento != 'exit' else '')
 
