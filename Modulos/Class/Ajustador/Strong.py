@@ -38,10 +38,9 @@ class Strong:
             value = ''.join(map(str, content))
 
             return mascara.Retirar(value)
-            mascara.reset()
 
         except:
-            mascara.reset()
+            return False
 
     def arquivo(self, url):
         url = url.split('//')[1].split('/')[-1].split(' ')[0]

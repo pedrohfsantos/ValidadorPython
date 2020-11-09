@@ -14,7 +14,7 @@ class SequenciaH2:
 	def ajusta(self, html, url):
 		content = []
 		try:
-			soup = BeautifulSoup(mascara.Aplicar(html), "html.parser")
+			soup = BeautifulSoup(mascara.Mask(html, True), "html.parser")
 
 			tipoMPI = '.mpi-content, .tabs-content' if len(soup.find_all('div', class_="mpi-content")) > 0 else 'article'
 
@@ -33,11 +33,10 @@ class SequenciaH2:
 				content.append(elem)
 			value = ''.join(map(str, content))
 
-			return mascara.Retirar(html)
-			mascara.reset()
+			return mascara.Mask(value, False)
 
 		except:
-			mascara.reset()
+			return False
 
 	def arquivo(self, url):
 	    url = url.split('//')[1].split('/')[-1].split(' ')[0]

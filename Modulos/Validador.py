@@ -185,6 +185,7 @@ def Validador():
                             url,
                             errosEncontrado[ERRO_LINK],
                             erroValidacao[ERRO_VALIDACAO_LINK],
+                            False
                             ).links_site()
 
                         print(Fore.WHITE + 'Tudo pronto.')

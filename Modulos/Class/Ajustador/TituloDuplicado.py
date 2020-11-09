@@ -13,35 +13,32 @@ class TituloDuplicado:
 
 	def ajusta(self, html, url, r):
 		content = []
-		try:
+		# try:
 
-			soup = BeautifulSoup(mascara.Aplicar(html), "html.parser")
-			title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
-			tipoMPI = 'div' if soup.find_all('div', class_="mpi-content") else 'article'
+		soup = BeautifulSoup(mascara.Mask(html, True), "html.parser")
+		title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
+		tipoMPI = 'div' if soup.find_all('div', class_="mpi-content") else 'article'
 
-			Element = [self.percorre(soup, tipoMPI, 'h2'), self.percorre(soup, tipoMPI, 'h3')]
+		Element = [self.percorre(soup, tipoMPI, 'h2'), self.percorre(soup, tipoMPI, 'h3')]
 
-			if Element[0]:
+		if Element[0]:
 
-				for elem in soup.find_all('h2'):
+			for elem in soup.find_all('h2'):
 
-					for i in elem:
-						if unidecode(str(Element[0]).strip().lower()) == unidecode(i.string.lower().strip()):
-							i.string = 'SAIBA MAIS SOBRE ' + i.string.upper().strip()
+				for i in elem:
+					if unidecode(str(Element[0]).strip().lower()) == unidecode(i.string.lower().strip()):
+						i.string = 'SAIBA MAIS SOBRE ' + i.string.upper().strip()
 
-						# print(i.string)
+		for elem in soup.prettify(formatter=None):
+			content.append(elem)
+		value = ''.join(map(str, content))
 
-			for elem in soup.prettify(formatter=None):
-				content.append(elem)
-			value = ''.join(map(str, content))
+		print(mascara.Mask(value, False))
 
-			# print(value)
+		return mascara.Mask(value, False)
 
-			return mascara.Retirar(value)
-			mascara.reset()
-
-		except:
-			mascara.reset()
+		# except:
+		# 	return False
 
 	def arquivo(self, url):
 	    url = url.split('//')[1].split('/')[-1].split(' ')[0]

@@ -1,32 +1,38 @@
 from bs4 import BeautifulSoup
 import re
 
-msk = '!!!PHP!!!'
-elements = []
-
 class Mascara:
 
 	def __init__(self):
-		del elements[:]
+		pass
 
-	def Retirar(self, body):
-		m = re.sub(r"<\?.*\?>", self.remove, body)
-		soup = BeautifulSoup(m, "html.parser")
-		mask = re.sub(msk, self.add, str(soup.prettify(formatter=None)))
-		return mask
+	def Mask(self, body, metodo):
 
-	def Aplicar(self, body):
-		m = re.sub(r"<\?.*\?>", self.remove, body)
-		soup = BeautifulSoup(m, "html.parser")
-		mask = re.sub(msk, self.remove, str(soup.prettify(formatter=None)))
-		return mask
+		elements = []
+		msk = '!!!PHP!!!'
 
-	def remove(self, elem):
-		elements.append(elem.group())
-		return msk
+		def remove(elem):
+			elements.append(elem.group())
+			return msk
 
-	def add(self, elem):
-		return elements.pop(0)
+		def add(elem):
+			return elements.pop(0)
+			del elements[:]
 
-	def reset(self):
-	    del elements[:]
+		def Aplicar(body):
+			m = re.sub(r"<\?.*\?>", remove, body)
+			soup = BeautifulSoup(m, "html.parser")
+			mask = re.sub(msk, remove, str(soup.prettify(formatter=None)))
+			return mask
+
+		def Retirar(body):
+			m = re.sub(r"<\?.*?\?>", remove, body)
+			soup = BeautifulSoup(m, "html.parser")
+			mask = re.sub(msk, add, str(soup.prettify(formatter=None)))
+			return mask
+
+		if metodo:
+			Aplicar(body)
+		else:
+			Retirar(body)
+			del elements[:]
