@@ -49,8 +49,9 @@ while 'exit' not in argumento.lower():
             json.escreve_json(Array)
             print('\n')
 
+        if not os.path.isfile('./sites.txt'):
             open('./sites.txt', 'w', encoding='utf-8').close()
-
+        
         print(Fore.YELLOW + 'Digite "info" para obter a lista de comandos nativos')
         argumento = input('$ ').lower()
 
