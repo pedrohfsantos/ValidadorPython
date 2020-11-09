@@ -111,13 +111,13 @@ def Ajustador():
                 print(ERRO[303])
 
 
-        # if len(urls[ERRO_IMAGENS_2]) > 0 and Switch[ERRO_IMAGENS_2]:
-        #     print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_IMAGENS_2}...')
-        #     try:
-        #         for url in tqdm(urls[ERRO_IMAGENS_2]):
-        #             imagem.ajusta(site, url)
-        #     except:
-        #         print(ERRO[303])
+        if len(urls[ERRO_IMAGENS_2]) > 0 and Switch[ERRO_IMAGENS_2]:
+            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_IMAGENS_2}...')
+            try:
+                for url in tqdm(urls[ERRO_IMAGENS_2]):
+                    imagem.ajusta(site, url)
+            except:
+                print(ERRO[303])
 
 
         # if len(urls[ERRO_MPI_6]) > 0 and Switch[ERRO_MPI_6]:
