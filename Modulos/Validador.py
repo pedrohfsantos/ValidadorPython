@@ -179,7 +179,6 @@ def Validador():
                     if Page_Exists:
 
                         print(Fore.YELLOW + f'\nProjeto em validação => {url}')
-                        print(Fore.WHITE + 'Rastreando e categorizando os links...')
 
                         links = Links(
                             url,
@@ -187,10 +186,9 @@ def Validador():
                             erroValidacao[ERRO_VALIDACAO_LINK],
                             ).links_site()
 
-                        print(Fore.WHITE + 'Tudo pronto.')
-                        print(Fore.WHITE + 'Validação em andamento...')
+                        msm = Fore.GREEN + 'Validação em andamento'
 
-                        for pagina in tqdm(links['Todos']):
+                        for pagina in tqdm(links['Todos'], desc=msm):
                             item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
                             
                             if validation['w3c']:

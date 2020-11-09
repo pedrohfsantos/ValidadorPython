@@ -3,6 +3,7 @@ import json
 import re
 from requests_html import HTMLSession
 from Modulos.Class.Config import localhost, urlmpitemporario 
+from tqdm.auto import tqdm
 
 
 class PageSpeed:
@@ -14,7 +15,7 @@ class PageSpeed:
 
 
     def verifica(self, links):
-        for pagespeedUrl in links:
+        for pagespeedUrl in tqdm(links, unit=' links', desc='Validando PageSpeed', leave=False):
             try:
                 mobileUrl = f'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_pageSpeed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=mobile&key={self.apiKey}'
                 desktopUrl = f'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_pageSpeed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=desktop&key={self.apiKey}'
