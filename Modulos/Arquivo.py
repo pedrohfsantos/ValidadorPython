@@ -123,7 +123,8 @@ class Arquivo:
             now = datetime.now()
             pasta = [f'./Projetos/Backup/{site}', f'./Projetos/Backup/{site}/{now.strftime("%d-%m-%Y-%H-%M-%S")}']
             for criar in pasta:
-                makedirs(criar)
+                if not os.path.isdir(criar):
+                    makedirs(criar)
 
             #Separa os links que serão reajustados pelo validador        
             listaUrlJson = self.ler_json(False, f'./Projetos/JSON/{site}')
@@ -139,7 +140,7 @@ class Arquivo:
 
                 configJson = self.ler_json(False, './Config')
                 arquivoOriginal = f"{configJson['localhost']}{site}/{arquivo}.php"
-                shutil.copy(arquivoOriginal, pasta)
+                shutil.copy(arquivoOriginal, pasta[1])
 
             print('Backup realizado com sucesso.')
 
