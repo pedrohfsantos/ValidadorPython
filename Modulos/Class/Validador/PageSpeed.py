@@ -1,6 +1,9 @@
 import random
 import json
+import re
 from requests_html import HTMLSession
+from Modulos.Class.Config import localhost, urlmpitemporario 
+from tqdm.auto import tqdm
 
 
 class PageSpeed:
@@ -12,7 +15,7 @@ class PageSpeed:
 
 
     def verifica(self, links):
-        for pagespeedUrl in links:
+        for pagespeedUrl in tqdm(links, unit=' links', desc='Validando PageSpeed', leave=False):
             try:
                 mobileUrl = f'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_pageSpeed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=mobile&key={self.apiKey}'
                 desktopUrl = f'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_pageSpeed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=desktop&key={self.apiKey}'
@@ -36,6 +39,18 @@ class PageSpeed:
 
 
     def ajuste_link_pageSpeed(self, link):
+        link = self.url_urlmpitemporario(link)
         link = link.replace(':', '%3A')
         link = link.replace('/', '%2F')
         return link
+
+
+    def url_urlmpitemporario(self, url):
+        if 'localhost/' in url:
+            htdocs = re.search(r'^.*?htdocs\/(.*)', localhost)
+            htdocs = '' if not htdocs.group(1) else htdocs.group(1)
+            url = re.sub(r'https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
+            return url
+
+        else:
+            return url

@@ -1,27 +1,26 @@
 from requests_html import HTMLSession
+from tqdm.auto import tqdm
 
 
 class Links:
-    def __init__(self, url, links404, erroLink, Recursion=True):
+    def __init__(self, url, links404, erroLink, RastrearLinks=True):
         self.url = url
         self.links404 = links404
         self.erroLink = erroLink
-        self.Recursion = Recursion
+        self.RastrearLinks = RastrearLinks
         self.session = HTMLSession()
-        self.links = []
         self.linksConfirmados = {'Todos':[self.url], 'Mapa Site':[], 'MPI':[]}
-        self.linksDaPagina = self.session.get(self.url).html.absolute_links
-        # self.linksDaPagina = self.session.get(self.url).html.xpath('//a[not(@rel="nofollow")]/@href') # Pega os links que não tenha o nofollow
 
 
     def links_site(self):
-        if self.Recursion:
-            self.recursividade(self.linksDaPagina)
+        if self.RastrearLinks:
+            self.rastrear(self.url)
 
         r = self.session.get(self.url + 'mapa-site')
         mapaSite = r.html.find('.sitemap li a')
 
-        if self.Recursion:
+
+        if self.RastrearLinks:
             for linkMapaDoSite in mapaSite:
                 self.linksConfirmados['Mapa Site'].append(linkMapaDoSite.attrs['href'])
 
@@ -30,10 +29,13 @@ class Links:
                 self.linksConfirmados['Mapa Site'].append(linkMapaDoSite.attrs['href'])
                 self.linksConfirmados['Todos'].append(linkMapaDoSite.attrs['href'])
 
+
         subMenuInfo = r.html.find('.sitemap ul.sub-menu-info li a')
         for linkMPI in subMenuInfo:
             self.linksConfirmados['MPI'].append(linkMPI.attrs['href'])
-    
+
+
+        self.valida_404(self.linksConfirmados['Todos'])
         return self.linksConfirmados
 
 
@@ -49,36 +51,37 @@ class Links:
         limpaUrl = limpaUrl[1].split('/')
         return limpaUrl[0]
 
-    def recursividade(self, LinksPagina):
-        for link in LinksPagina:
-            if self.url_base(self.url) in link and self.ValidaUrl(link):
-                self.links.append(link)
 
+    def rastrear(self, url):
+        links = [url]
 
-        for link in self.links:
-            if link not in self.linksConfirmados['Todos'] and link not in self.links404 and link not in self.erroLink:
-                if self.valida_404(link):
-                    try:
-                        r = self.session.get(link)
-                        pageLinks = r.html.absolute_links
-                        # pageLinks = r.html.xpath('//a[not(@rel="nofollow")]/@href') # Pega os links que não tenha o nofollow
-                    
-                    except:
-                        self.erroLink.append(link)
-                    
-                    else:
-                        self.linksConfirmados['Todos'].append(link)
-                        self.recursividade(pageLinks)
+        for link in tqdm(links, unit=' links', desc='Rastreando e categorizando os links', leave=False):
+            try:
+                r = self.session.get(link)
+                pageLinks = r.html.absolute_links
 
-
-    def valida_404(self, url):
-        try: 
-            location = self.session.head(url).headers['Location']
+            except:
+                self.erroLink.append(link)
             
-        except:
-            return True
+            else:
+                for pageLink in pageLinks:
+                    if self.url_base(self.url) in pageLink and self.ValidaUrl(pageLink):
+                        if pageLink not in links and link not in self.erroLink:
+                            links.append(pageLink)
 
-        else:
-            if '/404' in location:
-                self.links404.append(url)
-                return False
+        self.linksConfirmados['Todos'] = links.copy()
+        links.clear()
+
+
+    def valida_404(self, urls):
+        for url in tqdm(urls, unit=' links', desc='Verificando se há links levando para página 404', leave=False):
+            try: 
+                location = self.session.head(url).headers['Location']
+                
+            except:
+                continue
+
+            else:
+                if '/404' in location:
+                    self.links404.append(url)
+                    self.linksConfirmados['Todos'].remove(url)
