@@ -38,6 +38,7 @@ while 'exit' not in argumento.lower():
             print(Fore.YELLOW + 'Especifique o caminho do seu htdocs')
 
             htdocs = str(input('$ '))
+            htdocs = htdocs if htdocs[-1] == '\\' else htdocs + '\\'
             Array['localhost'] = htdocs
             json.escreve_json(Array)
             print('\n')
