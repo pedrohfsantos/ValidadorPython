@@ -13,11 +13,11 @@ def Ajustador():
     session = HTMLSession()
 
     Switch = {
-        ERRO_MPI_3      : True,     # Description
-        ERRO_IMAGENS_2  : True,     # Imagens
-        ERRO_MPI_6      : True,     # Strong
-        ERRO_TITLE_4    : False,    # Título duplicado
-        ERRO_TITLE_3    : True,     # Sequência de H2
+        'Description'               : True,     
+        'Imagem'                    : True,     
+        'Strong'                    : False,     
+        'Titulo duplicado'          : False,    
+        'Sequência de H2'           : False,     
     }
 
     erroAjusta = {
@@ -60,7 +60,8 @@ def Ajustador():
         site = site[:-5]
         urls = arquivo.ler_json(site)
 
-        print('Realizando backup dos arquivos...')
+        print('\nIniciando ajustes no projeto...')
+
         arquivo.backup(site=site, erros=[
             ERRO_MPI_3,
             # ERRO_IMAGENS_2,
@@ -91,8 +92,6 @@ def Ajustador():
 
                 body = Modulo(modulo)
 
-                # print(body)
-
                 if body != None:
                     arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
                 else:
@@ -100,52 +99,47 @@ def Ajustador():
             else:
                 print(ERRO[404])
 
+        if Switch['Description']:
+            if len(urls[ERRO_MPI_3]) > 0:
+                try:
+                    for url in tqdm(urls[ERRO_MPI_3], desc=ERRO_MPI_3):
+                        r = session.get(url)
+                        description.ajusta(site, url, r)
+                except:
+                    print(ERRO[303])
 
-        if len(urls[ERRO_MPI_3]) > 0 and Switch[ERRO_MPI_3]:
-            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_3}...')
-            try:
-                for url in tqdm(urls[ERRO_MPI_3]):
-                    r = session.get(url)
-                    description.ajusta(site, url, r)
-            except:
-                print(ERRO[303])
+        if Switch['Imagem']:
+            if len(urls[ERRO_IMAGENS_2]) > 0:
+                try:
+                    for url in tqdm(urls[ERRO_IMAGENS_2], desc=ERRO_IMAGENS_2):
+                        imagem.ajusta(site, url)
+                except:
+                    print(ERRO[303])
 
+        if Switch['Strong']:
+            if len(urls[ERRO_MPI_6]) > 0:
+                try:
+                    for url in tqdm(urls[ERRO_MPI_6], desc=ERRO_MPI_6):
+                        Inicializa(site.strip(), url.strip(), ERRO_MPI_6, modulo='strong')
+                except:
+                    print(ERRO[303])
 
-        if len(urls[ERRO_IMAGENS_2]) > 0 and Switch[ERRO_IMAGENS_2]:
-            print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_IMAGENS_2}...')
-            try:
-                for url in tqdm(urls[ERRO_IMAGENS_2]):
-                    imagem.ajusta(site, url)
-            except:
-                print(ERRO[303])
+        if Switch['Titulo duplicado']:
+            if len(urls[ERRO_TITLE_3]) > 0:
+                try:
+                    for url in tqdm(urls[ERRO_TITLE_3], desc=ERRO_TITLE_3):
+                        Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, modulo='titulo_duplicado')
+                        break
+                except:
+                    print(ERRO[303])
 
-
-        # if len(urls[ERRO_MPI_6]) > 0 and Switch[ERRO_MPI_6]:
-        #     print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_MPI_6}...')
-        #     try:
-        #         for url in tqdm(urls[ERRO_MPI_6]):
-        #             Inicializa(site.strip(), url.strip(), ERRO_MPI_6, modulo='strong')
-        #     except:
-        #         print(ERRO[303])
-
-
-        # if len(urls[ERRO_TITLE_3]) > 0 and Switch[ERRO_TITLE_3]:
-        #     print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_3}...')
-        #     try:
-        #         for url in tqdm(urls[ERRO_TITLE_3]):
-        #             Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, modulo='titulo_duplicado')
-        #             break
-        #     except:
-        #         print(ERRO[303])
-
-
-        # if len(urls[ERRO_TITLE_4]) > 0 and Switch[ERRO_TITLE_4]:
-        #     print(Fore.YELLOW + f'\nIniciando ajustes de {ERRO_TITLE_4}...')
-        #     try:
-        #         for url in tqdm(urls[ERRO_TITLE_4]):
-        #             Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, modulo='sequencia_h2')
-        #     except:
-        #         print(ERRO[303])
+        if Switch['Sequência de H2']:
+            if len(urls[ERRO_TITLE_4]) > 0:
+                try:
+                    for url in tqdm(urls[ERRO_TITLE_4], desc=ERRO_TITLE_4):
+                        Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, modulo='sequencia_h2')
+                except:
+                    print(ERRO[303])
 
 
         log = False
@@ -155,14 +149,13 @@ def Ajustador():
                 break
 
         if len(erroAjusta[erro]) > 0:
-            print(ERRO[504] + '\n')
+            print(Fore.YELLOW + ERRO[504] + '\n')
             for errosItens in erroAjusta.keys():
                 if len(erroAjusta[errosItens]) > 0:
                     print(f' {errosItens}:\n')
 
                     for errosValores in erroAjusta[errosItens]:
                         print(f'   {arquivo.limpa_url(site, errosValores)}')
-                    print('\n')
 
                 erroAjusta[errosItens].clear()
 

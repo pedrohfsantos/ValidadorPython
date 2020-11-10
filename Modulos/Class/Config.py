@@ -56,7 +56,7 @@ ERRO = {
 	500: '\nO arquivo está corrompido.',
 	501: '\nO sistema não pôde executar as funções.',
 	503: '\nNão foi possível selecionar o projeto informado.',
-	504: '\nAjustes não realizados',
+	504: '\nAviso: Não foi possível´ajustar os arquivos abaixo:',
 }
 
 

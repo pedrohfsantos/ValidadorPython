@@ -66,6 +66,7 @@ while 'exit' not in argumento.lower():
         elif argumento == '-a':
             print('\nMódulo:' + Fore.GREEN + ' Ajustador\n')
             Ajustador()
+            print('\n')
 
         elif argumento == 'sites':
             os.system('notepad sites.txt')

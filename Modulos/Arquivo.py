@@ -1,7 +1,8 @@
 from os import listdir, makedirs
-import os.path
 from datetime import datetime
 from pathlib import Path
+from tqdm.auto import tqdm
+import os.path
 import json
 import re
 import shutil
@@ -134,7 +135,7 @@ class Arquivo:
                         urlsBackup.append(url)
 
             #Copia todos arquivos
-            for arquivo in set(urlsBackup):
+            for arquivo in tqdm(set(urlsBackup), desc='Realizando backup dos arquivos necessários'):
                 arquivo = re.search(r'http.*?\S*[^: ]', arquivo).group(0)
                 arquivo = 'index' if arquivo.split('/')[-1] == '' else arquivo.split('/')[-1]
 
