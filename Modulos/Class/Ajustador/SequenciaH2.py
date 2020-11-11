@@ -1,10 +1,7 @@
 from bs4 import BeautifulSoup
 from unidecode import unidecode
 from ..Config import localhost
-from ..Construct import *
 import re
-
-mascara = Mascara()  
 
 class SequenciaH2:
 
@@ -12,9 +9,32 @@ class SequenciaH2:
 		self.erro = erro
 
 	def ajusta(self, html, url):
+
 		content = []
+		dic		= []
+
+		def mask(html, chave):
+
+		    msk = '!!!PHP!!!'
+
+		    def remove(e):
+		        dic.append(e.group())
+		        return msk
+
+		    def add(e):
+		        return dic.pop(0)
+
+		    try:
+		        body = re.sub(r"<\?.*\?>", remove, html)
+		        soup = BeautifulSoup(body, "html.parser")
+		        mask = re.sub(msk, remove, str(soup.prettify(formatter=None))) if chave else re.sub(msk, add, str(soup.prettify(formatter=None)))
+		    except:
+		        mask = False
+
+		    return mask
+
 		try:
-			soup = BeautifulSoup(mascara.Mask(html, True), "html.parser")
+			soup = BeautifulSoup(mask(html, True), "html.parser")
 
 			tipoMPI = '.mpi-content, .tabs-content' if len(soup.find_all('div', class_="mpi-content")) > 0 else 'article'
 
@@ -33,7 +53,7 @@ class SequenciaH2:
 				content.append(elem)
 			value = ''.join(map(str, content))
 
-			return mascara.Mask(value, False)
+			return mask(value, False)
 
 		except:
 			return False

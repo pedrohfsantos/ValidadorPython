@@ -1,10 +1,7 @@
 from bs4 import BeautifulSoup
 from unidecode import unidecode
 from ..Config import localhost
-from ..Construct import *
 import re
-
-mascara = Mascara()  
 
 class TituloDuplicado:
 
@@ -12,33 +9,55 @@ class TituloDuplicado:
 	    self.erro = erro
 
 	def ajusta(self, html, url, r):
+
 		content = []
-		# try:
+		dic     = []
 
-		soup = BeautifulSoup(mascara.Mask(html, True), "html.parser")
-		title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
-		tipoMPI = 'div' if soup.find_all('div', class_="mpi-content") else 'article'
+		def mask(html, chave):
 
-		Element = [self.percorre(soup, tipoMPI, 'h2'), self.percorre(soup, tipoMPI, 'h3')]
+		    msk = '!!!PHP!!!'
 
-		if Element[0]:
+		    def remove(e):
+		        dic.append(e.group())
+		        return msk
 
-			for elem in soup.find_all('h2'):
+		    def add(e):
+		        return dic.pop(0)
 
-				for i in elem:
-					if unidecode(str(Element[0]).strip().lower()) == unidecode(i.string.lower().strip()):
-						i.string = 'SAIBA MAIS SOBRE ' + i.string.upper().strip()
+		    try:
+		        body = re.sub(r"<\?.*\?>", remove, html)
+		        soup = BeautifulSoup(body, "html.parser")
+		        mask = re.sub(msk, remove, str(soup.prettify(formatter=None))) if chave else re.sub(msk, add, str(soup.prettify(formatter=None)))
+		    except:
+		        mask = False
 
-		for elem in soup.prettify(formatter=None):
-			content.append(elem)
-		value = ''.join(map(str, content))
+		    return mask
+		
+		try:
 
-		print(mascara.Mask(value, False))
+			soup = BeautifulSoup(mask(html, True), "html.parser")
+			title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
+			tipoMPI = 'div' if soup.find_all('div', class_="mpi-content") else 'article'
 
-		return mascara.Mask(value, False)
+			Element = [self.percorre(soup, tipoMPI, 'h2'), self.percorre(soup, tipoMPI, 'h3')]
 
-		# except:
-		# 	return False
+			if Element[0]:
+
+				for elem in soup.find_all('h2'):
+
+					for i, item in enumerate(elem):
+						if i > 0:
+							if unidecode(str(Element[0]).strip().lower()) == unidecode(item.string.lower().strip()):
+								item.string = 'SAIBA MAIS SOBRE ' + item.string.upper().strip()
+
+			for elem in soup.prettify(formatter=None):
+				content.append(elem)
+			value = ''.join(map(str, content))
+
+			return mask(value, False)
+
+		except:
+			return False
 
 	def arquivo(self, url):
 	    url = url.split('//')[1].split('/')[-1].split(' ')[0]

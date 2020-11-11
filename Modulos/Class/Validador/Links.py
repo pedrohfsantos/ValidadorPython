@@ -1,3 +1,4 @@
+import threading
 from requests_html import HTMLSession
 from tqdm.auto import tqdm
 
@@ -33,7 +34,6 @@ class Links:
         subMenuInfo = r.html.find('.sitemap ul.sub-menu-info li a')
         for linkMPI in subMenuInfo:
             self.linksConfirmados['MPI'].append(linkMPI.attrs['href'])
-
 
         self.valida_404(self.linksConfirmados['Todos'])
         return self.linksConfirmados

@@ -149,7 +149,7 @@ def Validador():
                             False
                             ).links_site()
 
-                        msm = Fore.GREEN + ' Validação em andamento'
+                        msm = Fore.GREEN + 'Validação em andamento'
 
                         for pagina in tqdm(links['Todos'], desc=msm):
                             item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
@@ -247,7 +247,7 @@ def Validador():
                         arquivo.arquivo_validacao_json(errosEncontrado, url)
                         arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
 
-                        print(Fore.WHITE + f' Validação do projeto concluída.')
+                        print(Fore.WHITE + f'Validação do projeto concluída.')
 
                     else:
                         print(Fore.WHITE + f'{ERRO[414]}')
