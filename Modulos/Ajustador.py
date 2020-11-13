@@ -97,6 +97,7 @@ def Ajustador():
             else:
                 erroInicializa.append('{} => {}'.format(caminho, ERRO[404]))
 
+
         if Switch['Description']:
             if len(urls[ERRO_MPI_3]) > 0:
                 try:
@@ -106,6 +107,7 @@ def Ajustador():
                 except:
                     print(ERRO[303])
 
+
         if Switch['Imagem']:
             if len(urls[ERRO_IMAGENS_2]) > 0:
                 try:
@@ -114,13 +116,17 @@ def Ajustador():
                 except:
                     print(ERRO[303])
 
+
         if Switch['Strong']:
             if len(urls[ERRO_MPI_6]) > 0:
                 try:
                     for url in tqdm(urls[ERRO_MPI_6], desc=ERRO_MPI_6):
-                        Inicializa(site.strip(), url.strip(), ERRO_MPI_6, modulo='strong')
+                        f = url.find(' - ')
+                        r = session.get(url[:f])
+                        strong.ajusta(site, url[:f], r)
                 except:
                     print(ERRO[303])
+
 
         if Switch['Titulo duplicado']:
             if len(urls[ERRO_TITLE_3]) > 0:
@@ -130,6 +136,7 @@ def Ajustador():
                 except:
                     print(ERRO[303])
 
+
         if Switch['Sequência de H2']:
             if len(urls[ERRO_TITLE_4]) > 0:
                 try:
@@ -137,6 +144,8 @@ def Ajustador():
                         Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, modulo='sequencia_h2')
                 except:
                     print(ERRO[303])
+
+                    
         print('Ajustes realizados com sucesso.')
 
         log = False

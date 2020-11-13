@@ -1,69 +1,46 @@
-from bs4 import BeautifulSoup
 from unidecode import unidecode
 from ..Config import localhost
 import re
 
+
 class Strong:
-    
     def __init__(self, erro):
         self.erro = erro
 
-    def ajusta(self, html, url, r):
+    def ajusta(self, site, url, r):
+        try:
+            h1 = r.html.find('h1')[0].text.lower()
+            todosParagrafo = r.html.find('article p')
+            paginaAjustada = False
 
-        content = []
-        dic     = []
+            for p in todosParagrafo:
+                strong = True if p.find('strong') else False
+                h1InP = True if unidecode(h1) in unidecode(p.text.lower()) else False
 
-        def mask(html, chave):
+                if strong != h1InP:
+                    i = unidecode(p.text.lower()).find(unidecode(h1))
+                    f = i + len(h1)            
+                    mpi = open(f"{localhost}{site}/{self.arquivo(url)}.php", "rt", -1, "utf-8")
+                    dados = mpi.read()
+                    dados = re.sub(r'(<\s*(p|li)>\s*.*?)(?:(?:<\s*strong\s*>)?' + p.text[i:f] + r'(?:<\s*\/strong\s*>)?)', r'\1<strong>'+h1+'</strong>', dados, flags=re.IGNORECASE)
+                    mpi = open(f"{localhost}{site}/{self.arquivo(url)}.php", "wt", -1, "utf-8")
+                    mpi.write(dados)
+                    mpi.close()
 
-            msk = '!!!PHP!!!'
+                    paginaAjustada = True
 
-            def remove(e):
-                dic.append(e.group())
-                return msk
+                if paginaAjustada:
+                    break
 
-            def add(e):
-                return dic.pop(0)
-
-            try:
-                body = re.sub(r"<\?.*\?>", remove, html)
-                soup = BeautifulSoup(body, "html.parser")
-                mask = re.sub(msk, remove, str(soup.prettify(formatter=None))) if chave else re.sub(msk, add, str(soup.prettify(formatter=None)))
-            except:
-                mask = False
-
-            return mask
-
-        try:    
-
-            soup = BeautifulSoup(mask(html, True), "html.parser")
-            title = re.search(r'\$h1\s*=\s*[\"\'](.*?)[\"\'\;]', html).group(1)
-            tipoMPI = '.mpi-content > p, .tabs-content > p' if (soup.find_all('div', class_="mpi-content")) else 'article > p'
-
-            for p in soup.select(tipoMPI):
-
-                element = p.find_all('strong')
-
-                if element:
-                    for strong in element:
-                        if unidecode(title).lower() != unidecode(strong.string).lower().strip():
-                            strong.string = title.lower()
-                else:
-                    try:
-                        if unidecode(title).lower() in unidecode(p.string).lower().strip():
-                            r = unidecode(p.string).lower().strip().replace(unidecode(title).lower().strip(), '<strong>' + title.lower() + '</strong>')
-                            p.string = r
-                    except:
-                        self.erro.append(f"=> {url}")
-
-            for elem in soup.prettify(formatter=None):
-                content.append(elem)
-            value = ''.join(map(str, content))
-
-            return mask(value, False)
-
+            if paginaAjustada == False:
+                self.erro.append(f"{url}")
+                    
         except:
-            return False
+            self.erro.append(f"{url}")
+
 
     def arquivo(self, url):
-        url = url.split('//')[1].split('/')[-1].split(' ')[0]
-        return url
+        url = url.split('//')
+        url = url[1].split('/')
+        return url[-1]
+
