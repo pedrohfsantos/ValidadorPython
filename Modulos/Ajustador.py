@@ -79,7 +79,6 @@ def Ajustador():
 
             def Modulo(modulo):
                 return {
-                    'strong'            :strong.ajusta(html, url, r),
                     'titulo_duplicado'  :titulo_duplicado.ajusta(html, url, r),
                     'sequencia_h2'      :sequencia_h2.ajusta(html, url)
                 }[modulo]
