@@ -54,9 +54,10 @@ class PageSpeed:
 
     def url_urlmpitemporario(self, url):
         if 'localhost/' in url:
-            htdocs = re.search(r'^.*?htdocs\/(.*)', localhost)
-            htdocs = '' if not htdocs.group(1) else htdocs.group(1)
-            url = re.sub(r'https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
+            htdocs = re.search(r'^.*?htdocs\\*(.*)', localhost)
+            htdocs = '' if not htdocs.group(1) else htdocs.group(1).replace('\\', '/')
+            url = re.sub('https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
             return url
+
         else:
             return url

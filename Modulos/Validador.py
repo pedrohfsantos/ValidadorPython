@@ -145,8 +145,7 @@ def Validador():
                         links = Links(
                             url,
                             errosEncontrado[ERRO_LINK],
-                            erroValidacao[ERRO_VALIDACAO_LINK],
-                            False
+                            erroValidacao[ERRO_VALIDACAO_LINK]
                             ).links_site()
 
                         msm = Fore.GREEN + 'Validação em andamento'
