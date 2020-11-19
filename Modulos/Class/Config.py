@@ -56,9 +56,9 @@ ERRO = {
 	500: '\nO arquivo está corrompido.',
 	501: '\nO sistema não pôde executar as funções.',
 	503: '\nNão foi possível selecionar o projeto informado.',
-	504: '\nAviso: Não foi possível´ajustar os arquivos abaixo:',
+	504: '\nAviso: Não foi possível ajustar os arquivos abaixo:',
+	505: 'Não foi possível identificar a classe "sub-menu-info" no mapa do site',
 }
-
 
 if os.path.isfile('./Config.json'):
 	configJson = json.ler_json(False, './Config')

@@ -10,6 +10,8 @@ init(autoreset=True)
 
 def Validador(DEFAULT=True):
 
+    ListLog = []
+
     session = HTMLSession()
 
     print(Fore.WHITE + "\nAmbiente em preparação, aguarde um momento...")
@@ -236,13 +238,16 @@ def Validador(DEFAULT=True):
                                             )).start()
                                 
                                 if validation['pageSpeed']:
-                                    random = sample(range(0, len(links['MPI'])), 3)
-                                    pageSpeed.verifica([ 
-                                        pagina,
-                                        links['MPI'][random[0]],
-                                        links['MPI'][random[1]],
-                                        links['MPI'][random[2]]
-                                        ])
+                                    try:
+                                        random = sample(range(0, len(links['MPI'])), 3)
+                                        pageSpeed.verifica([ 
+                                            pagina,
+                                            links['MPI'][random[0]],
+                                            links['MPI'][random[1]],
+                                            links['MPI'][random[2]]
+                                            ])
+                                    except:
+                                        ListLog.append(url)
 
                         arquivo.arquivo_validacao_json(errosEncontrado, url)
                         arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
@@ -258,6 +263,11 @@ def Validador(DEFAULT=True):
         finally:
             if validation['scrollHorizontal']:
                 scrollHorizontal.fechar()
+
+            if len(ListLog) > 0:
+                print('\n' + ERRO[505])
+                for projetos in ListLog:
+                    print(f' => {projetos}')
 
     else:
         print(Fore.YELLOW + '\nAviso: Você não possui projetos para validar.\nDigite "sites" para adicionar novos projetos.')
