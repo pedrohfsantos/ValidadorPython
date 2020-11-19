@@ -8,7 +8,7 @@ from random import sample
 import threading
 init(autoreset=True)
 
-def Validador():
+def Validador(DEFAULT=True):
 
     session = HTMLSession()
 
@@ -145,7 +145,8 @@ def Validador():
                         links = Links(
                             url,
                             errosEncontrado[ERRO_LINK],
-                            erroValidacao[ERRO_VALIDACAO_LINK]
+                            erroValidacao[ERRO_VALIDACAO_LINK],
+                            DEFAULT
                             ).links_site()
 
                         msm = Fore.GREEN + 'Validação em andamento'

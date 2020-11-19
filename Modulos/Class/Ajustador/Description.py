@@ -9,7 +9,7 @@ class Description:
 
     def ajusta(self, site, url, r):
         h1 = r.html.find('h1')[0].text.lower()
-        todosParagrafo = r.html.find('article p')
+        todosParagrafo = r.html.find('article p:not(.content-call)')
         for p in todosParagrafo:
             i = unidecode(p.text.lower()).find(unidecode(h1))
             if i >= 0:
@@ -22,7 +22,8 @@ class Description:
                 descriptionOK = False
         
         if descriptionOK:
-            if novaDescription[-1] == '.' and len(novaDescription) >= 140 and len(novaDescription) <= 160 :
+            
+            if novaDescription[-1] == '.' and len(novaDescription) in range(140, 161):
                 novaDescription = novaDescription.capitalize()
 
             else:
@@ -35,12 +36,12 @@ class Description:
                 novaDescription += "... Saiba mais.".encode("latin1").decode("unicode_escape")
             
             novaDescription = f"$desc = \"{novaDescription}\";"
-            mpi = open(f"{localhost}{site}/{self.arquivo(url)}.php", "rt", -1, "utf-8")
-            dados = mpi.read()
-            dados = re.sub(r"\$desc\s*=\s*[\"\']\w*\s*.+[\"\'\;]", novaDescription, dados)
-            mpi = open(f"{localhost}{site}/{self.arquivo(url)}.php", "wt", -1, "utf-8")
-            mpi.write(dados)
-            mpi.close()
+
+            with open(f"{localhost}{site}/{self.arquivo(url)}.php", "rt", -1, "utf-8") as mpi:
+                dados = mpi.read()
+                dados = re.sub(r"\$desc\s*=\s*[\"\']\w*\s*.+[\"\'\;]", novaDescription, dados)
+            with open(f"{localhost}{site}/{self.arquivo(url)}.php", "wt", -1, "utf-8") as mpi:
+                mpi.write(dados)
 
         else:
             self.erro.append(f"=> {url}")

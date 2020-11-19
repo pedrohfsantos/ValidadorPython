@@ -16,18 +16,21 @@ clear       = lambda: os.system('cls')
 Message     = '\nBem vindo ao Sexta-feira!\n'
 
 def Info():
-    print('\nVersão atual: 1.0.1')
+    print('\nVersão atual: 1.0.3')
     print('Este terminal é exclusivo para interação com projetos em publicação.')
     print('Projeto em desenvolvimento. Estado de versão no momento: beta e atualmente alocado em pedrohfsantos/ValidadorPython no GitHub.')
     print('Digite "info" para visualizar esta aba novamente.')
+    print('\n* Os níveis de precisão do validador é representado por baixo [A] e alto [A].')
     print('\nComandos de execução\n')
-    print(' -v       Inicia o módulo de validação.')
-    print(' -a       Inicia o módulo de ajustes.[BETA]')
+    print(' -a        Inicia o módulo de ajustes.   [A] [BETA]')
+    print(' -v        Inicia o módulo de validação. [A]')
+    print(' -vf       Para validações rápidas.      [B]')
     print('\nComandos de atalho\n')
-    print(' sites    Abre o arquivo sites.txt')
-    print(' info     Exibe a lista completa de comandos.')
-    print(' clear    Limpa o terminal.')
-    print(' exit     Encerra o programa.')
+    print(' clear     Limpa o terminal.')
+    print(' exit      Encerra o programa.')
+    print(' info      Exibe a lista completa de comandos.')
+    print(' sites     Abre o arquivo sites.txt')
+    print(' var       Exibir variáveis do sistema, Config.json')
 
 print(Message)
 
@@ -56,12 +59,12 @@ while 'exit' not in argumento.lower():
         print(Fore.YELLOW + 'Digite "info" para obter a lista de comandos nativos')
         argumento = input('$ ').lower()
 
-        if argumento  == 'info':
+        if argumento == 'info':
             Info()
             print('\n')
 
-        elif argumento == '-v':
-            Validador()
+        elif argumento == '-v' or argumento == '-vf':
+            Validador(False) if 'f' in argumento else Validador()
             print('\n')
 
         elif argumento == '-a':
@@ -74,21 +77,26 @@ while 'exit' not in argumento.lower():
             # os.system('nano sites.txt')
             print('\n')
 
+        # elif argumento == 'config':
+        #     os.system('notepad Config.json')
+        #     json.escreve_json(Array)
+        #     print('\n')
+
         elif argumento == 'clear':
             os.system('clear')
             clear()
             print(Message)
 
         elif argumento == 'var':
-            print('Variáveis do sistema')
+            print('Variáveis do sistema definidas em Config.json')
             for item in Array.keys():
                 if 'validation' != item:
-                    print(Fore.WHITE + f' {item}:' + Fore.YELLOW + ' {}'.format(Array[item]))
+                    print(Fore.WHITE + f' {item}:' + ' {}'.format(Array[item]))
                 else:
-                    print(Fore.WHITE + f' {item}' + ' {')
+                    print(Fore.WHITE + f' {item}' if item != 'validation' else ' Módulos de Validação')
                     for elem in Array['validation'].keys():
-                        print(Fore.WHITE + f'  {elem}:', Fore.YELLOW + '{}'.format(Array['validation'][elem]))
-                    print(Fore.WHITE + ' }')
+                        status = Fore.GREEN + 'ON' if Array['validation'][elem] else Fore.RED + 'OFF'
+                        print(f'  Status: {status}' + Fore.WHITE + f' {elem}')
             print('\n')
 
         else:

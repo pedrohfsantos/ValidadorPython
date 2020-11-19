@@ -23,6 +23,9 @@ class Imagens:
                     self.tamanho_imagem(imagem)
                 
                 self.alt_title(imagem, pagina)
+
+            repetida = self.duplicado(self.erroTamanho)
+            if repetida: del self.erroTamanho[repetida]
         except:
             self.erroValidador.append(pagina)
 
@@ -52,3 +55,17 @@ class Imagens:
                 self.erroTitleAlt.append(f"{pagina} - src='{imagem.attrs['src']}' com TITLE 'Exemplo de MPI'")
         except:
             self.erroTitleAlt.append(f"{pagina} - src='{imagem.attrs['src']}' - Imagem sem TITLE")
+
+
+    def duplicado(self, lista):
+        contagem = dict()
+        for indice in lista:
+            item = indice.strip()
+            if item not in contagem.keys():
+                contagem[item] = 1
+            else:
+                contagem[item] += 1
+
+        for maxRepeticao in contagem.keys():
+            if contagem[maxRepeticao] > 1:
+                return maxRepeticao
