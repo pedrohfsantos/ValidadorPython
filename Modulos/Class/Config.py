@@ -49,7 +49,7 @@ errosEncontrado = { ERRO_LINK: [], ERRO_W3C: [], ERRO_DESCRIPTION_1: [], ERRO_DE
 ERRO = {
 	300: '\nNão foi possível iniciar o módulo selecionado',
 	302: 'Comando inválido.\n',
-	303: '\nNão foi possível iniciar a função',
+	303: 'Não foi possível iniciar a função:',
 	404: '\nNão foi possível localizar o destino especificado.' ,
 	414: 'Por favor, verifique a alocação do projeto no servidor temporário.' ,
 	416: 'Falha de projeto 404 no servidor temporário.' ,

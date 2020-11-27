@@ -58,16 +58,17 @@ def Ajustador():
         site = site[:-5]
         urls = arquivo.ler_json(site)
 
-        print('\nIniciando ajustes no projeto...')
+        print(Fore.YELLOW + f'\nProjeto selecionado: {site}')
 
-        arquivo.backup(site=site, erros=[
+        if arquivo.backup(site=site, erros=[
             ERRO_MPI_3,
-            # ERRO_IMAGENS_2,
             ERRO_MPI_6,
             ERRO_TITLE_3,
             ERRO_TITLE_4
-        ])
-
+        ]):
+            print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> Backup dos arquivos necessários.')
+        else:
+            print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> Backup dos arquivos necessários.')
 
         erroInicializa = []
 
@@ -96,56 +97,56 @@ def Ajustador():
             else:
                 erroInicializa.append('{} => {}'.format(caminho, ERRO[404]))
 
-
         if Switch['Description']:
             if len(urls[ERRO_MPI_3]) > 0:
                 try:
-                    for url in tqdm(urls[ERRO_MPI_3], desc=ERRO_MPI_3):
+                    for url in tqdm(urls[ERRO_MPI_3], unit=' arquivos', desc=f' {ERRO_MPI_3}', leave=False):
                         r = session.get(url)
                         description.ajusta(site, url, r)
+                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_MPI_3)
                 except:
-                    print(ERRO[303])
-
-
-        if Switch['Imagem']:
-            if len(urls[ERRO_IMAGENS_2]) > 0:
-                try:
-                    for url in tqdm(urls[ERRO_IMAGENS_2], desc=ERRO_IMAGENS_2):
-                        imagem.ajusta(site, url)
-                except:
-                    print(ERRO[303])
-
+                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_MPI_3)
 
         if Switch['Strong']:
             if len(urls[ERRO_MPI_6]) > 0:
                 try:
-                    for url in tqdm(urls[ERRO_MPI_6], desc=ERRO_MPI_6):
+                    for url in tqdm(urls[ERRO_MPI_6], unit=' arquivos', desc=f' {ERRO_MPI_6}', leave=False):
                         f = url.find(' - ')
                         r = session.get(url[:f])
                         strong.ajusta(site, url[:f], r)
+                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_MPI_6)
                 except:
-                    print(ERRO[303])
-
+                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_MPI_6)
 
         if Switch['Titulo duplicado']:
             if len(urls[ERRO_TITLE_3]) > 0:
                 try:
-                    for url in tqdm(urls[ERRO_TITLE_3], desc=ERRO_TITLE_3):
+                    for url in tqdm(urls[ERRO_TITLE_3], unit=' arquivos', desc=f' {ERRO_TITLE_3}', leave=False):
                         Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, modulo='titulo_duplicado')
+                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_TITLE_3)
                 except:
-                    print(ERRO[303])
-
+                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_TITLE_3)
 
         if Switch['Sequência de H2']:
             if len(urls[ERRO_TITLE_4]) > 0:
                 try:
-                    for url in tqdm(urls[ERRO_TITLE_4], desc=ERRO_TITLE_4):
+                    for url in tqdm(urls[ERRO_TITLE_4], unit=' arquivos', desc=f' {ERRO_TITLE_4}', leave=False):
                         Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, modulo='sequencia_h2')
+                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_TITLE_4)
                 except:
-                    print(ERRO[303])
+                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_TITLE_4)
+
+        if Switch['Imagem']:
+            if len(urls[ERRO_IMAGENS_2]) > 0:
+                try:
+                    for url in tqdm(urls[ERRO_IMAGENS_2], unit=' arquivos', desc=f' {ERRO_IMAGENS_2}', leave=False):
+                        imagem.ajusta(site, url)
+                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_IMAGENS_2)
+                except:
+                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_IMAGENS_2)
 
                     
-        print('Ajustes realizados com sucesso.')
+        print(' Todos os módulos foram finalizados.')
 
         log = False
         for erro in erroAjusta.keys():

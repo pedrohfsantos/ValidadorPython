@@ -129,7 +129,6 @@ class Arquivo:
 
     def backup(self, site, erros):
         urlsBackup = []
-
         try:
             # Cria a pasta do projeto dentro da pasta Backup (ex: site.com.br-dia-mes-ano-hora-minuto-segundo)
             now = datetime.now()
@@ -150,7 +149,10 @@ class Arquivo:
 
             # Copia todos arquivos
             for arquivo in tqdm(
-                set(urlsBackup), desc="Realizando backup dos arquivos necessários"
+                set(urlsBackup),
+                unit=' arquivos', 
+                desc=' Realizando backup dos arquivos necessários',
+                leave=False
             ):
                 arquivo = re.search(r"http.*?\S*[^: ]", arquivo).group(0)
                 arquivo = (
@@ -160,11 +162,9 @@ class Arquivo:
                 configJson = self.ler_json(False, "./Config")
                 arquivoOriginal = f"{configJson['localhost']}{site}/{arquivo}.php"
                 shutil.copy(arquivoOriginal, pasta[1])
-
-            print("Backup realizado com sucesso.")
-
+            return True
         except:
-            print("Erro: Não foi possível realizar o Backup.")
+            return False
 
     def limpa_url(self, projeto, url):
         url = re.search(r"http.*?\S*[^: ]", url).group(0)
