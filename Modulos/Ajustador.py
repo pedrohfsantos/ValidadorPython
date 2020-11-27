@@ -39,7 +39,7 @@ def Ajustador():
     if len(arquivos) > 0:
         for key, value in enumerate(arquivos):
             if len(arquivos) > 0:
-                print(f'[{key + 1}] {value}')
+                print(f'[{key + 1}] ' + value.split('.json')[0])
 
         while True:
             try:
@@ -50,7 +50,7 @@ def Ajustador():
                 else:
                     print(ERRO[503])
                     for key, value in enumerate(arquivos):
-                        print(f'[{key + 1}]{value}')
+                        print(f'[{key + 1}] ' + value.split('.json')[0])
             except:
                return       
         
@@ -58,7 +58,7 @@ def Ajustador():
         site = site[:-5]
         urls = arquivo.ler_json(site)
 
-        print(Fore.YELLOW + f'\nProjeto selecionado: {site}')
+        print(Fore.YELLOW + f'\nProjeto selecionado => [{opcao}] {site}')
 
         if arquivo.backup(site=site, erros=[
             ERRO_MPI_3,
@@ -66,9 +66,9 @@ def Ajustador():
             ERRO_TITLE_3,
             ERRO_TITLE_4
         ]):
-            print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> Backup dos arquivos necessários.')
+            print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> Backup dos arquivos necessários')
         else:
-            print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> Backup dos arquivos necessários.')
+            print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> Backup dos arquivos necessários')
 
         erroInicializa = []
 
@@ -146,7 +146,7 @@ def Ajustador():
                     print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_IMAGENS_2)
 
                     
-        print(' Todos os módulos foram finalizados.')
+        print(' Módulos finalizados.')
 
         log = False
         for erro in erroAjusta.keys():
