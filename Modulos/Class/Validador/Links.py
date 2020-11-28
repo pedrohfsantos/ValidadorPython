@@ -1,7 +1,9 @@
 import threading
+import os.path
+from ... import *
 from requests_html import HTMLSession
 from tqdm.auto import tqdm
-from ... import *
+from os import listdir, makedirs
 
 arquivo = Arquivo()
 
@@ -13,6 +15,8 @@ class Links:
         self.RastrearLinks = RastrearLinks
         self.session = HTMLSession()
         self.linksConfirmados = {'Todos':[self.url], 'Mapa Site':[], 'MPI':[]}
+
+        makedirs('./Modulos/WebCache') if not os.path.isdir('./Modulos/WebCache') else None
 
     def links_site(self):
         if self.RastrearLinks:
