@@ -2,7 +2,6 @@ from unidecode import unidecode
 from ..Config import localhost
 import re
 
-
 class Strong:
     def __init__(self, erro):
         self.erro = erro
@@ -38,9 +37,7 @@ class Strong:
         except:
             self.erro.append(f"{url}")
 
-
     def arquivo(self, url):
         url = url.split('//')
         url = url[1].split('/')
         return url[-1]
-

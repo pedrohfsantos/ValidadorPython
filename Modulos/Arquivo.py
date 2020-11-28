@@ -72,12 +72,12 @@ class Arquivo:
         ) as arquivo:
             json.dump(errosEncontrado, arquivo, indent=4)
 
-    def escreve_json(self, config):
-        with open("./Config.json", "w", encoding="utf-8") as f:
+    def escreve_json(self, config, arquivo='./Config.json', method='w'):
+        with open(arquivo, method, encoding="utf-8") as f:
             json.dump(config, f, indent=2)
 
-    def ler_json(self, site=False, caminho="Projetos/JSON/"):
-        path = caminho + site if site != False else caminho
+    def ler_json(self, site=False, caminho="Projetos/JSON/", ValidacaoJson=True):
+        path = caminho + site if site else caminho if ValidacaoJson else caminho  
         with open(f"{path}.json", "r", encoding="utf-8") as arquivoJson:
             dados = arquivoJson.read()
             return json.loads(dados)

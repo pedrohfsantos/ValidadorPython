@@ -3,7 +3,6 @@ class MenuHeaderFooter:
         self.erro = erro
         self.erroValidador = erroValidador
 
-    
     def verifica(self, menuTopTexts, menuFooterTexts, menuTopLinks, menuFooterLinks):
         try:
             if menuTopTexts != menuFooterTexts:

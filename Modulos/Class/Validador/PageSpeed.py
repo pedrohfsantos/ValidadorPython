@@ -6,8 +6,6 @@ from requests_html import HTMLSession
 from Modulos.Class.Config import localhost, urlmpitemporario 
 from tqdm.auto import tqdm
 
-
-
 class PageSpeed:
     def __init__(self, erro, erroValidador):
         self.apiKey = 'AIzaSyDFsGExCkww5IFLzG1aAnfSovxSN-IeHE0'
@@ -23,7 +21,6 @@ class PageSpeed:
             jsonDataM = json.loads(mobileRequest.text)
             desktopRequest = self.session.get(desktopUrl)
             jsonDataD = json.loads(desktopRequest.text)
-            
         except:
             self.erroValidador.append(pagespeedUrl)
 
@@ -51,13 +48,9 @@ class PageSpeed:
         link = link.replace('/', '%2F')
         return link
 
-
     def url_urlmpitemporario(self, url):
         if 'localhost/' in url:
             htdocs = re.search(r'^.*?htdocs\\*(.*)', localhost)
             htdocs = '' if not htdocs.group(1) else htdocs.group(1).replace('\\', '/')
-            url = re.sub('https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
-            return url
-
-        else:
-            return url
+            url = re.sub(r'https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
+        return url

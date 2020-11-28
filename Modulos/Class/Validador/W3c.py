@@ -2,13 +2,11 @@ import re
 from requests_html import HTMLSession
 from Modulos.Class.Config import localhost, urlmpitemporario 
 
-
 class W3c:
     def __init__(self, erroW3C, erroValidador):
         self.erroW3C = erroW3C
         self.session = HTMLSession()
         self.erroValidador = erroValidador
-        
 
     def verifica(self, pagina):
         try:
@@ -20,13 +18,9 @@ class W3c:
         except:
             self.erroValidador.append(pagina)
 
-    
     def url_urlmpitemporario(self, url):
         if 'localhost/' in url:
             htdocs = re.search(r'^.*?htdocs\\*(.*)', localhost)
             htdocs = '' if not htdocs.group(1) else htdocs.group(1).replace('\\', '/')
-            url = re.sub('https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
-            return url
-
-        else:
-            return url
+            url = re.sub(r'https?:\/\/.*?\/' + htdocs, urlmpitemporario, url)
+        return url

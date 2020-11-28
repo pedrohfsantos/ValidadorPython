@@ -1,6 +1,5 @@
 from requests_html import HTMLSession
 
-
 class Imagens:
     def __init__(self, erroImgQuebrada, erroTamanho, erroTitleAlt, erroValidador):
         self.session = HTMLSession()
@@ -8,7 +7,6 @@ class Imagens:
         self.erroTamanho = erroTamanho
         self.erroTitleAlt = erroTitleAlt
         self.erroValidador = erroValidador
-
 
     def verifica(self, pagina, imagens):
         try:
@@ -29,14 +27,12 @@ class Imagens:
         except:
             self.erroValidador.append(pagina)
 
-
     def tamanho_imagem(self, imagem):
         if "&imagem=" not in imagem.attrs['src']:
             tamanho = int(self.session.head(imagem.attrs['src']).headers['Content-Length']) / 1024
             if round(tamanho) > 200:
                 self.erroTamanho.append(f"{imagem.attrs['src']}")
-
-        
+ 
     def alt_title(self, imagem, pagina):
         try:
             if 'escrev' in imagem.attrs['alt'].lower():
@@ -55,7 +51,6 @@ class Imagens:
                 self.erroTitleAlt.append(f"{pagina} - src='{imagem.attrs['src']}' com TITLE 'Exemplo de MPI'")
         except:
             self.erroTitleAlt.append(f"{pagina} - src='{imagem.attrs['src']}' - Imagem sem TITLE")
-
 
     def duplicado(self, lista):
         contagem = dict()

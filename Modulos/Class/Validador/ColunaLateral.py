@@ -1,12 +1,10 @@
 from collections import defaultdict
 
-
 class ColunaLateral:
     def __init__(self, erro, erroValidador):
         self.erro = erro
         self.erroValidador = erroValidador
         
-    
     def verifica(self, pagina, asideLinks):
         try:
             keys = defaultdict(list)

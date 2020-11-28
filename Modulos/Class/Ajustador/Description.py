@@ -2,7 +2,6 @@ from unidecode import unidecode
 from ..Config import localhost
 import re
 
-
 class Description:
     def __init__(self, erro):
         self.erro = erro

@@ -11,7 +11,7 @@ def Ajustador():
 
     session = HTMLSession()
 
-    Switch = {
+    moduloAjusta = {
         'Description'               : True,     
         'Imagem'                    : True,     
         'Strong'                    : True,     
@@ -30,8 +30,6 @@ def Ajustador():
     description       = Description(erroAjusta['Description'])
     imagem            = Imagem(erroAjusta['Imagem'])
     strong            = Strong(erroAjusta['Palavra chave sem strong'])
-    titulo_duplicado  = TituloDuplicado(erroAjusta['Titulo (H2/H3) igual H1'])
-    sequencia_h2      = SequenciaH2(erroAjusta['Titulo duplicado'])
     arquivo           = Arquivo()    
 
     arquivos = arquivo.lista_arquivos_json()
@@ -89,7 +87,6 @@ def Ajustador():
             html    = arquivo.ler_arquivo(localhost + caminho)
             if html:
                 body = Modulo(modulo)
-                # print(body)
                 if body != None:
                     arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
                 else:
@@ -97,7 +94,7 @@ def Ajustador():
             else:
                 erroInicializa.append('{} => {}'.format(caminho, ERRO[404]))
 
-        if Switch['Description']:
+        if moduloAjusta['Description']:
             if len(urls[ERRO_MPI_3]) > 0:
                 try:
                     for url in tqdm(urls[ERRO_MPI_3], unit=' arquivos', desc=f' {ERRO_MPI_3}', leave=False):
@@ -107,7 +104,7 @@ def Ajustador():
                 except:
                     print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_MPI_3)
 
-        if Switch['Strong']:
+        if moduloAjusta['Strong']:
             if len(urls[ERRO_MPI_6]) > 0:
                 try:
                     for url in tqdm(urls[ERRO_MPI_6], unit=' arquivos', desc=f' {ERRO_MPI_6}', leave=False):
@@ -118,25 +115,7 @@ def Ajustador():
                 except:
                     print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_MPI_6)
 
-        if Switch['Titulo duplicado']:
-            if len(urls[ERRO_TITLE_3]) > 0:
-                try:
-                    for url in tqdm(urls[ERRO_TITLE_3], unit=' arquivos', desc=f' {ERRO_TITLE_3}', leave=False):
-                        Inicializa(site.strip(), url.strip(), ERRO_TITLE_3, modulo='titulo_duplicado')
-                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_TITLE_3)
-                except:
-                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_TITLE_3)
-
-        if Switch['Sequência de H2']:
-            if len(urls[ERRO_TITLE_4]) > 0:
-                try:
-                    for url in tqdm(urls[ERRO_TITLE_4], unit=' arquivos', desc=f' {ERRO_TITLE_4}', leave=False):
-                        Inicializa(site.strip(), url.strip(), ERRO_TITLE_4, modulo='sequencia_h2')
-                    print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_TITLE_4)
-                except:
-                    print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_TITLE_4)
-
-        if Switch['Imagem']:
+        if moduloAjusta['Imagem']:
             if len(urls[ERRO_IMAGENS_2]) > 0:
                 try:
                     for url in tqdm(urls[ERRO_IMAGENS_2], unit=' arquivos', desc=f' {ERRO_IMAGENS_2}', leave=False):
@@ -144,7 +123,6 @@ def Ajustador():
                     print(Fore.GREEN + ' OK ' + Fore.WHITE + '-> ' + ERRO_IMAGENS_2)
                 except:
                     print(Fore.RED + ' ERRO ' + Fore.WHITE + '-> ' + ERRO_IMAGENS_2)
-
                     
         print(' Módulos finalizados.')
 
@@ -169,7 +147,6 @@ def Ajustador():
                         print(f'   {arquivo.limpa_url(site, errosValores)}')
 
                 erroAjusta[errosItens].clear()
-
-
+                
     else:
         print(Fore.YELLOW + 'Aviso: Você não possui projetos para ajustar.\n')

@@ -6,6 +6,7 @@ from requests_html import HTMLSession
 from tqdm.auto import tqdm
 from random import sample
 import threading
+import os
 
 init(autoreset=True)
 
@@ -110,7 +111,7 @@ def Validador(DEFAULT=True):
                 + Fore.GREEN
                 + "ON"
                 + Fore.WHITE
-                + " Módulo: {}".format(Url)
+                + " -> {}".format(Url)
             )
         else:
             print(
@@ -119,7 +120,7 @@ def Validador(DEFAULT=True):
                 + Fore.RED
                 + "OFF"
                 + Fore.WHITE
-                + " Módulo: {}".format(Url)
+                + " -> {}".format(Url)
             )
 
     print(Fore.WHITE + " Ambiente configurado com sucesso.")
@@ -150,16 +151,26 @@ def Validador(DEFAULT=True):
 
                         print(Fore.YELLOW + f"\nProjeto em validação => {url}")
 
-                        links = Links(
-                            url,
-                            errosEncontrado[ERRO_LINK],
-                            erroValidacao[ERRO_VALIDACAO_LINK],
-                            DEFAULT,
-                        ).links_site()
+                        if os.path.isfile(f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json'):
+                            cacheLinks = str(input(' Você deseja utilizar o cache dos links da validação anterior? (y / n)\n $ ')).lower()
+                            if cacheLinks in ['n', 'y']:
+                                links = Links(
+                                    url,
+                                    errosEncontrado[ERRO_LINK],
+                                    erroValidacao[ERRO_VALIDACAO_LINK],
+                                    DEFAULT
+                                ).links_site() if 'n' in cacheLinks else arquivo.ler_json(caminho=f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache', ValidacaoJson=False)
+                        else:
+                            links = Links(
+                                url,
+                                errosEncontrado[ERRO_LINK],
+                                erroValidacao[ERRO_VALIDACAO_LINK],
+                                DEFAULT
+                            ).links_site()
 
-                        msm = Fore.GREEN + "Validação em andamento"
+                        msm = Fore.GREEN + " Validação em andamento"
 
-                        for pagina in tqdm(links["Todos"], desc=msm):
+                        for pagina in tqdm(links["Todos"], desc=msm, unit=' links', leave=False):
                             item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
 
                             if validation["w3c"]:
@@ -272,10 +283,10 @@ def Validador(DEFAULT=True):
                         arquivo.arquivo_validacao_json(errosEncontrado, url)
                         arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
 
-                        print(Fore.WHITE + f"Validação do projeto concluída.")
+                        print(Fore.GREEN + ' OK' + Fore.WHITE + f' -> Validação do projeto concluída.')
 
                     else:
-                        print(Fore.WHITE + f"{ERRO[414]}")
+                        print(Fore.GREEN + ' ERRO' + Fore.WHITE + f' -> {ERRO[414]}')
 
         except:
             print(ERRO[501])
@@ -288,7 +299,6 @@ def Validador(DEFAULT=True):
                 print("\n" + ERRO[505])
                 for projetos in ListLog:
                     print(f" => {projetos}")
-
     else:
         print(
             Fore.YELLOW

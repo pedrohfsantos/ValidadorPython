@@ -29,7 +29,6 @@ class Title:
         except:
             self.erroValidador.append(pagina)
 
-
     def titulo_igual_h1(self, title, h1, pagina):
         for titulo in title:
             if titulo.text.lower() == h1[0].text.lower():
