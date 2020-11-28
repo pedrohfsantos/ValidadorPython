@@ -16,11 +16,11 @@ clear       = lambda: os.system('cls')
 Message     = '\nBem vindo ao Sexta-feira!\n'
 
 def Info():
-    print('\nVersão atual: 1.0.3')
+    print('\nVersão atual: 1.0.4')
     print('Este terminal é exclusivo para interação com projetos em publicação.')
     print('Projeto em desenvolvimento. Estado de versão no momento: beta e atualmente alocado em pedrohfsantos/ValidadorPython no GitHub.')
     print('Digite "info" para visualizar esta aba novamente.')
-    print('\n* Os níveis de precisão do validador é representado por baixo [A] e alto [A].')
+    print('\n* Os níveis de precisão do validador é representado por baixo [B] e alto [A].')
     print('\nComandos de execução\n')
     print(' -a        Inicia o módulo de ajustes.   [A] [BETA]')
     print(' -v        Inicia o módulo de validação. [A]')
