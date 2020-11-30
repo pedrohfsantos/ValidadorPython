@@ -1,5 +1,10 @@
 # Bem vindo ao Sexta-feira!
 
+## Objetivos
+* Visando a qualidade dos projetos recém publicados.
+* Validar arduamente as MPI e todos os pontos de SEO do site no geral, utilizando os critérios do Google e outros motores de busca.
+* Ajustar alguns erros de SEO nas MPI e otimização de imagens além do recomendado.
+
 ## Configuração e preparação do ambiente
 
 * Instale o Python na sua máquina. [importante]
@@ -20,5 +25,5 @@ pip install collections
 
 ## Desenvolvedores
 
-* Pedro H. Firmino
-* Lucas P. Romero
+* github.com/pedrohfsantos/
+* github.com/romerolpr/
