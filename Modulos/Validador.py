@@ -152,7 +152,7 @@ def Validador(DEFAULT=True):
                         print(Fore.YELLOW + f"\nProjeto em validação => {url}")
 
                         if os.path.isfile(f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json'):
-                            cacheLinks = str(input(' Você deseja utilizar o cache dos links da validação anterior? (y / n)\n $ ')).lower()
+                            cacheLinks = str(input(' Você deseja utilizar o cache dos links da validação anterior? (y / n): ')).lower()
                             if cacheLinks in ['n', 'y']:
                                 links = Links(
                                     url,

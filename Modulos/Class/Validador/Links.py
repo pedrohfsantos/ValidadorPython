@@ -1,6 +1,6 @@
 import threading
 import os.path
-from ... import *
+from ...Arquivo import Arquivo
 from requests_html import HTMLSession
 from tqdm.auto import tqdm
 from os import listdir, makedirs
@@ -38,7 +38,11 @@ class Links:
             self.linksConfirmados['MPI'].append(linkMPI.attrs['href'])
 
         self.valida_404(self.linksConfirmados['Todos'])
-        arquivo.escreve_json(self.linksConfirmados, arquivo=f'./Modulos/WebCache/{self.url_base(self.url, False)}__cache.json')
+
+        arquivo.escreve_json(
+            self.linksConfirmados,
+            arquivo=f'./Modulos/WebCache/{self.url_base(self.url, False)}__cache.json'
+            )
 
         return self.linksConfirmados
 
