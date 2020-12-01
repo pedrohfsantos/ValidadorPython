@@ -23,15 +23,16 @@ def Info():
     print('Digite "info" para visualizar esta aba novamente.')
     print("\n* Os níveis de precisão do validador é representado por baixo [B] e alto [A].")
     print("\nComandos de execução\n")
-    print(" -a        Inicia o módulo de ajustes.   [A] [BETA]")
-    print(" -v        Inicia o módulo de validação. [A]")
-    print(" -vf       Para validações rápidas.      [B]")
+    print(" -a              Inicia o módulo de ajustes.   [A] [BETA]")
+    print(" -v              Inicia o módulo de validação. [A]")
+    print(" -vf             Para validações rápidas.      [B]")
     print("\nComandos de atalho\n")
-    print(" clear     Limpa o terminal.")
-    print(" exit      Encerra o programa.")
-    print(" info      Exibe a lista completa de comandos.")
-    print(" sites     Abre o arquivo sites.txt")
-    print(" var       Exibir variáveis do sistema, Config.json")
+    print(" clear           Limpa o terminal.")
+    print(" exit            Encerra o programa.")
+    print(" info            Exibe a lista completa de comandos.")
+    print(" sites           Abre o arquivo sites.txt")
+    print(" clear cache     Limpar o cache das validações")
+    print(" var             Exibir variáveis do sistema, Config.json")
 
 
 print(Message)
@@ -75,6 +76,16 @@ while "exit" not in argumento.lower():
             os.system("clear")
             clear()
             print(Message)
+
+        elif argumento == "clear cache":
+            pastasCache = ["Projetos/Validação/", "Projetos/JSON/", "Modulos/WebCache/"]
+
+            for pasta in pastasCache:
+                caches = os.listdir(pasta)
+                for cache in caches:
+                    os.remove(pasta + cache)
+
+            print("Cache removido! \n")
 
         elif argumento == "var":
             print("Variáveis do sistema definidas em Config.json")
