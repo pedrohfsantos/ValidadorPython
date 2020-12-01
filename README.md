@@ -13,9 +13,10 @@
 ## Pacotes para instalar
 
 ```bash
-pip install beautifulsoup4
-pip install tqdm
 pip install requests_html
+pip install selenium
+pip install webdriver_manager
+pip install tqdm
 pip install colorama 
 pip install pathlib
 pip install pillow

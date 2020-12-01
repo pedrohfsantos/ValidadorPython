@@ -1,25 +1,28 @@
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.firefox.options import Options
-from ..Config import binary
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 class ScrollHorizontal:
     def __init__(self, erro, erroValidador):
         self.erro = erro
         self.erroValidador = erroValidador
-        options = Options()
-        options.add_argument('--headless')
-        options.binary = binary
-        cap = DesiredCapabilities().FIREFOX
-        cap["marionette"] = False
-        self.driver = webdriver.Firefox(options=options, capabilities=cap, executable_path="WebDriver/geckodriver.exe")
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--log-level=3")
+
+        self.driver = webdriver.Chrome(
+            ChromeDriverManager().install(), options=chrome_options
+        )
         self.driver.set_window_size(350, 568)
 
     def verifica(self, pagina):
         try:
             self.driver.get(pagina)
-            windowWidth = self.driver.execute_script('return document.body.clientWidth')
-            documentWidth = self.driver.execute_script('return document.body.scrollWidth')
+            windowWidth = self.driver.execute_script("return document.body.clientWidth")
+            documentWidth = self.driver.execute_script(
+                "return document.body.scrollWidth"
+            )
         except:
             self.erroValidador.append(pagina)
 
