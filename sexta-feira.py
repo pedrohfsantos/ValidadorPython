@@ -28,10 +28,10 @@ def Info():
     print(" -vf             Para validações rápidas.      [B]")
     print("\nComandos de atalho\n")
     print(" clear           Limpa o terminal.")
+    print(" clear cache     Limpar o cache das validações")
     print(" exit            Encerra o programa.")
     print(" info            Exibe a lista completa de comandos.")
     print(" sites           Abre o arquivo sites.txt")
-    print(" clear cache     Limpar o cache das validações")
     print(" var             Exibir variáveis do sistema, Config.json")
 
 
@@ -78,15 +78,17 @@ while "exit" not in argumento.lower():
             print(Message)
 
         elif argumento == "clear cache":
-            pastasCache = ["Projetos/Validação/", "Projetos/JSON/", "Modulos/WebCache/"]
-            try:
-                for pasta in pastasCache:
-                    caches = os.listdir(pasta)
-                    for cache in tqdm(caches, unit=' pastas', desc='Limpando cache', leave=False):
-                        os.remove(pasta + cache)
-                print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.\n")
-            except:
-                print(f"\n{ Fore.RED }ERRO{ Fore.WHITE } -> Limpeza de cache.\n")
+            if str(input('Você tem certeza que deseja limpar todo o cache? (y / n): ')).lower() == 'y':
+                pastasCache = ["Projetos/Validação/", "Projetos/JSON/", "Modulos/WebCache/"]
+                try:
+                    for pasta in pastasCache:
+                        caches = os.listdir(pasta)
+                        for cache in tqdm(caches, unit=' pastas', desc='Limpando cache', leave=False):
+                            os.remove(pasta + cache)
+                    print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.\n")
+                except:
+                    print(f"\n{ Fore.RED }ERRO{ Fore.WHITE } -> Limpeza de cache.\n")
+            print("\n")
 
         elif argumento == "var":
             print("Variáveis do sistema definidas em Config.json")

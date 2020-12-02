@@ -39,7 +39,7 @@ class Mpi:
 
     def description_mpi(self, pagina, description, paragrafos):
         for p in paragrafos:
-            descriptionErro = False if description.replace("  ", " ")[:-35].lower() in p.text.lower() else True
+            descriptionErro = False if unidecode(description.replace("  ", " ")[:-35].lower()) in unidecode(p.text.replace("  ", " ").lower()) else True
             if not descriptionErro: return
         self.erroDescriptionMpi.append(pagina)
 
