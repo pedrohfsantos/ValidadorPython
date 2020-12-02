@@ -170,6 +170,8 @@ def Validador(DEFAULT=True):
 
                         msm = Fore.GREEN + " Validação em andamento"
 
+                        CreateFile = True
+
                         for pagina in tqdm(links["Todos"], desc=msm, unit=' links', leave=False):
                             item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
 
@@ -278,12 +280,14 @@ def Validador(DEFAULT=True):
                                             ]
                                         )
                                     except:
-                                        ListLog.append(url)
+                                        CreateFile = False
+                                        break
 
-                        arquivo.arquivo_validacao_json(errosEncontrado, url)
-                        arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
+                        if CreateFile:
+                            arquivo.arquivo_validacao_json(errosEncontrado, url)
+                            arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
 
-                        print(Fore.GREEN + ' OK' + Fore.WHITE + f' -> Validação do projeto concluída.')
+                        print(Fore.GREEN + ' OK' + Fore.WHITE + f' -> Validação do projeto.' if CreateFile else Fore.RED + ' ERRO' + Fore.WHITE + f' -> {ERRO[505]}.')
 
                     else:
                         print(Fore.GREEN + ' ERRO' + Fore.WHITE + f' -> {ERRO[414]}')
@@ -295,10 +299,10 @@ def Validador(DEFAULT=True):
             if validation["scrollHorizontal"]:
                 scrollHorizontal.fechar()
 
-            if len(ListLog) > 0:
-                print("\n" + ERRO[505])
-                for projetos in ListLog:
-                    print(f" => {projetos}")
+            # if len(ListLog) > 0:
+            #     print("\n" + ERRO[505])
+            #     for projetos in ListLog:
+            #         print(f" => {projetos}")
     else:
         print(
             Fore.YELLOW
