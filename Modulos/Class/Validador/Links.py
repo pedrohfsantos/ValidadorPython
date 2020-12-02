@@ -15,7 +15,7 @@ class Links:
         self.RastrearLinks = RastrearLinks
         self.session = HTMLSession()
         self.linksConfirmados = {'Todos':[self.url], 'Mapa Site':[], 'MPI':[]}
-
+        self.cache = f'./Modulos/WebCache/{self.url_base(self.url, False)}'
         makedirs('./Modulos/WebCache') if not os.path.isdir('./Modulos/WebCache') else None
 
     def links_site(self):
@@ -37,25 +37,20 @@ class Links:
         for linkMPI in subMenuInfo:
             self.linksConfirmados['MPI'].append(linkMPI.attrs['href'])
 
-        self.valida_404(self.linksConfirmados['Todos'])
+        arquivo.cache(remove=f'{self.cache}__temp.json')
+        arquivo.cache(self.linksConfirmados, f'{self.cache}__cache.json')
 
-        arquivo.escreve_json(
-            self.linksConfirmados,
-            arquivo=f'./Modulos/WebCache/{self.url_base(self.url, False)}__cache.json'
-            )
+        self.valida_404(self.linksConfirmados['Todos'])
 
         return self.linksConfirmados
 
     def valida_url(self, url):
-        if '?' not in url and '#' not in url and '.jpg' not in url and '.jpeg' not in url and '.png' not in url and '.png' not in url and '.pdf' not in url and 'tel:' not in url and 'mailto:' not in url:
-            return True
-        else:
-            return False
+        return True if '?' not in url and '#' not in url and '.jpg' not in url and '.JPG' not in url and '.jpeg' not in url and '.JPEG' not in url and '.png' not in url and '.PNG' not in url and '.pdf' not in url and 'tel:' not in url and 'mailto:' not in url else False
 
     def rastrear(self, url):
         links = [url]
 
-        for link in tqdm(links, unit=' links', desc='Rastreando e categorizando os links', leave=False):
+        for link in tqdm(links, unit=' links', desc=' Rastreando e categorizando os links', leave=False):
             try:
                 r = self.session.get(link)
                 pageLinks = r.html.absolute_links
@@ -68,12 +63,14 @@ class Links:
                     if self.url_base(self.url) in pageLink and self.valida_url(pageLink):
                         if pageLink not in links and link not in self.erroLink:
                             links.append(pageLink)
+                            arquivo.cache(links, f'{self.cache}__temp.json')
 
+        arquivo.cache(links, f'{self.cache}__temp.json')
         self.linksConfirmados['Todos'] = links.copy()
         links.clear()
 
     def valida_404(self, urls):
-        for url in tqdm(urls, unit=' links', desc='Verificando se há links levando para página 404', leave=False):
+        for url in tqdm(urls, unit=' links', desc=' Verificando se há links levando para página 404', leave=False):
             try: 
                 location = self.session.head(url).headers['Location']
                 

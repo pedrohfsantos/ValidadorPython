@@ -2,6 +2,7 @@ from os import listdir, makedirs
 from datetime import datetime
 from pathlib import Path
 from tqdm.auto import tqdm
+import os
 import os.path
 import json
 import re
@@ -170,3 +171,9 @@ class Arquivo:
         url = re.search(r"http.*?\S*[^: ]", url).group(0)
         url = "index" if url.split("/")[-1] == "" else url.split("/")[-1]
         return "../ {}/{}".format(projeto, url)
+
+    def cache(self, valor=None, arquivo=None, remove=False):
+        self.escreve_json(
+            valor,
+            arquivo=arquivo
+        ) if not remove else os.remove(remove)

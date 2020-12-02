@@ -79,13 +79,14 @@ while "exit" not in argumento.lower():
 
         elif argumento == "clear cache":
             pastasCache = ["Projetos/Validação/", "Projetos/JSON/", "Modulos/WebCache/"]
-
-            for pasta in pastasCache:
-                caches = os.listdir(pasta)
-                for cache in caches:
-                    os.remove(pasta + cache)
-
-            print("Cache removido! \n")
+            try:
+                for pasta in pastasCache:
+                    caches = os.listdir(pasta)
+                    for cache in tqdm(caches, unit=' pastas', desc='Limpando cache', leave=False):
+                        os.remove(pasta + cache)
+                print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.\n")
+            except:
+                print(f"\n{ Fore.RED }ERRO{ Fore.WHITE } -> Limpeza de cache.\n")
 
         elif argumento == "var":
             print("Variáveis do sistema definidas em Config.json")
@@ -109,7 +110,7 @@ while "exit" not in argumento.lower():
 
         else:
             print(
-                f"$ {argumento}: " + ERRO[302] + "\n"
+                f"$ {argumento}: {ERRO[302]}\n"
                 if len(argumento) > 0 and argumento != "exit"
                 else ""
             )
