@@ -1,13 +1,8 @@
+import os, os.path, json, re, shutil, winreg, shlex
 from os import listdir, makedirs
 from datetime import datetime
 from pathlib import Path
 from tqdm.auto import tqdm
-import os
-import os.path
-import json
-import re
-import shutil
-
 
 class Arquivo:
     def __init__(self):
@@ -19,7 +14,6 @@ class Arquivo:
         for pasta in pastas:
             if not os.path.isdir(f"Projetos/{pasta}"):
                 makedirs(f"Projetos/{pasta}")
-
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split("//")
         limpaUrl = limpaUrl[1].split("/")
@@ -83,8 +77,8 @@ class Arquivo:
             dados = arquivoJson.read()
             return json.loads(dados)
 
-    def lista_arquivos_json(self):
-        listaArquivos = listdir("Projetos/JSON/")
+    def lista_arquivos_json(self, pasta="JSON"):
+        listaArquivos = listdir(f"Projetos/{pasta}/")
         for keys, arquivo in enumerate(listaArquivos):
             if "json" not in arquivo:
                 del listaArquivos[keys]
@@ -177,3 +171,31 @@ class Arquivo:
             valor,
             arquivo=arquivo
         ) if not remove else os.remove(remove)
+
+    def caminho_chrome(self):
+        result = None
+        if winreg:
+            for subkey in ['ChromeHTML\\shell\\open\\command', 'Applications\\chrome.exe\\shell\\open\\command']:
+                try: result = winreg.QueryValue(winreg.HKEY_CLASSES_ROOT, subkey)
+                except WindowsError: pass
+                if result is not None:
+                    result_split = shlex.split(result, False, True)
+                    result = result_split[0] if result_split else None
+                    if os.path.isfile(result):
+                        break
+                    result = None
+        else:
+            expected = "google-chrome" + (".exe" if os.name == 'nt' else "")
+            for parent in os.environ.get('PATH', '').split(os.pathsep):
+                path = os.path.join(parent, expected)
+                if os.path.isfile(path):
+                    result = path
+                    break
+        return result
+
+    def listar(self, array):
+        content = []
+        for key, value in enumerate(array):
+            if len(array) > 0:
+                content.append(f'[{key + 1}] {value}')
+        return '\n'.join(map(str, content))

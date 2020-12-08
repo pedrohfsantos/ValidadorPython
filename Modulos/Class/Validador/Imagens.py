@@ -31,7 +31,8 @@ class Imagens:
         if "&imagem=" not in imagem.attrs['src']:
             tamanho = int(self.session.head(imagem.attrs['src']).headers['Content-Length']) / 1024
             if round(tamanho) > 200:
-                self.erroTamanho.append(f"{imagem.attrs['src']}")
+                for Item in self.erroTamanho: 
+                    if Item.lower() != imagem.attrs['src'].lower(): self.erroTamanho.append(f"{imagem.attrs['src']}")
  
     def alt_title(self, imagem, pagina):
         try:

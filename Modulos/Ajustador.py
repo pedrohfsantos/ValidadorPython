@@ -35,9 +35,10 @@ def Ajustador():
     arquivos = arquivo.lista_arquivos_json()
 
     if len(arquivos) > 0:
-        for key, value in enumerate(arquivos):
-            if len(arquivos) > 0:
-                print(f'[{key + 1}] ' + value.split('.json')[0])
+
+        print("\nMódulo:" + Fore.GREEN + " Ajustador\n")
+
+        print(arquivo.navegar(arquivos))
 
         while True:
             try:
@@ -149,4 +150,4 @@ def Ajustador():
                 erroAjusta[errosItens].clear()
                 
     else:
-        print(Fore.YELLOW + 'Aviso: Você não possui projetos para ajustar.\n')
+        print(Fore.YELLOW + '\nAviso: Você não possui projetos para ajustar.')

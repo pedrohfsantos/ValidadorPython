@@ -1,31 +1,33 @@
+import os, webbrowser, sys
 from Modulos.Validador import Validador
 from Modulos.Ajustador import Ajustador
 from Modulos.Arquivo import Arquivo
 from colorama import Fore, Style, init
 from Modulos.Class.Config import *
-import os
-
-json = Arquivo()
 
 # Colorama, auto resetar para White color
+json = Arquivo()
 init(autoreset=True)
 argumento = ""
 clear = lambda: os.system("cls")
+actual_path = sys.argv[0].split(os.path.basename(__file__))[0]
+webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(json.caminho_chrome()))
 
 # Mensagem de apresentação
 Message = "\nBem vindo ao Sexta-feira!\n"
 
-
 def Info():
-    print("\nVersão atual: 1.0.4")
+    print("\nVersão atual: 1.0.5")
     print("Este terminal é exclusivo para interação com projetos em publicação.")
     print("Projeto em desenvolvimento. Estado de versão no momento: beta e atualmente alocado em pedrohfsantos/ValidadorPython no GitHub.")
     print('Digite "info" para visualizar esta aba novamente.')
     print("\n* Os níveis de precisão do validador é representado por baixo [B] e alto [A].")
     print("\nComandos de execução\n")
-    print(" -a              Inicia o módulo de ajustes.   [A] [BETA]")
-    print(" -v              Inicia o módulo de validação. [A]")
-    print(" -vf             Para validações rápidas.      [B]")
+    print(" -a              Inicia o módulo de ajustes.          [A] [BETA]")
+    print(" -v              Inicia o módulo de validação.        [A]")
+    print(" -vf             Para validações rápidas.             [B]")
+    print(" -v open         Abrir o arquivo .txt via notepad.")
+    print(" -v open [arg]   Digite [chrome] como argumento para abrir no navegador.")
     print("\nComandos de atalho\n")
     print(" clear           Limpa o terminal.")
     print(" clear cache     Limpar o cache das validações")
@@ -64,7 +66,6 @@ while "exit" not in argumento.lower():
             print("\n")
 
         elif argumento == "-a":
-            print("\nMódulo:" + Fore.GREEN + " Ajustador\n")
             Ajustador()
             print("\n")
 
@@ -85,9 +86,9 @@ while "exit" not in argumento.lower():
                         caches = os.listdir(pasta)
                         for cache in tqdm(caches, unit=' pastas', desc='Limpando cache', leave=False):
                             os.remove(pasta + cache)
-                    print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.\n")
+                    print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.")
                 except:
-                    print(f"\n{ Fore.RED }ERRO{ Fore.WHITE } -> Limpeza de cache.\n")
+                    print(f"\n{ Fore.RED }ERRO{ Fore.WHITE } -> Limpeza de cache.")
             print("\n")
 
         elif argumento == "var":
@@ -108,6 +109,24 @@ while "exit" not in argumento.lower():
                             else Fore.RED + "OFF"
                         )
                         print(f"  Status: {status}" + Fore.WHITE + f" {elem}")
+            print("\n")
+
+        elif "-v open" == argumento or "-v open chrome" == argumento:
+            arquivos = json.lista_arquivos_json(pasta="validação")
+            try:
+                if len(arquivos) > 0:
+                    print(json.listar(arquivos))
+                    opcao = int(input('\nNúmero do projeto: '))
+                    site = arquivos[opcao - 1]
+                    if opcao in range(0, len(arquivos) + 1):
+                        webbrowser.get('chrome').open(f'{actual_path}Projetos/validação/{site}') if ' chrome' in argumento else os.system(f"notepad Projetos/Validação/{site}") 
+                    else:
+                        print('Aviso: Projeto não encontrado.')
+                else:
+                    print('Erro: Você não possui projetos validados.')
+            except:
+                print(f'{Fore.YELLOW}\nAviso: Não foi possível selecionar o projeto.')
+
             print("\n")
 
         else:

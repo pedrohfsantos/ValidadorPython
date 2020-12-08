@@ -11,7 +11,7 @@ import os
 init(autoreset=True)
 
 
-def Validador(DEFAULT=True):
+def Validador(DEFAULT=True, RastrearImagens=False):
 
     ListLog = []
 
@@ -103,34 +103,31 @@ def Validador(DEFAULT=True):
 
     urls = Urls()
 
-    for Url in Array["validation"].keys():
-        if Array["validation"][Url]:
-            print(
-                Fore.WHITE
-                + " Status: "
-                + Fore.GREEN
-                + "ON"
-                + Fore.WHITE
-                + " -> {}".format(Url)
-            )
-        else:
-            print(
-                Fore.WHITE
-                + " Status: "
-                + Fore.RED
-                + "OFF"
-                + Fore.WHITE
-                + " -> {}".format(Url)
-            )
-
-    print(Fore.WHITE + " Ambiente configurado com sucesso.")
-
     if len(urls) > 0:
 
-        print(Fore.WHITE + f"\nForam recuperados ({len(urls)}) projetos para validação")
+        for Url in Array["validation"].keys():
+            if Array["validation"][Url]:
+                print(
+                    Fore.WHITE
+                    + " Status: "
+                    + Fore.GREEN
+                    + "ON"
+                    + Fore.WHITE
+                    + " -> {}".format(Url)
+                )
+            else:
+                print(
+                    Fore.WHITE
+                    + " Status: "
+                    + Fore.RED
+                    + "OFF"
+                    + Fore.WHITE
+                    + " -> {}".format(Url)
+                )
 
-        for key, url in enumerate(urls):
-            print(f" [{key + 1}] {url}")
+        print(" Ambiente configurado com sucesso.")
+
+        print( f"\nForam recuperados ({len(urls)}) projetos para validação\n {arquivo.listar(urls)}")
 
         try:
 
@@ -151,143 +148,148 @@ def Validador(DEFAULT=True):
 
                         print(Fore.YELLOW + f"\nProjeto em validação => {url}")
 
-                        if os.path.isfile(f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json'):
-                            cacheLinks = str(input(' Você deseja utilizar o cache dos links da validação anterior? (y / n): ')).lower()
-                            if cacheLinks in ['n', 'y']:
+                        try:
+                            
+                            if os.path.isfile(f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json'):
+                                cacheLinks = str(input(' Você deseja utilizar o cache dos links da validação anterior? (y / n): ')).lower()
+                                if cacheLinks in ['n', 'y']:
+                                    links = Links(
+                                        url,
+                                        errosEncontrado[ERRO_LINK],
+                                        erroValidacao[ERRO_VALIDACAO_LINK],
+                                        DEFAULT
+                                    ).links_site() if 'n' in cacheLinks else arquivo.ler_json(caminho=f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache', ValidacaoJson=False)
+                            else:
                                 links = Links(
                                     url,
                                     errosEncontrado[ERRO_LINK],
                                     erroValidacao[ERRO_VALIDACAO_LINK],
                                     DEFAULT
-                                ).links_site() if 'n' in cacheLinks else arquivo.ler_json(caminho=f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache', ValidacaoJson=False)
-                        else:
-                            links = Links(
-                                url,
-                                errosEncontrado[ERRO_LINK],
-                                erroValidacao[ERRO_VALIDACAO_LINK],
-                                DEFAULT
-                            ).links_site()
+                                ).links_site()
 
-                        msm = Fore.GREEN + " Validação em andamento"
+                            msm = Fore.GREEN + " Validação em andamento"
 
-                        CreateFile = True
+                            CreateFile = True
 
-                        for pagina in tqdm(links["Todos"], desc=msm, unit=' links', leave=False):
-                            item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
+                            for pagina in tqdm(links["Todos"], desc=msm, unit=' links', leave=False):
+                                item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
 
-                            if validation["w3c"]:
-                                threading.Thread(
-                                    target=w3c.verifica, args=(pagina,)
-                                ).start()
-
-                            if validation["texto"]:
-                                threading.Thread(
-                                    target=texto.verifica,
-                                    args=(
-                                        pagina,
-                                        item.texto_pagina(),
-                                    ),
-                                ).start()
-
-                            if validation["imagem"]:
-                                threading.Thread(
-                                    target=imagem.verifica,
-                                    args=(
-                                        pagina,
-                                        item.imagens(),
-                                    ),
-                                ).start()
-
-                            if validation["colunaLateral"]:
-                                threading.Thread(
-                                    target=colunaLateral.verifica,
-                                    args=(
-                                        pagina,
-                                        item.aside_links(),
-                                    ),
-                                ).start()
-
-                            if validation["description"]:
-                                threading.Thread(
-                                    target=description.verifica,
-                                    args=(
-                                        pagina,
-                                        item.description(),
-                                        item.h1(),
-                                    ),
-                                ).start()
-
-                            if validation["mapaDoSite"]:
-                                threading.Thread(
-                                    target=mapaDoSite.verifica,
-                                    args=(
-                                        pagina,
-                                        links["Mapa Site"],
-                                    ),
-                                ).start()
-
-                            if validation["title"]:
-                                threading.Thread(
-                                    target=title.verifica,
-                                    args=(
-                                        pagina,
-                                        item.h1(),
-                                        item.h2(),
-                                        item.titulo_strong(),
-                                        item.h3(),
-                                    ),
-                                ).start()
-
-                            if validation["scrollHorizontal"]:
-                                scrollHorizontal.verifica(pagina)
-
-                            if pagina in links["MPI"]:
-                                if validation["mpi"]:
+                                if validation["w3c"]:
                                     threading.Thread(
-                                        target=mpi.verifica,
+                                        target=w3c.verifica, args=(pagina,)
+                                    ).start()
+
+                                if validation["texto"]:
+                                    threading.Thread(
+                                        target=texto.verifica,
+                                        args=(
+                                            pagina,
+                                            item.texto_pagina(),
+                                        ),
+                                    ).start()
+
+                                if validation["imagem"]:
+                                    threading.Thread(
+                                        target=imagem.verifica,
+                                        args=(
+                                            pagina,
+                                            item.imagens(),
+                                        ),
+                                    ).start()
+
+                                if validation["colunaLateral"]:
+                                    threading.Thread(
+                                        target=colunaLateral.verifica,
+                                        args=(
+                                            pagina,
+                                            item.aside_links(),
+                                        ),
+                                    ).start()
+
+                                if validation["description"]:
+                                    threading.Thread(
+                                        target=description.verifica,
                                         args=(
                                             pagina,
                                             item.description(),
-                                            item.imagens_mpi(),
                                             item.h1(),
-                                            item.h2_mpi(),
-                                            item.paragrafos_mpi(),
-                                            item.imagens_mpi(),
                                         ),
                                     ).start()
 
-                            if pagina == url:
-                                if validation["menu"]:
+                                if validation["mapaDoSite"]:
                                     threading.Thread(
-                                        target=menu.verifica,
+                                        target=mapaDoSite.verifica,
                                         args=(
-                                            item.menu_top_texts(),
-                                            item.menu_footer_texts(),
-                                            item.menu_top_links(),
-                                            item.menu_footer_links(),
+                                            pagina,
+                                            links["Mapa Site"],
                                         ),
                                     ).start()
 
-                                if validation["pageSpeed"]:
-                                    try:
-                                        random = sample(range(0, len(links["MPI"])), 3)
-                                        pageSpeed.verifica(
-                                            [
+                                if validation["title"]:
+                                    threading.Thread(
+                                        target=title.verifica,
+                                        args=(
+                                            pagina,
+                                            item.h1(),
+                                            item.h2(),
+                                            item.titulo_strong(),
+                                            item.h3(),
+                                        ),
+                                    ).start()
+
+                                if validation["scrollHorizontal"]:
+                                    scrollHorizontal.verifica(pagina)
+
+                                if pagina in links["MPI"]:
+                                    if validation["mpi"]:
+                                        threading.Thread(
+                                            target=mpi.verifica,
+                                            args=(
                                                 pagina,
-                                                links["MPI"][random[0]],
-                                                links["MPI"][random[1]],
-                                                links["MPI"][random[2]],
-                                            ]
-                                        )
-                                    except:
-                                        CreateFile = False
-                                        break
+                                                item.description(),
+                                                item.imagens_mpi(),
+                                                item.h1(),
+                                                item.h2_mpi(),
+                                                item.paragrafos_mpi(),
+                                                item.imagens_mpi(),
+                                            ),
+                                        ).start()
 
-                        if CreateFile:
-                            arquivo.arquivo_validacao_json(errosEncontrado, url)
-                            arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
+                                if pagina == url:
+                                    if validation["menu"]:
+                                        threading.Thread(
+                                            target=menu.verifica,
+                                            args=(
+                                                item.menu_top_texts(),
+                                                item.menu_footer_texts(),
+                                                item.menu_top_links(),
+                                                item.menu_footer_links(),
+                                            ),
+                                        ).start()
 
-                        print(Fore.GREEN + ' OK' + Fore.WHITE + f' -> Validação do projeto.' if CreateFile else Fore.RED + ' ERRO' + Fore.WHITE + f' -> {ERRO[505]}.')
+                                    if validation["pageSpeed"]:
+                                        try:
+                                            random = sample(range(0, len(links["MPI"])), 3)
+                                            pageSpeed.verifica(
+                                                [
+                                                    pagina,
+                                                    links["MPI"][random[0]],
+                                                    links["MPI"][random[1]],
+                                                    links["MPI"][random[2]],
+                                                ]
+                                            )
+                                        except:
+                                            CreateFile = False
+                                            break
+
+                            if CreateFile:
+                                arquivo.arquivo_validacao_json(errosEncontrado, url)
+                                arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
+
+                            print(Fore.GREEN + ' OK' + Fore.WHITE + f' -> Validação do projeto.' if CreateFile else Fore.RED + ' ERRO' + Fore.WHITE + f' -> {ERRO[505]}.')
+
+                        except:
+                            break
 
                     else:
                         print(Fore.GREEN + ' ERRO' + Fore.WHITE + f' -> {ERRO[414]}')
@@ -299,10 +301,10 @@ def Validador(DEFAULT=True):
             if validation["scrollHorizontal"]:
                 scrollHorizontal.fechar()
 
-            # if len(ListLog) > 0:
-            #     print("\n" + ERRO[505])
-            #     for projetos in ListLog:
-            #         print(f" => {projetos}")
+            if len(ListLog) > 0:
+                print("\n" + ERRO[505])
+                for projetos in ListLog:
+                    print(f" => {projetos}")
     else:
         print(
             Fore.YELLOW
