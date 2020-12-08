@@ -77,10 +77,10 @@ class Arquivo:
             dados = arquivoJson.read()
             return json.loads(dados)
 
-    def lista_arquivos_json(self, pasta="JSON"):
+    def lista_arquivos_json(self, pasta="JSON", ext="json"):
         listaArquivos = listdir(f"Projetos/{pasta}/")
         for keys, arquivo in enumerate(listaArquivos):
-            if "json" not in arquivo:
+            if ext not in arquivo:
                 del listaArquivos[keys]
         return listaArquivos
 

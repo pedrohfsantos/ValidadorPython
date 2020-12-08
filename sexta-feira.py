@@ -112,7 +112,7 @@ while "exit" not in argumento.lower():
             print("\n")
 
         elif "-v open" == argumento or "-v open chrome" == argumento:
-            arquivos = json.lista_arquivos_json(pasta="validação")
+            arquivos = json.lista_arquivos_json(pasta="Validação", ext="txt")
             try:
                 if len(arquivos) > 0:
                     print(json.listar(arquivos))
