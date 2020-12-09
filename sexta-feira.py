@@ -1,4 +1,4 @@
-import os, webbrowser, sys
+import os
 from Modulos.Validador import Validador
 from Modulos.Ajustador import Ajustador
 from Modulos.Arquivo import Arquivo
@@ -10,8 +10,6 @@ json = Arquivo()
 init(autoreset=True)
 argumento = ""
 clear = lambda: os.system("cls")
-actual_path = sys.argv[0].split(os.path.basename(__file__))[0]
-webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(json.caminho_chrome()))
 
 # Mensagem de apresentação
 Message = "\nBem vindo ao Sexta-feira!\n"
@@ -28,6 +26,7 @@ def Info():
     print(" -vf             Para validações rápidas.             [B]")
     print(" -v open         Abrir o arquivo .txt via notepad.")
     print(" -v open [arg]   Digite [chrome] como argumento para abrir no navegador.")
+    print("                 Digite [chrome] [-l] para abrir o .txt e o projeto localhost.")
     print("\nComandos de atalho\n")
     print(" clear           Limpa o terminal.")
     print(" clear cache     Limpar o cache das validações")
@@ -111,22 +110,9 @@ while "exit" not in argumento.lower():
                         print(f"  Status: {status}" + Fore.WHITE + f" {elem}")
             print("\n")
 
-        elif "-v open" == argumento or "-v open chrome" == argumento:
-            arquivos = json.lista_arquivos_json(pasta="Validação", ext="txt")
-            try:
-                if len(arquivos) > 0:
-                    print(json.listar(arquivos))
-                    opcao = int(input('\nNúmero do projeto: '))
-                    site = arquivos[opcao - 1]
-                    if opcao in range(0, len(arquivos) + 1):
-                        webbrowser.get('chrome').open(f'{actual_path}Projetos/validação/{site}') if ' chrome' in argumento else os.system(f"notepad Projetos/Validação/{site}") 
-                    else:
-                        print('Aviso: Projeto não encontrado.')
-                else:
-                    print('Erro: Você não possui projetos validados.')
-            except:
-                print(f'{Fore.YELLOW}\nAviso: Não foi possível selecionar o projeto.')
-
+        elif "-v open" == argumento or "-v open chrome" == argumento or "-v open chrome -l" == argumento:
+            argl = True if ' -l' in argumento else False
+            json.Open(argumento, json.lista_arquivos_json(pasta="Validação", ext="txt"), localhost=argl)
             print("\n")
 
         else:

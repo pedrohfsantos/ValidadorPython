@@ -127,7 +127,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
 
         print(" Ambiente configurado com sucesso.")
 
-        print( f"\nForam recuperados ({len(urls)}) projetos para validação\n {arquivo.listar(urls)}")
+        print( f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}")
 
         try:
 

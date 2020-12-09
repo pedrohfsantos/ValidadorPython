@@ -1,4 +1,4 @@
-import os, os.path, json, re, shutil, winreg, shlex
+import os, os.path, json, re, shutil, winreg, shlex, sys, webbrowser
 from os import listdir, makedirs
 from datetime import datetime
 from pathlib import Path
@@ -116,16 +116,13 @@ class Arquivo:
         try:
             with open(DIR["caminho"], "w", encoding="utf-8") as f:
                 f.write(body)
-                f.write("</html>")
-            # with open('./Projetos/Backup/' + DIR['backup'], 'w', encoding='utf-8') as f:
-            #     f.write(backup)
+                f.write("</html>")                        
         except:
             return False
 
     def backup(self, site, erros):
         urlsBackup = []
-        try:
-            # Cria a pasta do projeto dentro da pasta Backup (ex: site.com.br-dia-mes-ano-hora-minuto-segundo)
+        try:            
             now = datetime.now()
             pasta = [
                 f"./Projetos/Backup/{site}",
@@ -134,15 +131,13 @@ class Arquivo:
             for criar in pasta:
                 if not os.path.isdir(criar):
                     makedirs(criar)
-
-            # Separa os links que serão reajustados pelo validador
+            
             listaUrlJson = self.ler_json(False, f"./Projetos/JSON/{site}")
             for item in listaUrlJson:
                 if item in erros:
                     for url in listaUrlJson[item]:
                         urlsBackup.append(url)
-
-            # Copia todos arquivos
+            
             for arquivo in tqdm(
                 set(urlsBackup),
                 unit=' arquivos', 
@@ -199,3 +194,24 @@ class Arquivo:
             if len(array) > 0:
                 content.append(f'[{key + 1}] {value}')
         return '\n'.join(map(str, content))
+
+    def Open(self, argumento, lista, localhost=False):
+
+        path_chrome = sys.argv[0].split('sexta-feira.py')[0]
+        webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(self.caminho_chrome()))
+        try:
+            if len(lista) > 0:
+                print(self.listar(lista))
+                opcao = int(input('\nNúmero do projeto: '))
+                site = lista[opcao - 1]
+                if opcao in range(0, len(lista) + 1):
+                    webbrowser.get('chrome').open('http://localhost/{}'.format(site.split('.txt')[0])) if localhost else None
+                    return webbrowser.get('chrome').open(f'{path_chrome}/Projetos/Validação/{site}') if ' chrome' in argumento else os.system(f"notepad Projetos/Validação/{site}")
+                else:
+                    print('Aviso: Projeto não encontrado.')
+            else:
+                print('Erro: Você não possui projetos validados.')
+        except:
+            print('\nAviso: Não foi possível selecionar o projeto.')
+
+        return False

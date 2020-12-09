@@ -38,7 +38,7 @@ def Ajustador():
 
         print("\nMódulo:" + Fore.GREEN + " Ajustador\n")
 
-        print(arquivo.navegar(arquivos))
+        print(arquivo.listar(arquivos))
 
         while True:
             try:
