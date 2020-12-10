@@ -1,4 +1,5 @@
 import os, os.path, json, re, shutil, winreg, shlex, sys, webbrowser
+from .Class.Config import *
 from os import listdir, makedirs
 from datetime import datetime
 from pathlib import Path
@@ -205,7 +206,10 @@ class Arquivo:
                 opcao = int(input('\nNúmero do projeto: '))
                 site = lista[opcao - 1]
                 if opcao in range(0, len(lista) + 1):
-                    webbrowser.get('chrome').open('http://localhost/{}'.format(site.split('.txt')[0])) if localhost else None
+                    if localhost:
+                        URL = self.ler_json(False, "./Config")["url"] + '/' if self.ler_json(False, "./Config")["url"][-1] != '/' else self.ler_json(False, "./Config")["url"] 
+                        destino = URL + site.split('.txt')[0]
+                        webbrowser.get('chrome').open(f'{destino}')
                     return webbrowser.get('chrome').open(f'{path_chrome}/Projetos/Validação/{site}') if ' chrome' in argumento else os.system(f"notepad Projetos/Validação/{site}")
                 else:
                     print('Aviso: Projeto não encontrado.')
