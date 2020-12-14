@@ -292,7 +292,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                             break
 
                     else:
-                        print(Fore.GREEN + ' ERRO' + Fore.WHITE + f' -> {ERRO[414]}')
+                        print(f'{Fore.YELLOW}\nProjeto em validação => {url}\n{Fore.RED} 404{Fore.WHITE} -> {ERRO[414]}')
 
         except:
             print(ERRO[501])
