@@ -104,7 +104,8 @@ class Item:
 
     def paragrafos_mpi(self):
         try:
-            return self.r.html.xpath('//article/p[not(@class)]')
+            # return self.r.html.xpath('//article/p[not(@class)]')
+            return self.r.html.find('article p:not(.content-call)')
         except:
             self.erroValidador.append(f'{self.url} - Paragrafos MPI')
 
