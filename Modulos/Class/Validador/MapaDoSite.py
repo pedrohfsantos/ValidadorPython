@@ -5,7 +5,7 @@ class MapaDoSite:
 
     def verifica(self, pagina, listaDeLinks):
         try:
-            if pagina not in listaDeLinks and '/mapa-site' not in pagina:
+            if pagina not in listaDeLinks and "/mapa-site" not in pagina:
                 self.erro.append(pagina)
         except:
             self.erroValidador.append(pagina)

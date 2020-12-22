@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 class Title:
     def __init__(self, erroSemH1, erroH1, erroTituloIgualH1, erroTituloDuplicado, erroTtutiloStrong, erroValidador):
         self.erroSemH1 = erroSemH1
@@ -16,7 +17,7 @@ class Title:
 
             elif len(h1) > 1:
                 self.erroH1.append(pagina)
-            
+
             self.titulo_duplicado(h2, pagina)
             self.titulo_igual_h1(h2, h1, pagina)
 

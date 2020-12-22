@@ -7,7 +7,7 @@ class Description:
     def verifica(self, pagina, description, h1):
         try:
             if len(description) > 160 or len(description) < 140:
-                self.erroTamanho.append(pagina)    
+                self.erroTamanho.append(pagina)
 
             if h1[0].text.lower() not in description.lower():
                 self.erroH1.append(pagina)

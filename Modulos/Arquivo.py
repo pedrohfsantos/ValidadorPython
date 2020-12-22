@@ -5,6 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from tqdm.auto import tqdm
 
+
 class Arquivo:
     def __init__(self):
         if not os.path.isdir("./Projetos"):
@@ -15,6 +16,7 @@ class Arquivo:
         for pasta in pastas:
             if not os.path.isdir(f"Projetos/{pasta}"):
                 makedirs(f"Projetos/{pasta}")
+
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split("//")
         limpaUrl = limpaUrl[1].split("/")
@@ -46,9 +48,7 @@ class Arquivo:
                 errosEncontrado[errosItens].clear()
 
             if log:
-                arquivo.write(
-                    f" =--=-=-= LOG DE ERRO DO VALIDADOR | PROJETO {site} =--=-=-= \n"
-                )
+                arquivo.write(f" =--=-=-= LOG DE ERRO DO VALIDADOR | PROJETO {site} =--=-=-= \n")
                 for errosItensValidacao in erroValidacao.keys():
                     if len(erroValidacao[errosItensValidacao]) > 0:
                         arquivo.write(f"{errosItensValidacao}: \n")
@@ -68,12 +68,12 @@ class Arquivo:
         ) as arquivo:
             json.dump(errosEncontrado, arquivo, indent=4)
 
-    def escreve_json(self, config, arquivo='./Config.json', method='w'):
+    def escreve_json(self, config, arquivo="./Config.json", method="w"):
         with open(arquivo, method, encoding="utf-8") as f:
             json.dump(config, f, indent=2)
 
     def ler_json(self, site=False, caminho="Projetos/JSON/", ValidacaoJson=True):
-        path = caminho + site if site else caminho if ValidacaoJson else caminho  
+        path = caminho + site if site else caminho if ValidacaoJson else caminho
         with open(f"{path}.json", "r", encoding="utf-8") as arquivoJson:
             dados = arquivoJson.read()
             return json.loads(dados)
@@ -96,34 +96,28 @@ class Arquivo:
         except IOError:
             return False
 
-    def criar_arquivo(
-        self, body, projeto, funcao, arquivo, htdocs, backup=False, subs=False
-    ):
+    def criar_arquivo(self, body, projeto, funcao, arquivo, htdocs, backup=False, subs=False):
 
         DIR = {
             "backup": projeto + "/" + funcao + "/" + arquivo + ".php",
             "caminho": htdocs + projeto + "/" + arquivo + ".php",
         }
-        Path(f"./Projetos/Backup/{projeto}/{funcao}/").mkdir(
-            parents=True, exist_ok=True
-        )
+        Path(f"./Projetos/Backup/{projeto}/{funcao}/").mkdir(parents=True, exist_ok=True)
         body = (
-            body.replace(f"<!-- {subs} -->", f"<?={subs}?>").re.sub(
-                r"<\?=\s*\$caminho2\s*\?>", "", body
-            )
+            body.replace(f"<!-- {subs} -->", f"<?={subs}?>").re.sub(r"<\?=\s*\$caminho2\s*\?>", "", body)
             if subs
             else body
         )
         try:
             with open(DIR["caminho"], "w", encoding="utf-8") as f:
                 f.write(body)
-                f.write("</html>")                        
+                f.write("</html>")
         except:
             return False
 
     def backup(self, site, erros):
         urlsBackup = []
-        try:            
+        try:
             now = datetime.now()
             pasta = [
                 f"./Projetos/Backup/{site}",
@@ -132,23 +126,18 @@ class Arquivo:
             for criar in pasta:
                 if not os.path.isdir(criar):
                     makedirs(criar)
-            
+
             listaUrlJson = self.ler_json(False, f"./Projetos/JSON/{site}")
             for item in listaUrlJson:
                 if item in erros:
                     for url in listaUrlJson[item]:
                         urlsBackup.append(url)
-            
+
             for arquivo in tqdm(
-                set(urlsBackup),
-                unit=' arquivos', 
-                desc=' Realizando backup dos arquivos necessários',
-                leave=False
+                set(urlsBackup), unit=" arquivos", desc=" Realizando backup dos arquivos necessários", leave=False
             ):
                 arquivo = re.search(r"http.*?\S*[^: ]", arquivo).group(0)
-                arquivo = (
-                    "index" if arquivo.split("/")[-1] == "" else arquivo.split("/")[-1]
-                )
+                arquivo = "index" if arquivo.split("/")[-1] == "" else arquivo.split("/")[-1]
 
                 configJson = self.ler_json(False, "./Config")
                 arquivoOriginal = f"{configJson['localhost']}{site}/{arquivo}.php"
@@ -163,17 +152,16 @@ class Arquivo:
         return "../ {}/{}".format(projeto, url)
 
     def cache(self, valor=None, arquivo=None, remove=False):
-        self.escreve_json(
-            valor,
-            arquivo=arquivo
-        ) if not remove else os.remove(remove)
+        self.escreve_json(valor, arquivo=arquivo) if not remove else os.remove(remove)
 
     def caminho_chrome(self):
         result = None
         if winreg:
-            for subkey in ['ChromeHTML\\shell\\open\\command', 'Applications\\chrome.exe\\shell\\open\\command']:
-                try: result = winreg.QueryValue(winreg.HKEY_CLASSES_ROOT, subkey)
-                except WindowsError: pass
+            for subkey in ["ChromeHTML\\shell\\open\\command", "Applications\\chrome.exe\\shell\\open\\command"]:
+                try:
+                    result = winreg.QueryValue(winreg.HKEY_CLASSES_ROOT, subkey)
+                except WindowsError:
+                    pass
                 if result is not None:
                     result_split = shlex.split(result, False, True)
                     result = result_split[0] if result_split else None
@@ -181,8 +169,8 @@ class Arquivo:
                         break
                     result = None
         else:
-            expected = "google-chrome" + (".exe" if os.name == 'nt' else "")
-            for parent in os.environ.get('PATH', '').split(os.pathsep):
+            expected = "google-chrome" + (".exe" if os.name == "nt" else "")
+            for parent in os.environ.get("PATH", "").split(os.pathsep):
                 path = os.path.join(parent, expected)
                 if os.path.isfile(path):
                     result = path
@@ -193,29 +181,37 @@ class Arquivo:
         content = []
         for key, value in enumerate(array):
             if len(array) > 0:
-                content.append(f'[{key + 1}] {value}')
-        return '\n'.join(map(str, content))
+                content.append(f"[{key + 1}] {value}")
+        return "\n".join(map(str, content))
 
     def Open(self, argumento, lista, localhost=False):
 
-        path_chrome = sys.argv[0].split('sexta-feira.py')[0]
-        webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(self.caminho_chrome()))
+        path_chrome = sys.argv[0].split("sexta-feira.py")[0]
+        webbrowser.register("chrome", None, webbrowser.BackgroundBrowser(self.caminho_chrome()))
         try:
             if len(lista) > 0:
                 print(self.listar(lista))
-                opcao = int(input('\nNúmero do projeto: '))
+                opcao = int(input("\nNúmero do projeto: "))
                 site = lista[opcao - 1]
                 if opcao in range(0, len(lista) + 1):
                     if localhost:
-                        URL = self.ler_json(False, "./Config")["url"] + '/' if self.ler_json(False, "./Config")["url"][-1] != '/' else self.ler_json(False, "./Config")["url"] 
-                        destino = URL + site.split('.txt')[0]
-                        webbrowser.get('chrome').open(f'{destino}')
-                    return webbrowser.get('chrome').open(f'{path_chrome}/Projetos/Validação/{site}') if ' chrome' in argumento else os.system(f"notepad Projetos/Validação/{site}")
+                        URL = (
+                            self.ler_json(False, "./Config")["url"] + "/"
+                            if self.ler_json(False, "./Config")["url"][-1] != "/"
+                            else self.ler_json(False, "./Config")["url"]
+                        )
+                        destino = URL + site.split(".txt")[0]
+                        webbrowser.get("chrome").open(f"{destino}")
+                    return (
+                        webbrowser.get("chrome").open(f"{path_chrome}/Projetos/Validação/{site}")
+                        if " chrome" in argumento
+                        else os.system(f"notepad Projetos/Validação/{site}")
+                    )
                 else:
-                    print('Aviso: Projeto não encontrado.')
+                    print("Aviso: Projeto não encontrado.")
             else:
-                print('Erro: Você não possui projetos validados.')
+                print("Erro: Você não possui projetos validados.")
         except:
-            print('\nAviso: Não foi possível selecionar o projeto.')
+            print("\nAviso: Não foi possível selecionar o projeto.")
 
         return False

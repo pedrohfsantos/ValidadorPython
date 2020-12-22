@@ -10,5 +10,5 @@ class Texto:
             self.erroValidador.append(pagina)
 
     def texto_lorem_ipsum(self, pagina, texto):
-        if 'lorem ipsum' in str(texto).lower():
+        if "lorem ipsum" in str(texto).lower():
             self.erroLoremIpsum.append(pagina)

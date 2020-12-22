@@ -35,14 +35,10 @@ def Validador(DEFAULT=True, RastrearImagens=False):
         )
 
     if validation["menu"]:
-        menu = MenuHeaderFooter(
-            errosEncontrado[ERRO_MENU], erroValidacao[ERRO_VALIDACAO_MENU]
-        )
+        menu = MenuHeaderFooter(errosEncontrado[ERRO_MENU], erroValidacao[ERRO_VALIDACAO_MENU])
 
     if validation["pageSpeed"]:
-        pageSpeed = PageSpeed(
-            errosEncontrado[ERRO_PAGESPEED], erroValidacao[ERRO_VALIDACAO_PAGESPEED]
-        )
+        pageSpeed = PageSpeed(errosEncontrado[ERRO_PAGESPEED], erroValidacao[ERRO_VALIDACAO_PAGESPEED])
 
     if validation["texto"]:
         texto = Texto(errosEncontrado[ERRO_TEXTO], erroValidacao[ERRO_VALIDACAO_TEXTO])
@@ -85,9 +81,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
         )
 
     if validation["scrollHorizontal"]:
-        scrollHorizontal = ScrollHorizontal(
-            errosEncontrado[ERRO_SCROLL], erroValidacao[ERRO_VALIDACAO_SCROLL]
-        )
+        scrollHorizontal = ScrollHorizontal(errosEncontrado[ERRO_SCROLL], erroValidacao[ERRO_VALIDACAO_SCROLL])
 
     arquivo = Arquivo()
 
@@ -107,27 +101,13 @@ def Validador(DEFAULT=True, RastrearImagens=False):
 
         for Url in Array["validation"].keys():
             if Array["validation"][Url]:
-                print(
-                    Fore.WHITE
-                    + " Status: "
-                    + Fore.GREEN
-                    + "ON"
-                    + Fore.WHITE
-                    + " -> {}".format(Url)
-                )
+                print(Fore.WHITE + " Status: " + Fore.GREEN + "ON" + Fore.WHITE + " -> {}".format(Url))
             else:
-                print(
-                    Fore.WHITE
-                    + " Status: "
-                    + Fore.RED
-                    + "OFF"
-                    + Fore.WHITE
-                    + " -> {}".format(Url)
-                )
+                print(Fore.WHITE + " Status: " + Fore.RED + "OFF" + Fore.WHITE + " -> {}".format(Url))
 
         print(" Ambiente configurado com sucesso.")
 
-        print( f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}")
+        print(f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}")
 
         try:
 
@@ -149,35 +129,38 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                         print(Fore.YELLOW + f"\nProjeto em validação => {url}")
 
                         try:
-                            
-                            if os.path.isfile(f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json'):
-                                cacheLinks = str(input(' Você deseja utilizar o cache dos links da validação anterior? (y / n): ')).lower()
-                                if cacheLinks in ['n', 'y']:
-                                    links = Links(
-                                        url,
-                                        errosEncontrado[ERRO_LINK],
-                                        erroValidacao[ERRO_VALIDACAO_LINK],
-                                        DEFAULT
-                                    ).links_site() if 'n' in cacheLinks else arquivo.ler_json(caminho=f'./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache', ValidacaoJson=False)
+
+                            if os.path.isfile(
+                                f"./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json"
+                            ):
+                                cacheLinks = str(
+                                    input(" Você deseja utilizar o cache dos links da validação anterior? (y / n): ")
+                                ).lower()
+                                if cacheLinks in ["n", "y"]:
+                                    links = (
+                                        Links(
+                                            url, errosEncontrado[ERRO_LINK], erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
+                                        ).links_site()
+                                        if "n" in cacheLinks
+                                        else arquivo.ler_json(
+                                            caminho=f"./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache",
+                                            ValidacaoJson=False,
+                                        )
+                                    )
                             else:
                                 links = Links(
-                                    url,
-                                    errosEncontrado[ERRO_LINK],
-                                    erroValidacao[ERRO_VALIDACAO_LINK],
-                                    DEFAULT
+                                    url, errosEncontrado[ERRO_LINK], erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
                                 ).links_site()
 
                             msm = Fore.GREEN + " Validação em andamento"
 
                             CreateFile = True
 
-                            for pagina in tqdm(links["Todos"], desc=msm, unit=' links', leave=False):
+                            for pagina in tqdm(links["Todos"], desc=msm, unit=" links", leave=False):
                                 item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
 
                                 if validation["w3c"]:
-                                    threading.Thread(
-                                        target=w3c.verifica, args=(pagina,)
-                                    ).start()
+                                    threading.Thread(target=w3c.verifica, args=(pagina,)).start()
 
                                 if validation["texto"]:
                                     threading.Thread(
@@ -286,13 +269,19 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                 arquivo.arquivo_validacao_json(errosEncontrado, url)
                                 arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
 
-                            print(Fore.GREEN + ' OK' + Fore.WHITE + f' -> Validação do projeto.' if CreateFile else Fore.RED + ' ERRO' + Fore.WHITE + f' -> {ERRO[505]}.')
+                            print(
+                                Fore.GREEN + " OK" + Fore.WHITE + f" -> Validação do projeto."
+                                if CreateFile
+                                else Fore.RED + " ERRO" + Fore.WHITE + f" -> {ERRO[505]}."
+                            )
 
                         except:
                             break
 
                     else:
-                        print(f'{Fore.YELLOW}\nProjeto em validação => {url}\n{Fore.RED} 404{Fore.WHITE} -> {ERRO[414]}')
+                        print(
+                            f"{Fore.YELLOW}\nProjeto em validação => {url}\n{Fore.RED} 404{Fore.WHITE} -> {ERRO[414]}"
+                        )
 
         except:
             print(ERRO[501])

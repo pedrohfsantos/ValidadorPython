@@ -11,18 +11,14 @@ class ScrollHorizontal:
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--log-level=3")
 
-        self.driver = webdriver.Chrome(
-            ChromeDriverManager().install(), options=chrome_options
-        )
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
         self.driver.set_window_size(350, 568)
 
     def verifica(self, pagina):
         try:
             self.driver.get(pagina)
             windowWidth = self.driver.execute_script("return document.body.clientWidth")
-            documentWidth = self.driver.execute_script(
-                "return document.body.scrollWidth"
-            )
+            documentWidth = self.driver.execute_script("return document.body.scrollWidth")
         except:
             self.erroValidador.append(pagina)
 

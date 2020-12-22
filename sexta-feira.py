@@ -14,10 +14,13 @@ clear = lambda: os.system("cls")
 # Mensagem de apresentação
 Message = "\nBem vindo ao Sexta-feira!\n"
 
+
 def Info():
     print("\nVersão atual: 1.0.5")
     print("Este terminal é exclusivo para interação com projetos em publicação.")
-    print("Projeto em desenvolvimento. Estado de versão no momento: beta e atualmente alocado em pedrohfsantos/ValidadorPython no GitHub.")
+    print(
+        "Projeto em desenvolvimento. Estado de versão no momento: beta e atualmente alocado em pedrohfsantos/ValidadorPython no GitHub."
+    )
     print('Digite "info" para visualizar esta aba novamente.')
     print("\n* Os níveis de precisão do validador é representado por baixo [B] e alto [A].")
     print("\nComandos de execução\n")
@@ -38,7 +41,7 @@ def Info():
 
 print(Message)
 
-while "exit" not in argumento.lower():
+while "exit" not in argumento.lower().strip():
 
     if os.path.isfile("./Config.json"):
         if json.ler_json(False, "./Config")["localhost"] == "":
@@ -54,7 +57,7 @@ while "exit" not in argumento.lower():
             open("./sites.txt", "w", encoding="utf-8").close()
 
         print(Fore.YELLOW + 'Digite "info" para obter a lista de comandos nativos')
-        argumento = input("$ ").lower()
+        argumento = input("$ ").lower().strip()
 
         if argumento == "info":
             Info()
@@ -78,12 +81,12 @@ while "exit" not in argumento.lower():
             print(Message)
 
         elif argumento == "clear cache":
-            if str(input('Você tem certeza que deseja limpar todo o cache? (y / n): ')).lower() == 'y':
+            if str(input("Você tem certeza que deseja limpar todo o cache? (y / n): ")).lower() == "y":
                 pastasCache = ["Projetos/Validação/", "Projetos/JSON/", "Modulos/WebCache/"]
                 try:
                     for pasta in pastasCache:
                         caches = os.listdir(pasta)
-                        for cache in tqdm(caches, unit=' pastas', desc='Limpando cache', leave=False):
+                        for cache in tqdm(caches, unit=" pastas", desc="Limpando cache", leave=False):
                             os.remove(pasta + cache)
                     print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.")
                 except:
@@ -96,31 +99,19 @@ while "exit" not in argumento.lower():
                 if "validation" != item:
                     print(Fore.WHITE + f" {item}:" + " {}".format(Array[item]))
                 else:
-                    print(
-                        Fore.WHITE + f" {item}"
-                        if item != "validation"
-                        else " Módulos de Validação"
-                    )
+                    print(Fore.WHITE + f" {item}" if item != "validation" else " Módulos de Validação")
                     for elem in Array["validation"].keys():
-                        status = (
-                            Fore.GREEN + "ON"
-                            if Array["validation"][elem]
-                            else Fore.RED + "OFF"
-                        )
+                        status = Fore.GREEN + "ON" if Array["validation"][elem] else Fore.RED + "OFF"
                         print(f"  Status: {status}" + Fore.WHITE + f" {elem}")
             print("\n")
 
         elif "-v open" == argumento or "-v open chrome" == argumento or "-v open chrome -l" == argumento:
-            argl = True if ' -l' in argumento else False
+            argl = True if " -l" in argumento else False
             json.Open(argumento, json.lista_arquivos_json(pasta="Validação", ext="txt"), localhost=argl)
             print("\n")
 
         else:
-            print(
-                f"$ {argumento}: {ERRO[302]}\n"
-                if len(argumento) > 0 and argumento != "exit"
-                else ""
-            )
+            print(f"$ {argumento}: {ERRO[302]}\n" if len(argumento) > 0 and argumento != "exit" else "")
 
     else:
         json.escreve_json(Array)

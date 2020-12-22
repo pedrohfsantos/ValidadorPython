@@ -6,9 +6,9 @@ class MenuHeaderFooter:
     def verifica(self, menuTopTexts, menuFooterTexts, menuTopLinks, menuFooterLinks):
         try:
             if menuTopTexts != menuFooterTexts:
-                self.erro.append('Menu footer diferente do menu header') 
+                self.erro.append("Menu footer diferente do menu header")
 
             if menuTopLinks != menuFooterLinks:
-                self.erro.append('Links do menu footer diferente do menu header')
+                self.erro.append("Links do menu footer diferente do menu header")
         except:
-            self.erroValidador.append('MENU TOP/FOOTER')
+            self.erroValidador.append("MENU TOP/FOOTER")
