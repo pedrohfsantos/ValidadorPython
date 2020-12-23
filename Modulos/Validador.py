@@ -84,18 +84,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
         scrollHorizontal = ScrollHorizontal(errosEncontrado[ERRO_SCROLL], erroValidacao[ERRO_VALIDACAO_SCROLL])
 
     arquivo = Arquivo()
-
-    def Urls():
-        sites = open("sites.txt", "r")
-        linha = sites.readlines()
-        arrayUrl = []
-        for url in linha:
-            arrayUrl.append(url.strip("\n").strip(" "))
-
-        sites.close()
-        return arrayUrl
-
-    urls = Urls()
+    urls = arquivo.ler_urls_sitesTXT()
 
     if len(urls) > 0:
 

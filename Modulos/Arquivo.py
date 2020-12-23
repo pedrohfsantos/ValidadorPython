@@ -17,6 +17,12 @@ class Arquivo:
             if not os.path.isdir(f"Projetos/{pasta}"):
                 makedirs(f"Projetos/{pasta}")
 
+    def ler_urls_sitesTXT(self):
+        with open("sites.txt", "r") as sites:
+            linha = sites.readlines()
+            arrayUrl = [url.strip("\n").strip(" ") for url in linha]
+            return arrayUrl
+
     def url_projeto_mpitemporario(self, limpaUrl):
         limpaUrl = limpaUrl.split("//")
         limpaUrl = limpaUrl[1].split("/")
