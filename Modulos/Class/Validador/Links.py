@@ -17,7 +17,6 @@ class Links:
         self.session = HTMLSession()
         self.linksConfirmados = {"Todos": [self.url], "Mapa Site": [], "MPI": []}
         self.cache = f"./Modulos/WebCache/{self.url_base(self.url, False)}"
-        makedirs("./Modulos/WebCache") if not os.path.isdir("./Modulos/WebCache") else None
 
     def links_site(self):
         if self.RastrearLinks:

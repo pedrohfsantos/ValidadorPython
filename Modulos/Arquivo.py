@@ -11,11 +11,14 @@ class Arquivo:
         if not os.path.isdir("./Projetos"):
             makedirs("./Projetos/")
 
-        pastas = ["JSON", "Validação", "Backup"]
+        pastas = ["Projetos/JSON", "Projetos/Validação", "Projetos/Backup", "Modulos/WebCache/"]
 
         for pasta in pastas:
-            if not os.path.isdir(f"Projetos/{pasta}"):
-                makedirs(f"Projetos/{pasta}")
+            if not os.path.isdir(f"{pasta}"):
+                makedirs(f"{pasta}")
+
+        if not os.path.isfile("./sites.txt"):
+            open("./sites.txt", "w", encoding="utf-8").close()
 
     def ler_urls_sitesTXT(self):
         with open("sites.txt", "r") as sites:
