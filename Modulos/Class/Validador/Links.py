@@ -18,6 +18,7 @@ class Links:
         self.linksConfirmados = {"Todos": [self.url], "Mapa Site": [], "MPI": []}
         self.cache = f"./Modulos/WebCache/{self.url_base(self.url, False)}"
 
+    @property
     def links_site(self):
         if self.RastrearLinks:
             self.rastrear(self.url)

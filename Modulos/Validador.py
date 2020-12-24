@@ -128,8 +128,8 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                 if cacheLinks in ["n", "y"]:
                                     links = (
                                         Links(
-                                            url, errosEncontrado[ERRO_LINK], erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
-                                        ).links_site()
+                                            url, errosEncontrado[ERRO_LINK],erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
+                                        ).links_site
                                         if "n" in cacheLinks
                                         else arquivo.ler_json(
                                             caminho=f"./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache",
@@ -139,7 +139,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                             else:
                                 links = Links(
                                     url, errosEncontrado[ERRO_LINK], erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
-                                ).links_site()
+                                ).links_site
 
                             msm = Fore.GREEN + " Validação em andamento"
 
@@ -156,7 +156,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         target=texto.verifica,
                                         args=(
                                             pagina,
-                                            item.texto_pagina(),
+                                            item.texto_pagina,
                                         ),
                                     ).start()
 
@@ -165,7 +165,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         target=imagem.verifica,
                                         args=(
                                             pagina,
-                                            item.imagens(),
+                                            item.imagens,
                                         ),
                                     ).start()
 
@@ -174,7 +174,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         target=colunaLateral.verifica,
                                         args=(
                                             pagina,
-                                            item.aside_links(),
+                                            item.aside_links,
                                         ),
                                     ).start()
 
@@ -183,8 +183,8 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         target=description.verifica,
                                         args=(
                                             pagina,
-                                            item.description(),
-                                            item.h1(),
+                                            item.description,
+                                            item.h1,
                                         ),
                                     ).start()
 
@@ -202,10 +202,10 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         target=title.verifica,
                                         args=(
                                             pagina,
-                                            item.h1(),
-                                            item.h2(),
-                                            item.titulo_strong(),
-                                            item.h3(),
+                                            item.h1,
+                                            item.h2,
+                                            item.titulo_strong,
+                                            item.h3,
                                         ),
                                     ).start()
 
@@ -218,12 +218,12 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                             target=mpi.verifica,
                                             args=(
                                                 pagina,
-                                                item.description(),
-                                                item.imagens_mpi(),
-                                                item.h1(),
-                                                item.h2_mpi(),
-                                                item.paragrafos_mpi(),
-                                                item.imagens_mpi(),
+                                                item.description,
+                                                item.imagens_mpi,
+                                                item.h1,
+                                                item.h2_mpi,
+                                                item.paragrafos_mpi,
+                                                item.imagens_mpi,
                                             ),
                                         ).start()
 
@@ -232,10 +232,10 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         threading.Thread(
                                             target=menu.verifica,
                                             args=(
-                                                item.menu_top_texts(),
-                                                item.menu_footer_texts(),
-                                                item.menu_top_links(),
-                                                item.menu_footer_links(),
+                                                item.menu_top_texts,
+                                                item.menu_footer_texts,
+                                                item.menu_top_links,
+                                                item.menu_footer_links,
                                             ),
                                         ).start()
 
@@ -277,7 +277,7 @@ def Validador(DEFAULT=True, RastrearImagens=False):
 
         finally:
             if validation["scrollHorizontal"]:
-                scrollHorizontal.fechar()
+                scrollHorizontal.fechar
 
             if len(ListLog) > 0:
                 print("\n" + ERRO[505])

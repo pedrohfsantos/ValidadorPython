@@ -26,6 +26,7 @@ class ScrollHorizontal:
             if windowWidth < documentWidth:
                 self.erro.append(pagina)
 
+    @property
     def fechar(self):
         self.driver.close()
         self.driver.quit()
