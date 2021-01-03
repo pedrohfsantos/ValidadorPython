@@ -26,18 +26,14 @@ class Arquivo:
             arrayUrl = [url.strip("\n").strip(" ") for url in linha]
             return arrayUrl
 
-    def url_projeto_mpitemporario(self, limpaUrl):
-        limpaUrl = limpaUrl.split("//")
-        limpaUrl = limpaUrl[1].split("/")
-        limpaUrl = [x for x in limpaUrl if x]
-        return limpaUrl[-1]
+    def url_projeto_mpitemporario(self, limpa_url):
+        limpa_url = limpa_url.split("//")
+        limpa_url = limpa_url[1].split("/")
+        limpa_url = [x for x in limpa_url if x]
+        return limpa_url[-1]
 
-    def arquivo_validacao(self, errosEncontrado, erroValidacao, site):
-        log = False
-        for erro in erroValidacao.keys():
-            if len(erroValidacao[erro]) > 0:
-                log = True
-                break
+    def arquivo_validacao(self, erros_encontrado, erro_validacao, site):
+        log = [1 for erro in erro_validacao.values() if len(erro) > 0]
 
         with open(
             f"Projetos/Validação/{self.url_projeto_mpitemporario(site)}.txt",
@@ -45,44 +41,44 @@ class Arquivo:
             encoding="utf-8",
         ) as arquivo:
 
-            for errosItens in errosEncontrado.keys():
-                if len(errosEncontrado[errosItens]) > 0:
-                    arquivo.write(f"{errosItens}: \n")
+            for titulo_erro, valores_erro in erros_encontrado.items():
+                if len(valores_erro) > 0:
+                    arquivo.write(f"{titulo_erro}: \n")
 
-                    for errosValores in errosEncontrado[errosItens]:
-                        arquivo.write(f"=> {errosValores} \n")
+                    for valor_erro in valores_erro:
+                        arquivo.write(f"=> {valor_erro} \n")
 
                     arquivo.write("\n")
 
-                errosEncontrado[errosItens].clear()
+                valores_erro.clear()
 
             if log:
                 arquivo.write(f" =--=-=-= LOG DE ERRO DO VALIDADOR | PROJETO {site} =--=-=-= \n")
-                for errosItensValidacao in erroValidacao.keys():
-                    if len(erroValidacao[errosItensValidacao]) > 0:
-                        arquivo.write(f"{errosItensValidacao}: \n")
+                for titulo_erro_validacao, valores_erro_validacao in erro_validacao.items():
+                    if len(valores_erro_validacao) > 0:
+                        arquivo.write(f"{titulo_erro_validacao}: \n")
 
-                        for errosValores in erroValidacao[errosItensValidacao]:
-                            arquivo.write(f"=> {errosValores}\n")
+                        for valor_erro_validacao in valores_erro_validacao:
+                            arquivo.write(f"=> {valor_erro_validacao}\n")
 
                         arquivo.write("\n")
 
-                    erroValidacao[errosItensValidacao].clear()
+                    valor_erro_validacao.clear()
 
-    def arquivo_validacao_json(self, errosEncontrado, site):
+    def arquivo_validacao_json(self, erros_encontrado, site):
         with open(
             f"Projetos/JSON/{self.url_projeto_mpitemporario(site)}.json",
             "w",
             encoding="utf-8",
         ) as arquivo:
-            json.dump(errosEncontrado, arquivo, indent=4)
+            json.dump(erros_encontrado, arquivo, indent=4)
 
     def escreve_json(self, config, arquivo="./Config.json", method="w"):
         with open(arquivo, method, encoding="utf-8") as f:
             json.dump(config, f, indent=2)
 
-    def ler_json(self, site=False, caminho="Projetos/JSON/", ValidacaoJson=True):
-        path = caminho + site if site else caminho if ValidacaoJson else caminho
+    def ler_json(self, site=False, caminho="Projetos/JSON/", validacao_json=True):
+        path = caminho + site if site else caminho if validacao_json else caminho
         with open(f"{path}.json", "r", encoding="utf-8") as arquivoJson:
             dados = arquivoJson.read()
             return json.loads(dados)
