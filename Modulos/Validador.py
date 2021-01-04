@@ -11,7 +11,7 @@ import os
 init(autoreset=True)
 
 
-def Validador(DEFAULT=True, RastrearImagens=False):
+def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
 
     ListLog = []
 
@@ -96,11 +96,29 @@ def Validador(DEFAULT=True, RastrearImagens=False):
 
         print(" Ambiente configurado com sucesso.")
 
-        print(f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}")
+        print(f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}") if not hist else None
 
         try:
 
             for url in urls:
+
+                if not hist:
+                    arquivo.historico_validacao(url)
+                else:
+                    arrayJson = arquivo.ler_json(caminho="./Modulos/WebCache/__hist")
+
+                    try:
+                        print(f"\nForam recuperados ({len(arrayJson)}) projetos através do histórico de validação")
+                        for num, item in enumerate(arrayJson):
+                            print(f"[{num + 1 }] {item}")
+                        print(Fore.YELLOW + "\nSelecione um projeto: ")
+                        opcao = int(input("$ "))
+                        if opcao not in range(0, len(arrayJson) + 1):
+                            print(ERRO[503])
+                        else:
+                            url = arrayJson[opcao - 1]
+                    except:
+                        return None
 
                 Page_Exists = False
                 r = session.get(url)
@@ -133,9 +151,10 @@ def Validador(DEFAULT=True, RastrearImagens=False):
                                         if "n" in cacheLinks
                                         else arquivo.ler_json(
                                             caminho=f"./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache",
-                                            ValidacaoJson=False,
+                                            validacao_json=False,
                                         )
                                     )
+                                print(cacheLinks)
                             else:
                                 links = Links(
                                     url, errosEncontrado[ERRO_LINK], erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT

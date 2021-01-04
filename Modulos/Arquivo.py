@@ -77,14 +77,14 @@ class Arquivo:
         with open(arquivo, method, encoding="utf-8") as f:
             json.dump(config, f, indent=2)
 
-    def ler_json(self, site=False, caminho="Projetos/JSON/", validacao_json=True):
+    def ler_json(self, site=False, caminho="Projetos/JSON/", validacao_json=True, ler=False):
         path = caminho + site if site else caminho if validacao_json else caminho
-        with open(f"{path}.json", "r", encoding="utf-8") as arquivoJson:
+        with open(f"{path if not ler else caminho}.json", "r", encoding="utf-8") as arquivoJson:
             dados = arquivoJson.read()
             return json.loads(dados)
 
-    def lista_arquivos_json(self, pasta="JSON", ext="json"):
-        listaArquivos = listdir(f"Projetos/{pasta}/")
+    def lista_arquivos_json(self, pasta="Projetos/JSON/", ext="json"):
+        listaArquivos = listdir(pasta)
         for keys, arquivo in enumerate(listaArquivos):
             if ext not in arquivo:
                 del listaArquivos[keys]
@@ -220,3 +220,17 @@ class Arquivo:
             print("\nAviso: Não foi possível selecionar o projeto.")
 
         return False
+
+    def historico_validacao(self, url):
+        try:
+            Caminho = "Modulos/WebCache/__hist"
+            Links = self.ler_json(caminho=Caminho, ler=True) if os.path.isfile(Caminho + ".json") else [url]
+            if url not in Links:
+                Links.append(url) if os.path.isfile(Caminho + ".json") else None
+            self.escreve_json(Links, arquivo=Caminho if Caminho[-5] == '.json' else Caminho + ".json")
+        
+        except:
+            print("\nAviso: O histórico de validação não foi salvo.")
+
+        finally:
+            print("\nAviso: histórico de validação salvo.")

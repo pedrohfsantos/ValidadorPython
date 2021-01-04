@@ -38,7 +38,6 @@ class Links:
         for linkMPI in subMenuInfo:
             self.linksConfirmados["MPI"].append(linkMPI.attrs["href"])
 
-        arquivo.cache(remove=f"{self.cache}__temp.json")
         arquivo.cache(self.linksConfirmados, f"{self.cache}__cache.json")
 
         self.valida_404(self.linksConfirmados["Todos"])
@@ -78,7 +77,6 @@ class Links:
                     if self.url_base(self.url) in pageLink and self.valida_url(pageLink):
                         if pageLink not in links and link not in self.erroLink:
                             links.append(pageLink)
-                            arquivo.cache(links, f"{self.cache}__temp.json")
 
         arquivo.cache(links, f"{self.cache}__temp.json")
         self.linksConfirmados["Todos"] = links.copy()

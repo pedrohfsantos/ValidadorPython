@@ -27,6 +27,7 @@ def Info():
     print(" -a              Inicia o módulo de ajustes.          [A] [BETA]")
     print(" -v              Inicia o módulo de validação.        [A]")
     print(" -vf             Para validações rápidas.             [B]")
+    print(" -v hist         Inicia o módulo de validação através do histórico. [A]")
     print(" -v open         Abrir o arquivo .txt via notepad.")
     print(" -v open [arg]   Digite [chrome] como argumento para abrir no navegador.")
     print("                 Digite [chrome] [-l] para abrir o .txt e o projeto localhost.")
@@ -62,6 +63,10 @@ while "exit" not in argumento.lower().strip():
 
         elif argumento == "-v" or argumento == "-vf":
             Validador(False) if "f" in argumento else Validador()
+            print("\n")
+
+        elif argumento == "-v hist":
+            Validador(False, hist=True)
             print("\n")
 
         elif argumento == "-a":
