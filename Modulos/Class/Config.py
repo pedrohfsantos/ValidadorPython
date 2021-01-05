@@ -43,7 +43,7 @@ ERRO_VALIDACAO_IMAGENS = "Não foi possível validar Imagens"
 ERRO_VALIDACAO_TITLE = "Não foi possível validar Title"
 ERRO_VALIDACAO_MPI = "Não foi possível validar MPI"
 
-erroValidacao = {
+erro_validacao = {
     ERRO_VALIDACAO_LINK: [],
     ERRO_VALIDACAO_ITEM: [],
     ERRO_VALIDACAO_W3C: [],
@@ -58,7 +58,7 @@ erroValidacao = {
     ERRO_VALIDACAO_TITLE: [],
     ERRO_VALIDACAO_MPI: [],
 }
-errosEncontrado = {
+erros_encontrado = {
     ERRO_LINK: [],
     ERRO_W3C: [],
     ERRO_DESCRIPTION_1: [],
@@ -106,16 +106,16 @@ if os.path.isfile("./Config.json"):
     localhost = configJson["localhost"]
     validation = {
         "w3c": configJson["validation"]["w3c"],
-        "colunaLateral": configJson["validation"]["colunaLateral"],
-        "mapaDoSite": configJson["validation"]["mapaDoSite"],
+        "coluna_lateral": configJson["validation"]["coluna_lateral"],
+        "mapa_do_site": configJson["validation"]["mapa_do_site"],
         "menu": configJson["validation"]["menu"],
-        "pageSpeed": configJson["validation"]["pageSpeed"],
+        "page_speed": configJson["validation"]["page_speed"],
         "texto": configJson["validation"]["texto"],
         "description": configJson["validation"]["description"],
         "imagem": configJson["validation"]["imagem"],
         "title": configJson["validation"]["title"],
         "mpi": configJson["validation"]["mpi"],
-        "scrollHorizontal": configJson["validation"]["scrollHorizontal"],
+        "scroll_horizontal": configJson["validation"]["scroll_horizontal"],
     }
 
 else:
@@ -123,16 +123,16 @@ else:
     localhost = ""
     validation = {
         "w3c": True,
-        "colunaLateral": True,
-        "mapaDoSite": True,
+        "coluna_lateral": True,
+        "mapa_do_site": True,
         "menu": True,
-        "pageSpeed": True,
+        "page_speed": True,
         "texto": True,
         "description": True,
         "imagem": True,
         "title": True,
         "mpi": True,
-        "scrollHorizontal": True,
+        "scroll_horizontal": True,
     }
 
 

@@ -51,7 +51,9 @@ def Ajustador():
                     print(ERRO[503])
                     for key, value in enumerate(arquivos):
                         print(f"[{key + 1}] " + value.split(".json")[0])
-            except:
+
+            except Exception as erro:
+                print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                 return
 
         site = arquivos[opcao - 1]
@@ -65,31 +67,6 @@ def Ajustador():
         else:
             print(Fore.RED + " ERRO " + Fore.WHITE + "-> Backup dos arquivos necessários")
 
-        erroInicializa = []
-
-        def Inicializa(site, url, erro, modulo):
-            def Clear(url):
-                url = re.search(r"http.*?\S*[^: ]", url).group(0).split("//")[1].split("/")[-1].split(" ")[0]
-                return url
-
-            def Modulo(modulo):
-                return {
-                    "titulo_duplicado": titulo_duplicado.ajusta(html, url, r),
-                    "sequencia_h2": sequencia_h2.ajusta(html, url),
-                }[modulo]
-
-            caminho = site + "/" + Clear(url)
-            r = session.get(urlmpitemporario + caminho)
-            html = arquivo.ler_arquivo(localhost + caminho)
-            if html:
-                body = Modulo(modulo)
-                if body != None:
-                    arquivo.criar_arquivo(body, site, erro, Clear(url), localhost, html, False)
-                else:
-                    erroAjusta[erro].append("=> {}".format(Clear(url)))
-            else:
-                erroInicializa.append("{} => {}".format(caminho, ERRO[404]))
-
         if moduloAjusta["Description"]:
             if len(urls[ERRO_MPI_3]) > 0:
                 try:
@@ -97,7 +74,9 @@ def Ajustador():
                         r = session.get(url)
                         description.ajusta(site, url, r)
                     print(Fore.GREEN + " OK " + Fore.WHITE + "-> " + ERRO_MPI_3)
-                except:
+
+                except Exception as erro:
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                     print(Fore.RED + " ERRO " + Fore.WHITE + "-> " + ERRO_MPI_3)
 
         if moduloAjusta["Strong"]:
@@ -108,7 +87,9 @@ def Ajustador():
                         r = session.get(url[:f])
                         strong.ajusta(site, url[:f], r)
                     print(Fore.GREEN + " OK " + Fore.WHITE + "-> " + ERRO_MPI_6)
-                except:
+
+                except Exception as erro:
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                     print(Fore.RED + " ERRO " + Fore.WHITE + "-> " + ERRO_MPI_6)
 
         if moduloAjusta["Imagem"]:
@@ -117,7 +98,8 @@ def Ajustador():
                     for url in tqdm(urls[ERRO_IMAGENS_2], unit=" arquivos", desc=f" {ERRO_IMAGENS_2}", leave=False):
                         imagem.ajusta(site, url)
                     print(Fore.GREEN + " OK " + Fore.WHITE + "-> " + ERRO_IMAGENS_2)
-                except:
+                except Exception as erro:
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                     print(Fore.RED + " ERRO " + Fore.WHITE + "-> " + ERRO_IMAGENS_2)
 
         print(" Módulos finalizados.")
@@ -127,11 +109,6 @@ def Ajustador():
             if len(erroAjusta[erro]) > 0:
                 log = True
                 break
-
-        if len(erroInicializa) > 0:
-            print(Fore.YELLOW + "Aviso: Arquivos não localizados:\n")
-            for Erros in erroInicializa:
-                print("../ " + Erros)
 
         if len(erroAjusta[erro]) > 0:
             print(Fore.YELLOW + ERRO[504] + "\n")

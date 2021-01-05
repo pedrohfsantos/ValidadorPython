@@ -6,7 +6,7 @@ from colorama import Fore, Style, init
 from Modulos.Class.Config import *
 
 # Colorama, auto resetar para White color
-json = Arquivo()
+arquivo = Arquivo()
 init(autoreset=True)
 argumento = ""
 clear = lambda: os.system("cls")
@@ -45,13 +45,13 @@ print(Message)
 while "exit" not in argumento.lower().strip():
 
     if os.path.isfile("./Config.json"):
-        if json.ler_json(False, "./Config")["localhost"] == "":
+        if arquivo.ler_json(False, "./Config")["localhost"] == "":
             print(Fore.YELLOW + "Especifique o caminho do seu htdocs")
 
             htdocs = str(input("$ "))
             htdocs = htdocs if htdocs[-1] == "\\" else htdocs + "\\"
             Array["localhost"] = htdocs
-            json.escreve_json(Array)
+            arquivo.escreve_json(Array)
             print("\n")
 
         print(Fore.YELLOW + 'Digite "info" para obter a lista de comandos nativos')
@@ -83,37 +83,18 @@ while "exit" not in argumento.lower().strip():
             print(Message)
 
         elif argumento == "clear cache":
-            if str(input("Você tem certeza que deseja limpar todo o cache? (y / n): ")).lower() == "y":
-                pastasCache = ["Projetos/Validação/", "Projetos/JSON/", "Modulos/WebCache/"]
-                try:
-                    for pasta in pastasCache:
-                        caches = os.listdir(pasta)
-                        for cache in tqdm(caches, unit=" pastas", desc="Limpando cache", leave=False):
-                            os.remove(pasta + cache)
-                    print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.")
-                except:
-                    print(f"\n{ Fore.RED }ERRO{ Fore.WHITE } -> Limpeza de cache.")
-            print("\n")
+            arquivo.limpa_cache()
 
         elif argumento == "var":
-            print("Variáveis do sistema definidas em Config.json")
-            for item in Array.keys():
-                if "validation" != item:
-                    print(Fore.WHITE + f" {item}:" + " {}".format(Array[item]))
-                else:
-                    print(Fore.WHITE + f" {item}" if item != "validation" else " Módulos de Validação")
-                    for elem in Array["validation"].keys():
-                        status = Fore.GREEN + "ON" if Array["validation"][elem] else Fore.RED + "OFF"
-                        print(f"  Status: {status}" + Fore.WHITE + f" {elem}")
-            print("\n")
+            arquivo.variaveis_sistema(Array)
 
         elif "-v open" == argumento or "-v open chrome" == argumento or "-v open chrome -l" == argumento:
             argl = True if " -l" in argumento else False
-            json.Open(argumento, json.lista_arquivos_json(pasta="Validação", ext="txt"), localhost=argl)
+            arquivo.Open(argumento, arquivo.lista_arquivos_json(pasta="Validação", ext="txt"), localhost=argl)
             print("\n")
 
         else:
             print(f"$ {argumento}: {ERRO[302]}\n" if len(argumento) > 0 and argumento != "exit" else "")
 
     else:
-        json.escreve_json(Array)
+        arquivo.escreve_json(Array)

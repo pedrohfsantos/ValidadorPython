@@ -16,8 +16,8 @@ class PageSpeed:
 
     def pagespeed(self, pagespeedUrl, apiKey):
         try:
-            mobileUrl = f"https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_pageSpeed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=mobile&key={apiKey}"
-            desktopUrl = f"https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_pageSpeed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=desktop&key={apiKey}"
+            mobileUrl = f"https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_page_speed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=mobile&key={apiKey}"
+            desktopUrl = f"https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={self.ajuste_link_page_speed(pagespeedUrl)}&category=performance&locale=pt_BR&strategy=desktop&key={apiKey}"
             mobileRequest = self.session.get(mobileUrl)
             jsonDataM = json.loads(mobileRequest.text)
             desktopRequest = self.session.get(desktopUrl)
@@ -38,7 +38,7 @@ class PageSpeed:
         for pagespeedUrl in tqdm(links, unit=" links", desc="Validando PageSpeed", leave=False):
             threading.Thread(target=self.pagespeed, args=(pagespeedUrl, self.apiKey)).start()
 
-    def ajuste_link_pageSpeed(self, link):
+    def ajuste_link_page_speed(self, link):
         link = self.url_urlmpitemporario(link)
         link = link.replace(":", "%3A")
         link = link.replace("/", "%2F")

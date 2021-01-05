@@ -40,8 +40,8 @@ class Strong:
             if paginaAjustada == False:
                 self.erro.append(f"{url}")
 
-        except:
-            self.erro.append(f"{url}")
+        except Exception as erro:
+            self.erro.append(f"{url} - {erro}")
 
     def arquivo(self, url):
         url = url.split("//")

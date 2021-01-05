@@ -13,75 +13,75 @@ init(autoreset=True)
 
 def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
 
-    ListLog = []
+    list_log = []
 
     session = HTMLSession()
 
     print(Fore.WHITE + "\nAmbiente em preparação, aguarde um momento...")
 
     if validation["w3c"]:
-        w3c = W3c(errosEncontrado[ERRO_W3C], erroValidacao[ERRO_VALIDACAO_W3C])
+        w3c = W3c(erros_encontrado[ERRO_W3C], erro_validacao[ERRO_VALIDACAO_W3C])
 
-    if validation["colunaLateral"]:
-        colunaLateral = ColunaLateral(
-            errosEncontrado[ERRO_COLUNA_LATERAL],
-            erroValidacao[ERRO_VALIDACAO_COLUNA_LATERAL],
+    if validation["coluna_lateral"]:
+        coluna_lateral = ColunaLateral(
+            erros_encontrado[ERRO_COLUNA_LATERAL],
+            erro_validacao[ERRO_VALIDACAO_COLUNA_LATERAL],
         )
 
-    if validation["mapaDoSite"]:
-        mapaDoSite = MapaDoSite(
-            errosEncontrado[ERRO_MAPA_SITE],
-            erroValidacao[ERRO_VALIDACAO_MAPA_SITE],
+    if validation["mapa_do_site"]:
+        mapa_do_site = MapaDoSite(
+            erros_encontrado[ERRO_MAPA_SITE],
+            erro_validacao[ERRO_VALIDACAO_MAPA_SITE],
         )
 
     if validation["menu"]:
-        menu = MenuHeaderFooter(errosEncontrado[ERRO_MENU], erroValidacao[ERRO_VALIDACAO_MENU])
+        menu = MenuHeaderFooter(erros_encontrado[ERRO_MENU], erro_validacao[ERRO_VALIDACAO_MENU])
 
-    if validation["pageSpeed"]:
-        pageSpeed = PageSpeed(errosEncontrado[ERRO_PAGESPEED], erroValidacao[ERRO_VALIDACAO_PAGESPEED])
+    if validation["page_speed"]:
+        page_speed = PageSpeed(erros_encontrado[ERRO_PAGESPEED], erro_validacao[ERRO_VALIDACAO_PAGESPEED])
 
     if validation["texto"]:
-        texto = Texto(errosEncontrado[ERRO_TEXTO], erroValidacao[ERRO_VALIDACAO_TEXTO])
+        texto = Texto(erros_encontrado[ERRO_TEXTO], erro_validacao[ERRO_VALIDACAO_TEXTO])
 
     if validation["description"]:
         description = Description(
-            errosEncontrado[ERRO_DESCRIPTION_1],
-            errosEncontrado[ERRO_DESCRIPTION_2],
-            erroValidacao[ERRO_VALIDACAO_DESCRIPTION],
+            erros_encontrado[ERRO_DESCRIPTION_1],
+            erros_encontrado[ERRO_DESCRIPTION_2],
+            erro_validacao[ERRO_VALIDACAO_DESCRIPTION],
         )
 
     if validation["imagem"]:
         imagem = Imagens(
-            errosEncontrado[ERRO_IMAGENS_1],
-            errosEncontrado[ERRO_IMAGENS_2],
-            errosEncontrado[ERRO_IMAGENS_3],
-            erroValidacao[ERRO_VALIDACAO_IMAGENS],
+            erros_encontrado[ERRO_IMAGENS_1],
+            erros_encontrado[ERRO_IMAGENS_2],
+            erros_encontrado[ERRO_IMAGENS_3],
+            erro_validacao[ERRO_VALIDACAO_IMAGENS],
         )
 
     if validation["title"]:
         title = Title(
-            errosEncontrado[ERRO_TITLE_1],
-            errosEncontrado[ERRO_TITLE_2],
-            errosEncontrado[ERRO_TITLE_3],
-            errosEncontrado[ERRO_TITLE_4],
-            errosEncontrado[ERRO_TITLE_5],
-            erroValidacao[ERRO_VALIDACAO_TITLE],
+            erros_encontrado[ERRO_TITLE_1],
+            erros_encontrado[ERRO_TITLE_2],
+            erros_encontrado[ERRO_TITLE_3],
+            erros_encontrado[ERRO_TITLE_4],
+            erros_encontrado[ERRO_TITLE_5],
+            erro_validacao[ERRO_VALIDACAO_TITLE],
         )
 
     if validation["mpi"]:
         mpi = Mpi(
-            errosEncontrado[ERRO_MPI_1],
-            errosEncontrado[ERRO_MPI_2],
-            errosEncontrado[ERRO_MPI_3],
-            errosEncontrado[ERRO_MPI_4],
-            errosEncontrado[ERRO_MPI_5],
-            errosEncontrado[ERRO_MPI_6],
-            errosEncontrado[ERRO_MPI_7],
-            erroValidacao[ERRO_VALIDACAO_MPI],
+            erros_encontrado[ERRO_MPI_1],
+            erros_encontrado[ERRO_MPI_2],
+            erros_encontrado[ERRO_MPI_3],
+            erros_encontrado[ERRO_MPI_4],
+            erros_encontrado[ERRO_MPI_5],
+            erros_encontrado[ERRO_MPI_6],
+            erros_encontrado[ERRO_MPI_7],
+            erro_validacao[ERRO_VALIDACAO_MPI],
         )
 
-    if validation["scrollHorizontal"]:
-        scrollHorizontal = ScrollHorizontal(errosEncontrado[ERRO_SCROLL], erroValidacao[ERRO_VALIDACAO_SCROLL])
+    if validation["scroll_horizontal"]:
+        scroll_horizontal = ScrollHorizontal(erros_encontrado[ERRO_SCROLL], erro_validacao[ERRO_VALIDACAO_SCROLL])
 
     arquivo = Arquivo()
     urls = arquivo.ler_urls_sitesTXT()
@@ -96,7 +96,9 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
 
         print(" Ambiente configurado com sucesso.")
 
-        print(f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}") if not hist else None
+        print(
+            f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}"
+        ) if not hist else None
 
         try:
 
@@ -105,33 +107,37 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                 if not hist:
                     arquivo.historico_validacao(url)
                 else:
-                    arrayJson = arquivo.ler_json(caminho="./Modulos/WebCache/__hist")
+                    array_json = arquivo.ler_json(caminho="./Modulos/WebCache/__hist")
 
                     try:
-                        print(f"\nForam recuperados ({len(arrayJson)}) projetos através do histórico de validação")
-                        for num, item in enumerate(arrayJson):
+                        print(f"\nForam recuperados ({len(array_json)}) projetos através do histórico de validação")
+                        for num, item in enumerate(array_json):
                             print(f"[{num + 1 }] {item}")
                         print(Fore.YELLOW + "\nSelecione um projeto: ")
                         opcao = int(input("$ "))
-                        if opcao not in range(0, len(arrayJson) + 1):
+                        if opcao not in range(0, len(array_json) + 1):
                             print(ERRO[503])
                         else:
-                            url = arrayJson[opcao - 1]
-                    except:
+                            url = array_json[opcao - 1]
+
+                    except Exception as erro:
+                        print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                         return None
 
-                Page_Exists = False
+                page_exists = False
                 r = session.get(url)
 
                 try:
                     if r.html.find("head title")[0].text.split(" ")[0] != "404":
-                        Page_Exists = True
-                except:
+                        page_exists = True
+
+                except Exception as erro:
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                     print(Fore.YELLOW + f"\nAviso: {ERRO[416]}")
 
                 finally:
 
-                    if Page_Exists:
+                    if page_exists:
 
                         print(Fore.YELLOW + f"\nProjeto em validação => {url}")
 
@@ -140,32 +146,35 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                             if os.path.isfile(
                                 f"./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache.json"
                             ):
-                                cacheLinks = str(
+                                cache_links = str(
                                     input(" Você deseja utilizar o cache dos links da validação anterior? (y / n): ")
                                 ).lower()
-                                if cacheLinks in ["n", "y"]:
+                                if cache_links in ["n", "y"]:
                                     links = (
                                         Links(
-                                            url, errosEncontrado[ERRO_LINK],erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
+                                            url,
+                                            erros_encontrado[ERRO_LINK],
+                                            erro_validacao[ERRO_VALIDACAO_LINK],
+                                            DEFAULT,
                                         ).links_site
-                                        if "n" in cacheLinks
+                                        if "n" in cache_links
                                         else arquivo.ler_json(
                                             caminho=f"./Modulos/WebCache/{arquivo.url_projeto_mpitemporario(url)}__cache",
                                             validacao_json=False,
                                         )
                                     )
-                                print(cacheLinks)
+                                print(cache_links)
                             else:
                                 links = Links(
-                                    url, errosEncontrado[ERRO_LINK], erroValidacao[ERRO_VALIDACAO_LINK], DEFAULT
+                                    url, erros_encontrado[ERRO_LINK], erro_validacao[ERRO_VALIDACAO_LINK], DEFAULT
                                 ).links_site
 
                             msm = Fore.GREEN + " Validação em andamento"
 
-                            CreateFile = True
+                            create_file = True
 
                             for pagina in tqdm(links["Todos"], desc=msm, unit=" links", leave=False):
-                                item = Item(pagina, erroValidacao[ERRO_VALIDACAO_ITEM])
+                                item = Item(pagina, erro_validacao[ERRO_VALIDACAO_ITEM])
 
                                 if validation["w3c"]:
                                     threading.Thread(target=w3c.verifica, args=(pagina,)).start()
@@ -188,9 +197,9 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                         ),
                                     ).start()
 
-                                if validation["colunaLateral"]:
+                                if validation["coluna_lateral"]:
                                     threading.Thread(
-                                        target=colunaLateral.verifica,
+                                        target=coluna_lateral.verifica,
                                         args=(
                                             pagina,
                                             item.aside_links,
@@ -207,9 +216,9 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                         ),
                                     ).start()
 
-                                if validation["mapaDoSite"]:
+                                if validation["mapa_do_site"]:
                                     threading.Thread(
-                                        target=mapaDoSite.verifica,
+                                        target=mapa_do_site.verifica,
                                         args=(
                                             pagina,
                                             links["Mapa Site"],
@@ -228,8 +237,8 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                         ),
                                     ).start()
 
-                                if validation["scrollHorizontal"]:
-                                    scrollHorizontal.verifica(pagina)
+                                if validation["scroll_horizontal"]:
+                                    scroll_horizontal.verifica(pagina)
 
                                 if pagina in links["MPI"]:
                                     if validation["mpi"]:
@@ -258,10 +267,10 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                             ),
                                         ).start()
 
-                                    if validation["pageSpeed"]:
+                                    if validation["page_speed"]:
                                         try:
                                             random = sample(range(0, len(links["MPI"])), 3)
-                                            pageSpeed.verifica(
+                                            page_speed.verifica(
                                                 [
                                                     pagina,
                                                     links["MPI"][random[0]],
@@ -269,21 +278,23 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                                     links["MPI"][random[2]],
                                                 ]
                                             )
-                                        except:
-                                            CreateFile = False
+                                        except Exception as erro:
+                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                                            create_file = False
                                             break
 
-                            if CreateFile:
-                                arquivo.arquivo_validacao_json(errosEncontrado, url)
-                                arquivo.arquivo_validacao(errosEncontrado, erroValidacao, url)
+                            if create_file:
+                                arquivo.arquivo_validacao_json(erros_encontrado, url)
+                                arquivo.arquivo_validacao(erros_encontrado, erro_validacao, url)
 
                             print(
                                 Fore.GREEN + " OK" + Fore.WHITE + f" -> Validação do projeto."
-                                if CreateFile
+                                if create_file
                                 else Fore.RED + " ERRO" + Fore.WHITE + f" -> {ERRO[505]}."
                             )
 
-                        except:
+                        except Exception as erro:
+                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
                             break
 
                     else:
@@ -291,16 +302,17 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                             f"{Fore.YELLOW}\nProjeto em validação => {url}\n{Fore.RED} 404{Fore.WHITE} -> {ERRO[414]}"
                         )
 
-        except:
+        except Exception as erro:
+            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
             print(ERRO[501])
 
         finally:
-            if validation["scrollHorizontal"]:
-                scrollHorizontal.fechar
+            if validation["scroll_horizontal"]:
+                scroll_horizontal.fechar
 
-            if len(ListLog) > 0:
+            if len(list_log) > 0:
                 print("\n" + ERRO[505])
-                for projetos in ListLog:
+                for projetos in list_log:
                     print(f" => {projetos}")
     else:
         print(
