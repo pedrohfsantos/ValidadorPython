@@ -92,7 +92,7 @@ while "exit" not in argumento.lower().strip():
         elif "-v open" == argumento or "-v open chrome" == argumento or "-v open chrome -l" == argumento:
             try:
                 argl = True if " -l" in argumento else False
-                arquivo.Open(argumento, arquivo.lista_arquivos_json(pasta="Projetoss/Validação", ext="txt"), localhost=argl)
+                arquivo.Open(argumento, arquivo.lista_arquivos_json(pasta="Projetos/Validação", ext="txt"), localhost=argl)
                 print("\n")
             except Exception as erro:
                 print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-\n" if developer else ERRO[501] + '\n')
