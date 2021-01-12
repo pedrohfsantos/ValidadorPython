@@ -5,8 +5,7 @@ from colorama import Fore, Style, init
 from requests_html import HTMLSession
 from tqdm.auto import tqdm
 from random import sample
-import threading
-import os
+import threading, os
 
 init(autoreset=True)
 
@@ -279,22 +278,22 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                                 ]
                                             )
                                         except Exception as erro:
-                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else f"{ Fore.RED }MPI: Não foi possível resgatar nenhuma palavra-chave.")
                                             create_file = False
                                             break
 
                             if create_file:
-                                arquivo.arquivo_validacao_json(erros_encontrado, url)
-                                arquivo.arquivo_validacao(erros_encontrado, erro_validacao, url)
+                                # arquivo.arquivo_validacao_json(erros_encontrado, url)
+                                arquivo.arquivo_validacao(erros_encontrado, erro_validacao, url, json=True)
 
-                            print(
-                                Fore.GREEN + " OK" + Fore.WHITE + f" -> Validação do projeto."
-                                if create_file
-                                else Fore.RED + " ERRO" + Fore.WHITE + f" -> {ERRO[505]}."
-                            )
+                                print(
+                                    Fore.GREEN + " OK" + Fore.WHITE + f" -> Validação do projeto."
+                                    if create_file
+                                    else Fore.RED + " ERRO" + Fore.WHITE + f" -> {ERRO[505]}."
+                                )
 
                         except Exception as erro:
-                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
                             break
 
                     else:
@@ -303,8 +302,8 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                         )
 
         except Exception as erro:
-            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
             print(ERRO[501])
+            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
 
         finally:
             if validation["scroll_horizontal"]:

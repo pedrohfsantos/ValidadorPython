@@ -32,7 +32,10 @@ class Arquivo:
         limpa_url = [x for x in limpa_url if x]
         return limpa_url[-1]
 
-    def arquivo_validacao(self, erros_encontrado, erro_validacao, site):
+    def arquivo_validacao(self, erros_encontrado, erro_validacao, site, json=False):
+        
+        if json: self.arquivo_validacao_json(erros_encontrado, site)
+
         log = [1 for erro in erro_validacao.values() if len(erro) > 0]
 
         with open(

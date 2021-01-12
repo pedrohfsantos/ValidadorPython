@@ -53,7 +53,7 @@ def Ajustador():
                         print(f"[{key + 1}] " + value.split(".json")[0])
 
             except Exception as erro:
-                print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
                 return
 
         site = arquivos[opcao - 1]
@@ -76,7 +76,7 @@ def Ajustador():
                     print(Fore.GREEN + " OK " + Fore.WHITE + "-> " + ERRO_MPI_3)
 
                 except Exception as erro:
-                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
                     print(Fore.RED + " ERRO " + Fore.WHITE + "-> " + ERRO_MPI_3)
 
         if moduloAjusta["Strong"]:
@@ -89,7 +89,7 @@ def Ajustador():
                     print(Fore.GREEN + " OK " + Fore.WHITE + "-> " + ERRO_MPI_6)
 
                 except Exception as erro:
-                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
                     print(Fore.RED + " ERRO " + Fore.WHITE + "-> " + ERRO_MPI_6)
 
         if moduloAjusta["Imagem"]:
@@ -99,7 +99,7 @@ def Ajustador():
                         imagem.ajusta(site, url)
                     print(Fore.GREEN + " OK " + Fore.WHITE + "-> " + ERRO_IMAGENS_2)
                 except Exception as erro:
-                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-")
+                    print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
                     print(Fore.RED + " ERRO " + Fore.WHITE + "-> " + ERRO_IMAGENS_2)
 
         print(" Módulos finalizados.")

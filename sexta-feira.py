@@ -49,7 +49,7 @@ while "exit" not in argumento.lower().strip():
             print(Fore.YELLOW + "Especifique o caminho do seu htdocs")
 
             htdocs = str(input("$ "))
-            htdocs = htdocs if htdocs[-1] == "\\" else htdocs + "\\"
+            htdocs = htdocs if htdocs[-1] in ["\\", "/"] else htdocs + "\\"
             Array["localhost"] = htdocs
             arquivo.escreve_json(Array)
             print("\n")
@@ -86,12 +86,16 @@ while "exit" not in argumento.lower().strip():
             arquivo.limpa_cache()
 
         elif argumento == "var":
+            if developer: print("Modo desenvolvedor ativo.")
             arquivo.variaveis_sistema(Array)
 
         elif "-v open" == argumento or "-v open chrome" == argumento or "-v open chrome -l" == argumento:
-            argl = True if " -l" in argumento else False
-            arquivo.Open(argumento, arquivo.lista_arquivos_json(pasta="Validação", ext="txt"), localhost=argl)
-            print("\n")
+            try:
+                argl = True if " -l" in argumento else False
+                arquivo.Open(argumento, arquivo.lista_arquivos_json(pasta="Projetoss/Validação", ext="txt"), localhost=argl)
+                print("\n")
+            except Exception as erro:
+                print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-\n" if developer else ERRO[501] + '\n')
 
         else:
             print(f"$ {argumento}: {ERRO[302]}\n" if len(argumento) > 0 and argumento != "exit" else "")
