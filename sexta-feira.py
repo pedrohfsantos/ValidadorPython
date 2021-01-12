@@ -86,7 +86,7 @@ while "exit" not in argumento.lower().strip():
             arquivo.limpa_cache()
 
         elif argumento == "var":
-            if developer: print("Modo desenvolvedor ativo.")
+            if developer: print("[ Modo desenvolvedor ]")
             arquivo.variaveis_sistema(Array)
 
         elif "-v open" == argumento or "-v open chrome" == argumento or "-v open chrome -l" == argumento:

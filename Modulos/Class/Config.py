@@ -1,6 +1,6 @@
 # [ DESENVOLVEDOR ]
 # Habilita a exibição de erros específicos do python
-developer = False
+developer = True
 
 import os
 from ..Arquivo import *
