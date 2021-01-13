@@ -33,8 +33,9 @@ class Arquivo:
         return limpa_url[-1]
 
     def arquivo_validacao(self, erros_encontrado, erro_validacao, site, json=False):
-        
-        if json: self.arquivo_validacao_json(erros_encontrado, site)
+
+        if json:
+            self.arquivo_validacao_json(erros_encontrado, site)
 
         log = [1 for erro in erro_validacao.values() if len(erro) > 0]
 
@@ -139,7 +140,8 @@ class Arquivo:
                 for pasta in self.pastas:
                     caches = os.listdir(pasta)
                     for cache in tqdm(caches, unit=" pastas", desc="Limpando cache", leave=False):
-                        os.remove(pasta + cache)
+                        if "Backup" not in pasta:
+                            os.remove(pasta + cache)
 
                 print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.")
 
