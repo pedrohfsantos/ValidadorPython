@@ -67,7 +67,7 @@ class Arquivo:
 
                         arquivo.write("\n")
 
-                    valor_erro_validacao.clear()
+                    valores_erro_validacao.clear()
 
     def arquivo_validacao_json(self, erros_encontrado, site):
         with open(
