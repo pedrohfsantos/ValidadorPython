@@ -278,7 +278,11 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                                 ]
                                             )
                                         except Exception as erro:
-                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else f"{ Fore.RED }MPI: Não foi possível resgatar nenhuma palavra-chave.")
+                                            print(
+                                                f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-"
+                                                if developer
+                                                else f"{ Fore.RED }MPI: Não foi possível resgatar nenhuma palavra-chave."
+                                            )
                                             create_file = False
                                             break
 

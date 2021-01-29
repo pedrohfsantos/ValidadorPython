@@ -24,6 +24,7 @@ class Arquivo:
         with open("sites.txt", "r") as sites:
             linha = sites.readlines()
             arrayUrl = [url.strip("\n").strip(" ") for url in linha]
+            arrayUrl = [url if url.endswith("/") else url + "/" for url in arrayUrl]
             return arrayUrl
 
     def url_projeto_mpitemporario(self, limpa_url):
