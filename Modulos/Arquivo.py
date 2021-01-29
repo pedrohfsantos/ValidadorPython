@@ -24,6 +24,7 @@ class Arquivo:
         with open("sites.txt", "r") as sites:
             linha = sites.readlines()
             arrayUrl = [url.strip("\n").strip(" ") for url in linha]
+            arrayUrl = [url if url.endswith("/") else url + "/" for url in arrayUrl]
             return arrayUrl
 
     def url_projeto_mpitemporario(self, limpa_url):
@@ -33,8 +34,9 @@ class Arquivo:
         return limpa_url[-1]
 
     def arquivo_validacao(self, erros_encontrado, erro_validacao, site, json=False):
-        
-        if json: self.arquivo_validacao_json(erros_encontrado, site)
+
+        if json:
+            self.arquivo_validacao_json(erros_encontrado, site)
 
         log = [1 for erro in erro_validacao.values() if len(erro) > 0]
 
@@ -66,7 +68,7 @@ class Arquivo:
 
                         arquivo.write("\n")
 
-                    valor_erro_validacao.clear()
+                    valores_erro_validacao.clear()
 
     def arquivo_validacao_json(self, erros_encontrado, site):
         with open(
@@ -139,7 +141,8 @@ class Arquivo:
                 for pasta in self.pastas:
                     caches = os.listdir(pasta)
                     for cache in tqdm(caches, unit=" pastas", desc="Limpando cache", leave=False):
-                        os.remove(pasta + cache)
+                        if "Backup" not in pasta:
+                            os.remove(pasta + cache)
 
                 print(f"\n{ Fore.GREEN }OK{ Fore.WHITE } -> Limpeza de cache.")
 
