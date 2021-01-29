@@ -1,12 +1,15 @@
-# [ DESENVOLVEDOR ]
-# Habilita a exibição de erros específicos do python
-developer = True
-
 import os
 from ..Arquivo import *
-
 json = Arquivo()
 
+
+
+# [ DESENVOLVEDOR ]
+developer = True # Habilita a exibição de erros específicos do python
+bkp = False # Habilita a execução de backup ao realizar os ajustes
+
+
+# [ VARIÁVEIS MÉTODO VALIDAÇÃO ]
 ERRO_LINK = "Links levando para 404"
 ERRO_W3C = "W3C"
 ERRO_DESCRIPTION_1 = "Description com números de caracteres incorretos"
@@ -90,6 +93,8 @@ erros_encontrado = {
     ERRO_TEXTO: [],
 }
 
+
+# [ ERROS PRÉ DEFINIDOS DO SISTEMA ]
 ERRO = {
     300: "\nNão foi possível iniciar o módulo selecionado",
     302: "Comando inválido.\n",
@@ -104,6 +109,8 @@ ERRO = {
     505: 'Não foi possível identificar a classe "sub-menu-info" no mapa do site',
 }
 
+
+# [ VARIÁVEIS DE PERFIL ]
 if os.path.isfile("./Config.json"):
     configJson = json.ler_json(False, "./Config")
     urlmpitemporario = configJson["url"]

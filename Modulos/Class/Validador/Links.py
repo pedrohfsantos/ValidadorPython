@@ -78,7 +78,6 @@ class Links:
                         if pageLink not in links and link not in self.erroLink:
                             links.append(pageLink)
 
-        arquivo.cache(links, f"{self.cache}__temp.json")
         self.linksConfirmados["Todos"] = links.copy()
         links.clear()
 

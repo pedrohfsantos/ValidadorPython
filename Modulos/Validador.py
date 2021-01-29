@@ -85,7 +85,7 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
     arquivo = Arquivo()
     urls = arquivo.ler_urls_sitesTXT()
 
-    if len(urls) > 0:
+    if len(urls) > 0 or len(urls) == 0 and hist:
 
         for Url in Array["validation"].keys():
             if Array["validation"][Url]:
@@ -95,9 +95,12 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
 
         print(" Ambiente configurado com sucesso.")
 
-        print(
-            f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}"
-        ) if not hist else None
+        if not hist:
+            print(
+                f"\nForam recuperados ({len(urls)}) projetos para validação\n{arquivo.listar(urls)}"
+            )
+        else:
+            urls.append("__hist")
 
         try:
 
@@ -111,7 +114,7 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                     try:
                         print(f"\nForam recuperados ({len(array_json)}) projetos através do histórico de validação")
                         for num, item in enumerate(array_json):
-                            print(f"[{num + 1 }] {item}")
+                            print(f" [{num + 1 }] ../{arquivo.url_projeto_mpitemporario(item)}")
                         print(Fore.YELLOW + "\nSelecione um projeto: ")
                         opcao = int(input("$ "))
                         if opcao not in range(0, len(array_json) + 1):
@@ -278,7 +281,7 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                                 ]
                                             )
                                         except Exception as erro:
-                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else f"{ Fore.RED }MPI: Não foi possível resgatar nenhuma palavra-chave.")
+                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else f"{ Fore.RED }\n MPI -> Não foi possível resgatar nenhuma palavra-chave.")
                                             create_file = False
                                             break
 

@@ -62,10 +62,13 @@ def Ajustador():
 
         print(Fore.YELLOW + f"\nProjeto selecionado => [{opcao}] {site}")
 
-        if arquivo.backup(site=site, erros=[ERRO_MPI_3, ERRO_MPI_6, ERRO_TITLE_3, ERRO_TITLE_4]):
-            print(Fore.GREEN + " OK " + Fore.WHITE + "-> Backup dos arquivos necessários")
+        if bkp:
+            if arquivo.backup(site=site, erros=[ERRO_MPI_3, ERRO_MPI_6, ERRO_TITLE_3, ERRO_TITLE_4]):
+                print(Fore.GREEN + " OK " + Fore.WHITE + "-> Backup dos arquivos necessários")
+            else:
+                print(Fore.RED + " ERRO " + Fore.WHITE + "-> Backup dos arquivos necessários")
         else:
-            print(Fore.RED + " ERRO " + Fore.WHITE + "-> Backup dos arquivos necessários")
+            print(Fore.YELLOW + " AVISO " + Fore.WHITE + "-> Backup dos arquivos necessários desabilitada")
 
         if moduloAjusta["Description"]:
             if len(urls[ERRO_MPI_3]) > 0:
