@@ -22,6 +22,7 @@ pip install pathlib
 pip install pillow
 pip install unidecode
 pip install collections
+pip install Image
 ```
 
 ## Desenvolvedores
