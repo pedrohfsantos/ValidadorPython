@@ -4,6 +4,7 @@ from ...Arquivo import Arquivo
 from requests_html import HTMLSession
 from tqdm.auto import tqdm
 from os import listdir, makedirs
+from Modulos.Class.Config import *
 
 arquivo = Arquivo()
 
@@ -16,7 +17,9 @@ class Links:
         self.RastrearLinks = RastrearLinks
         self.session = HTMLSession()
         self.linksConfirmados = {"Todos": [self.url], "Mapa Site": [], "MPI": []}
-        self.cache = f"./Modulos/WebCache/{self.url_base(self.url, False)}"
+        self.cache = f"./Modulos/WebCache/{self.url_base(self.url, False)}" if not rastreador_links else f"./Modulos/WebCache/RastreadorLinks/{self.url_base(self.url, False)}"
+
+        if rastreador_links: Path(f'./Modulos/WebCache/RastreadorLinks/').mkdir(parents=True, exist_ok=True)
 
     @property
     def links_site(self):
@@ -40,7 +43,8 @@ class Links:
 
         arquivo.cache(self.linksConfirmados, f"{self.cache}__cache.json")
 
-        self.valida_404(self.linksConfirmados["Todos"])
+        if not rastreador_links:
+            self.valida_404(self.linksConfirmados["Todos"])
 
         return self.linksConfirmados
 

@@ -63,8 +63,9 @@ class Arquivo:
                     if len(valores_erro_validacao) > 0:
                         arquivo.write(f"{titulo_erro_validacao}: \n")
 
-                        for valor_erro_validacao in valores_erro_validacao:
-                            arquivo.write(f"=> {valor_erro_validacao}\n")
+                        if valores_erro_validacao:
+                            for valor_erro_validacao in valores_erro_validacao:
+                                arquivo.write(f"=> {valor_erro_validacao}\n")
 
                         arquivo.write("\n")
 

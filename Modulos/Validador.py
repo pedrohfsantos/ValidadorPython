@@ -171,139 +171,141 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                                     url, erros_encontrado[ERRO_LINK], erro_validacao[ERRO_VALIDACAO_LINK], DEFAULT
                                 ).links_site
 
-                            msm = Fore.GREEN + " Validação em andamento"
+                            if not rastreador_links:
 
-                            create_file = True
+                                msm = Fore.GREEN + " Validação em andamento"
+                                create_file = True
 
-                            for pagina in tqdm(links["Todos"], desc=msm, unit=" links", leave=False):
-                                item = Item(pagina, erro_validacao[ERRO_VALIDACAO_ITEM])
+                                for pagina in tqdm(links["Todos"], desc=msm, unit=" links", leave=False):
+                                    item = Item(pagina, erro_validacao[ERRO_VALIDACAO_ITEM])
 
-                                if validation["w3c"]:
-                                    threading.Thread(target=w3c.verifica, args=(pagina,)).start()
+                                    if validation["w3c"]:
+                                        threading.Thread(target=w3c.verifica, args=(pagina,)).start()
 
-                                if validation["texto"]:
-                                    threading.Thread(
-                                        target=texto.verifica,
-                                        args=(
-                                            pagina,
-                                            item.texto_pagina,
-                                        ),
-                                    ).start()
-
-                                if validation["imagem"]:
-                                    threading.Thread(
-                                        target=imagem.verifica,
-                                        args=(
-                                            pagina,
-                                            item.imagens,
-                                        ),
-                                    ).start()
-
-                                if validation["coluna_lateral"]:
-                                    threading.Thread(
-                                        target=coluna_lateral.verifica,
-                                        args=(
-                                            pagina,
-                                            item.aside_links,
-                                        ),
-                                    ).start()
-
-                                if validation["description"]:
-                                    threading.Thread(
-                                        target=description.verifica,
-                                        args=(
-                                            pagina,
-                                            item.description,
-                                            item.h1,
-                                        ),
-                                    ).start()
-
-                                if validation["mapa_do_site"]:
-                                    threading.Thread(
-                                        target=mapa_do_site.verifica,
-                                        args=(
-                                            pagina,
-                                            links["Mapa Site"],
-                                        ),
-                                    ).start()
-
-                                if validation["title"]:
-                                    threading.Thread(
-                                        target=title.verifica,
-                                        args=(
-                                            pagina,
-                                            item.h1,
-                                            item.h2,
-                                            item.titulo_strong,
-                                            item.h3,
-                                        ),
-                                    ).start()
-
-                                if validation["scroll_horizontal"]:
-                                    scroll_horizontal.verifica(pagina)
-
-                                if pagina in links["MPI"]:
-                                    if validation["mpi"]:
+                                    if validation["texto"]:
                                         threading.Thread(
-                                            target=mpi.verifica,
+                                            target=texto.verifica,
+                                            args=(
+                                                pagina,
+                                                item.texto_pagina,
+                                            ),
+                                        ).start()
+
+                                    if validation["imagem"]:
+                                        threading.Thread(
+                                            target=imagem.verifica,
+                                            args=(
+                                                pagina,
+                                                item.imagens,
+                                            ),
+                                        ).start()
+
+                                    if validation["coluna_lateral"]:
+                                        threading.Thread(
+                                            target=coluna_lateral.verifica,
+                                            args=(
+                                                pagina,
+                                                item.aside_links,
+                                            ),
+                                        ).start()
+
+                                    if validation["description"]:
+                                        threading.Thread(
+                                            target=description.verifica,
                                             args=(
                                                 pagina,
                                                 item.description,
-                                                item.imagens_mpi,
                                                 item.h1,
-                                                item.h2_mpi,
-                                                item.paragrafos_mpi,
-                                                item.imagens_mpi,
                                             ),
                                         ).start()
 
-                                if pagina == url:
-                                    if validation["menu"]:
+                                    if validation["mapa_do_site"]:
                                         threading.Thread(
-                                            target=menu.verifica,
+                                            target=mapa_do_site.verifica,
                                             args=(
-                                                item.menu_top_texts,
-                                                item.menu_footer_texts,
-                                                item.menu_top_links,
-                                                item.menu_footer_links,
+                                                pagina,
+                                                links["Mapa Site"],
                                             ),
                                         ).start()
 
-                                    if validation["page_speed"]:
-                                        try:
-                                            random = sample(range(0, len(links["MPI"])), 3)
-                                            page_speed.verifica(
-                                                [
+                                    if validation["title"]:
+                                        threading.Thread(
+                                            target=title.verifica,
+                                            args=(
+                                                pagina,
+                                                item.h1,
+                                                item.h2,
+                                                item.titulo_strong,
+                                                item.h3,
+                                            ),
+                                        ).start()
+
+                                    if validation["scroll_horizontal"]:
+                                        scroll_horizontal.verifica(pagina)
+
+                                    if pagina in links["MPI"]:
+                                        if validation["mpi"]:
+                                            threading.Thread(
+                                                target=mpi.verifica,
+                                                args=(
                                                     pagina,
-                                                    links["MPI"][random[0]],
-                                                    links["MPI"][random[1]],
-                                                    links["MPI"][random[2]],
-                                                ]
-                                            )
-                                        except Exception as erro:
+                                                    item.description,
+                                                    item.imagens_mpi,
+                                                    item.h1,
+                                                    item.h2_mpi,
+                                                    item.paragrafos_mpi,
+                                                    item.imagens_mpi,
+                                                ),
+                                            ).start()
 
-                                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else f"{ Fore.RED }\n MPI -> Não foi possível resgatar nenhuma palavra-chave.")
-                                            print(
-                                                f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-"
-                                                if developer
-                                                else f"{ Fore.RED }MPI: Não foi possível resgatar nenhuma palavra-chave."
-                                            )
+                                    if pagina == url:
+                                        if validation["menu"]:
+                                            threading.Thread(
+                                                target=menu.verifica,
+                                                args=(
+                                                    item.menu_top_texts,
+                                                    item.menu_footer_texts,
+                                                    item.menu_top_links,
+                                                    item.menu_footer_links,
+                                                ),
+                                            ).start()
 
-                                            create_file = False
-                                            break
+                                        if validation["page_speed"]:
+                                            try:
+                                                random = sample(range(0, len(links["MPI"])), 3)
+                                                page_speed.verifica(
+                                                    [
+                                                        pagina,
+                                                        links["MPI"][random[0]],
+                                                        links["MPI"][random[1]],
+                                                        links["MPI"][random[2]],
+                                                    ]
+                                                )
+                                            except Exception as erro:
+                                                print(
+                                                    f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-"
+                                                    if developer
+                                                    else f"{ Fore.RED }MPI: Não foi possível resgatar nenhuma palavra-chave."
+                                                )
 
-                            if create_file:
-                                # arquivo.arquivo_validacao_json(erros_encontrado, url)
-                                arquivo.arquivo_validacao(erros_encontrado, erro_validacao, url, json=True)
+                                                create_file = False
+                                                break
 
+                                if create_file:
+                                    arquivo.arquivo_validacao(erros_encontrado, erro_validacao, url, json=True)
+
+                                    print(
+                                        Fore.GREEN + " OK" + Fore.WHITE + f" -> Validação do projeto."
+                                        if create_file
+                                        else Fore.RED + " ERRO" + Fore.WHITE + f" -> {ERRO[505]}."
+                                    )
+                            else:
                                 print(
-                                    Fore.GREEN + " OK" + Fore.WHITE + f" -> Validação do projeto."
-                                    if create_file
-                                    else Fore.RED + " ERRO" + Fore.WHITE + f" -> {ERRO[505]}."
+                                    Fore.GREEN + " OK" + Fore.WHITE + f" -> Todos os links foram rastreados e salvos em WebCache/RastreadorLinks."
                                 )
 
                         except Exception as erro:
-                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
+                            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else "")
                             break
 
                     else:
@@ -312,8 +314,7 @@ def Validador(DEFAULT=True, RastrearImagens=False, hist=False):
                         )
 
         except Exception as erro:
-            print(ERRO[501])
-            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else None)
+            print(f"\n -> { Fore.RED }{erro}{ Fore.WHITE } <-" if developer else ERRO[501])
 
         finally:
             if validation["scroll_horizontal"]:

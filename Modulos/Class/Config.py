@@ -7,6 +7,7 @@ json = Arquivo()
 # [ DESENVOLVEDOR ]
 developer = True # Habilita a exibição de erros específicos do python
 bkp = False # Habilita a execução de backup ao realizar os ajustes
+rastreador_links = False # Habilita a opção de apenas rastrear links sem realizar a validação
 
 
 # [ VARIÁVEIS MÉTODO VALIDAÇÃO ]
